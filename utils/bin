@@ -1,0 +1,5 @@
+#!/bin/bash
+
+mkdir -p /tmp/recycle-bin/
+
+mv $1 /tmp/recycle-bin/

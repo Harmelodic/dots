@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cdrm () {
+    directory=$(pwd)
+    cd ..
+    bin $directory
+}

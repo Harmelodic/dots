@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Git Delete Local branch
+# Deletes all local branches that have been merged into the base branch.
+# Should be run after performing `git pull --prune` if you're merging on a remote repo.
+
+git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d

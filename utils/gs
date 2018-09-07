@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# GIT SWITCH
+source $DOTS/vars
+
+# Switch to my personal account
+if [ $1 = "me" ]
+then
+    git config --global user.name $GIT_SWITCH_ME_NAME
+    git config --global user.email $GIT_SWITCH_ME_EMAIL
+fi
+
+# Switch to my Work account
+if [ $1 = "work" ]
+then
+    git config --global user.name $GIT_SWITCH_WORK_NAME
+    git config --global user.email $GIT_SWITCH_WORK_EMAIL
+fi
+
+# Output current/new state of config
+echo ""
+
+echo "Username:"
+git config user.name
+
+echo ""
+
+echo "Email:"
+git config user.email
+
+echo ""
