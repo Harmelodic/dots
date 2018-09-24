@@ -4,4 +4,5 @@
 # Deletes all local branches that have been merged into the base branch.
 # Should be run after performing `git pull --prune` if you're merging on a remote repo.
 
+git remote prune origin
 git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d
