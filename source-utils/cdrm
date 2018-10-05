@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Jump out of the current directory and immediately remove it
+# (Using `bin` for recycling)
+
 cdrm () {
     directory=$(pwd)
     cd ..

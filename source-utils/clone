@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Performs a git clone 
+# Then jumps straight into the directory after cloning
+
 clone () {
     git clone $1
     NEW_DIR=$(ll -t | head -2 | tail -1 | awk '{print $9}')

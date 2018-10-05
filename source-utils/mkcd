@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Make a directory
+# Then immediately jump into it
+
 mkcd () {
     if [ ! -n "$1" ]; then 
         echo "No argument given."

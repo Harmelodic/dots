@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Sets up a bunch of useful aliases within Git
+
 git config --global alias.a "!git add . && git status"
 git config --global alias.ac "!git add . && git commit"
 git config --global alias.acm "!git add . && git commit -m"
@@ -11,6 +13,7 @@ git config --global alias.ca "commit --amend"
 git config --global alias.cb "checkout -b"
 git config --global alias.cm "commit -m"
 git config --global alias.d "diff"
+git config --global alias.develop "checkout develop"
 git config --global alias.ds "diff --staged"
 git config --global alias.l "log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'"
 git config --global alias.lg "log --color --graph --pretty=format:'%C(bold white)%h%Creset -%C(bold green)%d%Creset %s %C(bold green)(%cr)%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"

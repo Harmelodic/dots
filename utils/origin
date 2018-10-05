@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Change the origin of a git repository
+
 if [ -z "$1" ]; then
     git remote get-url origin
 else
