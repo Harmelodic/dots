@@ -19,5 +19,3 @@ set -o vi
 # Aliases
 alias ll='ls -lh'
 alias la='ls -lah'
-
-source $DOTS/git-aliases
