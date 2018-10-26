@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# Upgrades your system and outputs current versions
+
+
+# OS Specific
+if [[ "$(uname)" =~ "Darwin" ]]; then
+    # Mac specific upgrades
+    echo -e "\n--- BREW ---"
+    brew update
+    brew -v
+
+    echo -e "\n--- BREW FORMULAE---"
+    brew upgrade
+    brew list
+
+    echo -e "\n--- BREW CASK FORMULAE ---"
+    brew cask upgrade
+    brew cask list
+else
+    echo -e "\nUnsupported System: $(uname)"
+fi
+
+
+# OS Agnostic
+echo -e "\n--- GCLOUD ---"
+sudo gcloud components update
+gcloud version | head -1
+
+echo -e "\n--- NODE.JS ---"
+sudo n latest
+node -v
+
+echo -e "\n--- NPM ---"
+npm up -g npm
+npm -v
+
+echo -e "\n--- NPM GLOBAL MODULES ---"
+npm up -g
+npm ls -g --depth=0
+
+echo -e "\n--- SDKMAN ---"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+sdk selfupdate
+sdk version | xargs -I {} echo "{}"
+
+echo -e "\n--- SDKMAN CANDIDATES: ---"
+sdk upgrade 
+sdk current | xargs -I {} echo "{}"
