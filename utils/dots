@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Management tool for dots 
+
+if [[ $1 == "upgrade" ]]; then
+    git clone https://gitlab.com/Harmelodic/dots.git $HOME/dots-tmp -q
+    cp $DOTS/vars $HOME/dots-tmp/vars
+    rm -rf $HOME/dots
+    mv $HOME/dots-tmp $HOME/dots
+    dots -v
+elif [[ $1 == "" || $1 == "help" || $1 == "-h" || $1 == "-help" || $1 == "--help" ]]; then
+    echo "Please provide a dots command."
+    echo ""
+    echo "$ dots <command>"
+    echo ""
+    echo "Where <command> is one of the following:"
+    echo ""
+    echo "- help (-h) (--help)"
+    echo "- upgrade"
+    echo ""
+elif [[ $1 == "version" || $1 == "-v" || $1 == "-version" || $1 == "--version" ]]; then
+    echo $(cd $DOTS && git rev-parse HEAD)
+else
+    echo "Unrecognised dots command: $1";
+fi

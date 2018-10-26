@@ -2,6 +2,8 @@
 
 # Upgrades your system and outputs current versions
 
+echo -e "\n--- DOTS ---"
+dots upgrade
 
 # OS Specific
 if [[ "$(uname)" =~ "Darwin" ]]; then
