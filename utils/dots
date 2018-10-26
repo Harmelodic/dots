@@ -3,10 +3,7 @@
 # Management tool for dots 
 
 if [[ $1 == "upgrade" ]]; then
-    git clone https://gitlab.com/Harmelodic/dots.git $HOME/dots-tmp -q
-    cp $DOTS/vars $HOME/dots-tmp/vars
-    rm -rf $HOME/dots
-    mv $HOME/dots-tmp $HOME/dots
+    echo "Upgrading... $(cd $DOTS && git pull -q)"
     dots -v
 elif [[ $1 == "" || $1 == "help" || $1 == "-h" || $1 == "-help" || $1 == "--help" ]]; then
     echo "Please provide a dots command."
