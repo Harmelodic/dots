@@ -2,12 +2,9 @@
 
 echo "Installing dots..."
 
-echo "Cloning..."
 git clone https://gitlab.com/Harmelodic/dots.git $HOME/dots -q
-
 cp $HOME/dots/vars.example $HOME/dots/vars
 
-echo "Setting up source..."
 if [[ "$(uname)" =~ "Darwin" ]]; then
     echo "" >> $HOME/.bash_profile
     echo "# dots" >> $HOME/.bash_profile
@@ -21,9 +18,9 @@ else
     echo ""
 fi
 
-echo "Install Complete. - Terminal refresh required";
+echo "Done. - Terminal refresh required";
 
 echo ""
 echo "Set up your personal dots-related vars by editing:"
-echo "$HOME/dots/vars\n"
+echo "$HOME/dots/vars"
 echo ""
