@@ -8,13 +8,13 @@ cp $HOME/dots/vars.example $HOME/dots/vars
 if [[ "$(uname)" =~ "Darwin" ]]; then
     echo "" >> $HOME/.bash_profile
     echo "# dots" >> $HOME/.bash_profile
-    echo "source dots/bashrc" >> $HOME/.bash_profile
+    echo "source ~/dots/bashrc" >> $HOME/.bash_profile
 else
     echo ""
     echo "ERROR! Unsupported System: $(uname)"
     echo "Please add the following line to your .bashrc / .bash_profile file in your home directory:"
     echo ""
-    echo "source dots/bashrc"
+    echo "source ~/dots/bashrc"
     echo ""
 fi
 
