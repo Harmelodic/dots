@@ -18,7 +18,7 @@ elif [[ $1 == "" || $1 == "help" || $1 == "-h" || $1 == "-help" || $1 == "--help
     echo ""
 elif [[ $1 == "version" || $1 == "-v" || $1 == "-version" || $1 == "--version" ]]; then
     echo $(cd $DOTS && git rev-parse HEAD)
-elif [[ $1 == "list" ]]; then
+elif [[ $1 == "list" || $1 == "ls" ]]; then
     echo "dots can do:"
     echo ""
     echo "<TODO>"
