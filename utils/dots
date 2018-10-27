@@ -24,7 +24,7 @@ elif [[ $1 == "list" || $1 == "ls" ]]; then
     echo "<TODO>"
     # Create a map
     # For each executable file in source-utils and utils, add to the map (key/value) the name of the file/the 3rd line of the file.
-    # For each entry in the map, output to the screen: "Key - Value"
+    # For each entry in the map, output to the screen: "$ Key - Value"
 else
     echo "Unrecognised dots command: $1";
 fi
