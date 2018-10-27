@@ -26,7 +26,7 @@ fi
 
 # OS Agnostic
 echo -e "\n--- GCLOUD ---"
-sudo gcloud components update
+gcloud components update --quiet
 gcloud version | head -1
 
 echo -e "\n--- NODE.JS ---"
