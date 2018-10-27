@@ -2,9 +2,6 @@
 
 # Upgrades your system and outputs current versions
 
-echo -e "\n--- DOTS ---"
-dots upgrade
-
 # OS Specific
 if [[ "$(uname)" =~ "Darwin" ]]; then
     # Mac specific upgrades
@@ -49,3 +46,6 @@ sdk version | xargs -I {} echo "{}"
 echo -e "\n--- SDKMAN CANDIDATES: ---"
 sdk upgrade 
 sdk current | xargs -I {} echo "{}"
+
+echo -e "\n--- DOTS ---"
+dots upgrade
