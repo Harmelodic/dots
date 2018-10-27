@@ -17,7 +17,7 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
     brew cask upgrade
     brew cask list
 else
-    echo -e "\nUnsupported System: $(uname)"
+    echo -e "\nNo OS Specific updates to install for $(uname)"
 fi
 
 
