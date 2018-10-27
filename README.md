@@ -12,7 +12,7 @@ curl -s "https://gitlab.com/Harmelodic/dots/raw/master/install" | bash
 
 ## What now?
 
-To what commands you can now do, run:
+To find out what commands you can now use, run:
 
 ```bash
 dots list
