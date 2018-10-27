@@ -20,11 +20,13 @@ dots list
 
 ## I can see there have been updates in the repo, how do I get them?
 
+Run:
+
 ```bash
 dots upgrade
 ```
 
-## I want to contribute!
+## I want to contribute!
 
 Submit a PR!
 
