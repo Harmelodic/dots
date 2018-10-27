@@ -18,6 +18,15 @@ To find out what commands you can now use, run:
 dots list
 ```
 
+## Other than commands, what else does dots do?
+
+dots will:
+
+- Sets an environment variable, `$DOTS`, as your dots home
+- Puts your terminal into `vi` mode
+- Adds some shell aliases
+- Adds some git aliases
+
 ## I can see there have been updates in the repo, how do I get them?
 
 Run:
@@ -46,3 +55,5 @@ cmd () {
     # Commands
 }
 ```
+
+As a side affect, everything in the `utils` directory can be identified using `which`, but everything in `source-utils` cannot.
