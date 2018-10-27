@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# An alternative to rm -rf that acts more like a recycle bin
+# An alternative to rm -rf that acts more like a recycle bin (by putting files in /tmp/recycle-bin)
 
 mkdir -p /tmp/recycle-bin/
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Upgrades your system and outputs current versions
+# Runs the update/upgrade commands on package managers & tools, then outputs the current/new versions
 
 # OS Specific
 if [[ "$(uname)" =~ "Darwin" ]]; then

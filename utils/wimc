@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# WHAT IS MY CONFIG
+# Outputs config for common development tools
+# Stands for: What Is My Config?
+
 echo ""
 
 

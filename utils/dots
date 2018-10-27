@@ -19,12 +19,38 @@ elif [[ $1 == "" || $1 == "help" || $1 == "-h" || $1 == "-help" || $1 == "--help
 elif [[ $1 == "version" || $1 == "-v" || $1 == "-version" || $1 == "--version" ]]; then
     echo $(cd $DOTS && git rev-parse HEAD)
 elif [[ $1 == "list" || $1 == "ls" ]]; then
+    echo ""
     echo "dots can do:"
     echo ""
-    echo "<TODO>"
-    # Create a map
-    # For each executable file in source-utils and utils, add to the map (key/value) the name of the file/the 3rd line of the file.
-    # For each entry in the map, output to the screen: "$ Key - Value"
+    ls -l $DOTS/source-utils | grep '^\S*x\S*' | xargs -I {} echo {} | awk '{print $9;}' | xargs -I {} echo "$ {}"
+    ls -1 $DOTS/utils | xargs -I {} echo "$ {}"
+    echo ""
+    echo "To find out more about a commmand, run:"
+    echo ""
+    echo "$ dots info <command>"
+    echo ""
+elif [[ $1 == "info" ]]; then
+    OUTPUT=""
+    for file in $DOTS/source-utils/* ; do
+        if [ -f "$file" ] ; then
+            if [[ $2 == "${file#"$HOME/dots/source-utils/"}" ]]; then
+                OUTPUT=$(cat $file | head -3 | tail -1)
+            fi
+        fi
+    done
+    for file in $DOTS/utils/* ; do
+        if [ -f "$file" ] ; then
+            if [[ $2 == "${file#"$HOME/dots/utils/"}" ]]; then
+                OUTPUT=$(cat $file | head -3 | tail -1)
+            fi
+        fi
+    done
+    if [[ $OUTPUT == "" ]]; then
+        echo "Unrecognised command: $2"
+    else
+        echo $OUTPUT
+        echo ""
+    fi
 else
     echo "Unrecognised dots command: $1";
 fi

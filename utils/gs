@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# Switches basic user/email config within Git
-# in a "profile-based" way
+# Switches Git's user.name & user.email config (in a "profile-based" way, by using variables set in $DOTS/vars)
 
 # GIT SWITCH
 source $DOTS/vars
