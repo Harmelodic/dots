@@ -38,6 +38,9 @@ echo -e "\n--- NPM GLOBAL MODULES ---"
 npm up -g
 npm ls -g --depth=0
 
+echo -e "\n--- RUST ---"
+rustup update
+
 echo -e "\n--- SDKMAN ---"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 sdk selfupdate
