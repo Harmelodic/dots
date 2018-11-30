@@ -40,6 +40,8 @@ npm ls -g --depth=0
 
 echo -e "\n--- RUST ---"
 rustup update
+rustup -V
+rustc -V
 
 echo -e "\n--- SDKMAN ---"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
