@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Opens the remote repo in a browser tab, takes optional parameter for specifiying remote repo (origin is default)
+
+if [[ -f $1 ]]; then
+    repo_url=$(git remote get-url $1)
+else
+    repo_url=$(git remote get-url origin)
+fi
+
+if [[ "$(uname)" =~ "Darwin" ]]; then
+    open "$repo_url"
+elif [[ "$(uname)" =~ "Linux" ]]; then
+    xdg-open $repo_url
+else
+    echo "Unsupported System (or you're using Linux and don't have xdg-open available for use)";
+fi
