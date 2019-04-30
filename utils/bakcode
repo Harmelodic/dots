@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Backs up VS Code settings and extensions
+
+code --list-extensions > ~/.code/extension.list
+
+if [[ "$(uname)" =~ "Darwin" ]]; then
+    cp "$HOME/Library/Application Support/Code/User/settings.json" ~/.code/settings.json
+elif [[ "$(uname)" =~ "Linux" ]]; then
+    cp $HOME/.config/Code/User/settings.json ~/.code/settings.json
+else
+    echo "Unsupported System";
+fi
+
+DATE=`date`
+
+cd ~/.code && git add . && git commit -m "Back up: $DATE"

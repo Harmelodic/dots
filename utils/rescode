@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Backs up VS Code settings and extensions
+
+cd ~/.code && git pull
+
+code --list-extensions > ~/.code/extension.list
+
+cat ~/.code/extension.list | xargs -I {} code --install-extension {}
+
+if [[ "$(uname)" =~ "Darwin" ]]; then
+    cp ~/.code/settings.json "$HOME/Library/Application Support/Code/User/settings.json" 
+elif [[ "$(uname)" =~ "Linux" ]]; then
+    cp ~/.code/settings.json $HOME/.config/Code/User/settings.json
+else
+    echo "Unsupported System";
+fi
