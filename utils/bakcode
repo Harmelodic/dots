@@ -14,4 +14,4 @@ fi
 
 DATE=`date`
 
-cd ~/.code && git add . && git commit -m "Back up: $DATE"
+cd ~/.code && git add . && git commit -m "Back up: $DATE" && git push
