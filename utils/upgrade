@@ -23,14 +23,8 @@ fi
 
 # OS Agnostic
 echo -e "\n--- GCLOUD ---"
-if [[ "$(uname)" =~ "Darwin" ]]; then
-    sudo gcloud components update --quiet
-    gcloud version | head -1
-else
-    gcloud components update --quiet
-    gcloud version | head -1
-fi
-
+gcloud components update --quiet
+gcloud version | head -1
 
 echo -e "\n--- NODE.JS ---"
 sudo n latest
