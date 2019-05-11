@@ -2,7 +2,6 @@
 
 # Switches Git's user.name & user.email config (in a "profile-based" way, by using variables set in $DOTS/vars)
 
-# GIT SWITCH
 source $DOTS/vars
 
 # Switch to my personal account
