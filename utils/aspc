@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Clone all repos from a Stash project.
+
+source $DOTS/vars
+
+read -p "Domain? (e.g. stash.example.com): " domain
+read -p "Project Code?: " project
+read -p "Username?: " username
+read -s -p "Password?: " password
+
+authString=`echo "$username:$password" | base64`
+
+if [[ -z "$domain" ]] && [[ -z "$project"]] && [[ -z "$username"]];
+then
+    ""
+    curl -s --header "Authorization: Basic $authString" https://$domain/rest/api/1.0/projects/$project/repos \
+        | jq ".values[].cloneUrl" \
+        | xargs -I {} git clone {}
+else
+    echo "Please give a domain, project and username"
+fi
+

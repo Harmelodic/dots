@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Clone all repos from a Bitbucket project.
+
+source $DOTS/vars
+
+read -p "Domain? (e.g. bitbucket.example.com): " domain
+read -p "Project Code?: " project
+read -p "Username?: " username
+read -s -p "Password?: " password
+
+authString=`echo -n "$username:$password" | base64`
+
+if [ ! -z "$domain" ] && [ ! -z "$project" ] && [ ! -z "$username" ];
+then
+    curl -s --header "Authorization: Basic $authString" https://$domain/rest/api/1.0/projects/$project/repos \
+        | jq ".values[].name" \
+        | xargs -I {} git clone https://$username@$domain/scm/$project/{}.git
+else
+    echo "Please give a domain, project and username"
+fi
