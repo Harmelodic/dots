@@ -51,6 +51,28 @@ elif [[ $1 == "info" ]]; then
         echo $OUTPUT
         echo ""
     fi
+elif [[ $1 == "source" ]]; then
+    OUTPUT=""
+    for file in $DOTS/source-utils/* ; do
+        if [ -f "$file" ] ; then
+            if [[ $2 == "${file#"$HOME/dots/source-utils/"}" ]]; then
+                OUTPUT=$(cat $file)
+            fi
+        fi
+    done
+    for file in $DOTS/utils/* ; do
+        if [ -f "$file" ] ; then
+            if [[ $2 == "${file#"$HOME/dots/utils/"}" ]]; then
+                OUTPUT=$(cat $file)
+            fi
+        fi
+    done
+    if [[ $OUTPUT == "" ]]; then
+        echo "Unrecognised command: $2"
+    else
+        echo "$OUTPUT"
+        echo ""
+    fi
 else
     echo "Unrecognised dots command: $1";
 fi
