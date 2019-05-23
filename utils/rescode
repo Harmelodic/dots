@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Backs up VS Code settings and extensions
+# Restores VS Code settings and extensions
 
 cd ~/.code && git pull
 
