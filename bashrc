@@ -22,3 +22,4 @@ alias la='ls -lah'
 
 # Config File Pointers
 git config --global core.excludesfile $DOTS/config-files/.gitignore
+git config --global credential.helper cache
