@@ -34,6 +34,10 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
     echo -e "\n--- SDKMAN CANDIDATES: ---"
     sdk upgrade 
     sdk current | xargs -I {} echo "{}"
+elif [[ "$(uname -a)" =~ "MANJARO" ]]; then
+    # Manjaro specific upgrades
+    echo -e "\n--- PACMAN PACKAGES: ---"
+    sudo pacman -Syu
 else
     echo -e "\nNo OS Specific updates to install for $(uname)"
 fi
