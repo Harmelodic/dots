@@ -17,6 +17,11 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
     brew cask upgrade
     brew cask list
 
+    echo -e "\n--- RUST ---"
+    rustup update
+    rustup -V
+    rustc -V
+
     echo -e "\n--- SDKMAN ---"
     [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
     sdk selfupdate
@@ -37,11 +42,6 @@ gcloud version | head -1
 echo -e "\n--- NPM GLOBAL MODULES ---"
 npm up -g
 npm ls -g --depth=0
-
-echo -e "\n--- RUST ---"
-rustup update
-rustup -V
-rustc -V
 
 echo -e "\n--- DOTS ---"
 dots upgrade

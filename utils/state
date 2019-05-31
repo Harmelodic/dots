@@ -14,6 +14,9 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
     echo -e "\n--- BREW CASK FORMULAE ---"
     brew cask list
 
+    echo -e "\n--- RUSTUP ---"
+    rustup -V
+
     echo -e "\n--- SDKMAN ---"
     [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
     sdk version | xargs -I {} echo "{}"
@@ -32,7 +35,6 @@ echo -e "\n--- NPM GLOBAL MODULES ---"
 npm ls -g --depth=0
 
 echo -e "\n--- RUST ---"
-rustup -V
 rustc -V
 
 echo -e "\n--- DOTS ---"
