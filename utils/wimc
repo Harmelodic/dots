@@ -5,14 +5,18 @@
 
 echo ""
 
-
-echo ""
-echo "sdk"
-echo "------------------------------------"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-sdk current | xargs -I {} echo "{}"
-echo ""
-echo ""
+if [[ "$(uname)" =~ "Darwin" ]]; then
+    # Mac specific config
+    echo ""
+    echo "sdk"
+    echo "------------------------------------"
+    [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+    sdk current | xargs -I {} echo "{}"
+    echo ""
+    echo ""
+else
+    echo -e "\nNo OS Specific updates to install for $(uname)"
+fi
 
 
 echo ""

@@ -16,10 +16,18 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
     echo -e "\n--- BREW CASK FORMULAE ---"
     brew cask upgrade
     brew cask list
+
+    echo -e "\n--- SDKMAN ---"
+    [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+    sdk selfupdate
+    sdk version | xargs -I {} echo "{}"
+
+    echo -e "\n--- SDKMAN CANDIDATES: ---"
+    sdk upgrade 
+    sdk current | xargs -I {} echo "{}"
 else
     echo -e "\nNo OS Specific updates to install for $(uname)"
 fi
-
 
 # OS Agnostic
 echo -e "\n--- GCLOUD ---"
@@ -34,15 +42,6 @@ echo -e "\n--- RUST ---"
 rustup update
 rustup -V
 rustc -V
-
-echo -e "\n--- SDKMAN ---"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-sdk selfupdate
-sdk version | xargs -I {} echo "{}"
-
-echo -e "\n--- SDKMAN CANDIDATES: ---"
-sdk upgrade 
-sdk current | xargs -I {} echo "{}"
 
 echo -e "\n--- DOTS ---"
 dots upgrade
