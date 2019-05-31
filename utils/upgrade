@@ -17,6 +17,10 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
     brew cask upgrade
     brew cask list
 
+    echo -e "\n--- GCLOUD ---"
+    gcloud components update --quiet
+    gcloud version | head -1
+
     echo -e "\n--- RUST ---"
     rustup update
     rustup -V
@@ -35,10 +39,6 @@ else
 fi
 
 # OS Agnostic
-echo -e "\n--- GCLOUD ---"
-gcloud components update --quiet
-gcloud version | head -1
-
 echo -e "\n--- NPM GLOBAL MODULES ---"
 npm up -g
 npm ls -g --depth=0
