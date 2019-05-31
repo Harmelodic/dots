@@ -19,3 +19,6 @@ set -o vi
 # Aliases
 alias ll='ls -lh'
 alias la='ls -lah'
+
+# Config File Pointers
+git config --global core.excludesfile $DOTS/config-files/.gitignore

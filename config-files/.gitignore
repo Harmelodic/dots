@@ -1,0 +1,7 @@
+# Jetbrains IDEs
+*.iml
+.idea/
+.DS_Store
+
+# Visual Studio Code
+.vscode/
