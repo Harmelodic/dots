@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# An alternative to rm -rf that acts more like a recycle bin (by putting files in /tmp/recycle-bin)
-
-mkdir -p /tmp/recycle-bin/
-
-mv $1 /tmp/recycle-bin/
+# An alternative to rm -rf that acts more like a recycle bin (by putting files in Trash or /tmp/recycle-bin)
+if [[ "$(uname)" =~ "Darwin" ]]; then
+    mv $1 $HOME/.Trash/.
+else
+    mkdir -p /tmp/recycle-bin/
+    mv $1 /tmp/recycle-bin/
+fi
