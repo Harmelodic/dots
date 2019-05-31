@@ -25,6 +25,7 @@ git config --global core.excludesfile $DOTS/config-files/.gitignore
 git config --global core.editor vim
 git config --global core.ignorecase true
 if [[ "$(uname)" =~ "Darwin" ]]; then
-    git config credential.helper osxkeychain # Permanent cache
+    git config --global credential.helper osxkeychain # Permanent cache
 elif [[ "$(uname)" =~ "Linux" ]]; then
-    git config credential.helper 'cache --timeout=86400' # 24 hour cache
+    git config --global credential.helper 'cache --timeout=86400' # 24 hour cache
+fi
