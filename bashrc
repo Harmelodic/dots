@@ -20,6 +20,11 @@ set -o vi
 alias ll='ls -lh'
 alias la='ls -lah'
 
-# Config File Pointers
+# Git
 git config --global core.excludesfile $DOTS/config-files/.gitignore
-git config --global credential.helper cache
+git config --global core.editor vim
+git config --global core.ignorecase true
+if [[ "$(uname)" =~ "Darwin" ]]; then
+    git config credential.helper osxkeychain # Permanent cache
+elif [[ "$(uname)" =~ "Linux" ]]; then
+    git config credential.helper 'cache --timeout=86400' # 24 hour cache

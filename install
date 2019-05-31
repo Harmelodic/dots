@@ -9,6 +9,10 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
     echo "" >> $HOME/.bash_profile
     echo "# dots" >> $HOME/.bash_profile
     echo "source ~/dots/bashrc" >> $HOME/.bash_profile
+elif [[ "$(uname)" =~ "Linux" ]]; then
+    echo "" >> $HOME/.bashrc
+    echo "# dots" >> $HOME/.bashrc
+    echo "source ~/dots/bashrc" >> $HOME/.bashrc
 else
     echo ""
     echo "ERROR! Unsupported System: $(uname)"
