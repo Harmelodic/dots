@@ -21,6 +21,10 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
     gcloud components update --quiet
     gcloud version | head -1
 
+    echo -e "\n--- PIP ---"
+    pip install --upgrade pip
+    pip --version
+
     echo -e "\n--- RUST ---"
     rustup update
     rustup -V
