@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Switches to a different gcloud account.
+
+EMAIL=$1
+
+gcloud config set account $EMAIL
+gcloud auth application-default login
