@@ -8,17 +8,25 @@ cp $HOME/dots/vars.example $HOME/dots/vars
 if [[ "$(uname)" =~ "Darwin" ]]; then
     echo "" >> $HOME/.bash_profile
     echo "# dots" >> $HOME/.bash_profile
-    echo "source ~/dots/bashrc" >> $HOME/.bash_profile
+    echo "source ~/dots/rc" >> $HOME/.bash_profile
+
+    echo "" >> $HOME/.zshrc
+    echo "# dots" >> $HOME/.zshrc
+    echo "source ~/dots/rc" >> $HOME/.zshrc
 elif [[ "$(uname)" =~ "Linux" ]]; then
     echo "" >> $HOME/.bashrc
     echo "# dots" >> $HOME/.bashrc
-    echo "source ~/dots/bashrc" >> $HOME/.bashrc
+    echo "source ~/dots/rc" >> $HOME/.bashrc
+
+    echo "" >> $HOME/.zshrc
+    echo "# dots" >> $HOME/.zshrc
+    echo "source ~/dots/rc" >> $HOME/.zshrc
 else
     echo ""
     echo "ERROR! Unsupported System: $(uname)"
-    echo "Please add the following line to your .bashrc / .bash_profile file in your home directory:"
+    echo "Please add the following line to your .bashrc / .bash_profile / .zshrc file in your home directory:"
     echo ""
-    echo "source ~/dots/bashrc"
+    echo "source ~/dots/rc"
     echo ""
 fi
 

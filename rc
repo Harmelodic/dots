@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export DOTS="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+export DOTS=~/dots
 
 # Custom utility commands
 PATH="${DOTS}/utils:${PATH}"

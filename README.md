@@ -41,7 +41,7 @@ Submit a PR!
 
 ## I'm just here to read, where do I start?
 
-Look in the `bashrc` file in the project root. Everything gets `source`'d and built from there.
+Look in the `rc` file in the project root. Everything gets `source`'d and built from there.
 
 ## Why `source-utils` and `utils`? Why not a single folder?
 
