@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Enable/Disable macOS's Wireless Communications Services.
+
+if [[ $1 == "on" ]]; then
+    echo "Turning macOS Wireless Communications on..."
+
+    # Wi-Fi
+    networksetup -setairportpower en0 on
+    
+    # Bluetooth
+    blueutil -p 1
+
+    echo ""
+    echo "Done."
+elif [[ $1 == "off" ]]; then
+    echo "Turning macOS Wireless Communications off..."
+    
+    # Wi-Fi
+    networksetup -setairportpower en0 off
+    
+    # Bluetooth
+    blueutil -p 0
+    
+    echo ""
+    echo "Done."
+else
+    echo ""
+    echo "Use the format:"
+    echo "$ maccom on"
+    echo "on"
+    echo "$ maccom off"
+    echo ""
+fi
