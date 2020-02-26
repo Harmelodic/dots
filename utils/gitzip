@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Zips up all files in a directory at HEAD, ignoring those in .gitignore
+
+ARCHIVE=`basename "$PWD"`
+
+git archive -o $ARCHIVE.zip HEAD
