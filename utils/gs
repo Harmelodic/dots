@@ -9,6 +9,13 @@ if [ "$1" = "me" ]
 then
     git config --global user.name $GIT_SWITCH_ME_NAME
     git config --global user.email $GIT_SWITCH_ME_EMAIL
+    if [ "$GIT_SWITCH_ME_GPG_SEC" = "" ]
+    then
+        git config --global commit.gpgsign false
+    else
+        git config --global user.signingkey $GIT_SWITCH_ME_GPG_SEC
+        git config --global commit.gpgsign true
+    fi
 fi
 
 # Switch to my Work account
@@ -16,6 +23,13 @@ if [ "$1" = "work" ]
 then
     git config --global user.name $GIT_SWITCH_WORK_NAME
     git config --global user.email $GIT_SWITCH_WORK_EMAIL
+    if [ "$GIT_SWITCH_WORK_GPG_SEC" = "" ]
+    then
+        git config --global commit.gpgsign false
+    else
+        git config --global user.signingkey $GIT_SWITCH_WORK_GPG_SEC
+        git config --global commit.gpgsign true
+    fi
 fi
 
 # Output current/new state of config
@@ -30,3 +44,12 @@ echo "Email:"
 git config user.email
 
 echo ""
+
+USING_GPG=$(git config commit.gpgsign)
+
+if [[ $USING_GPG = true ]]
+then
+    echo "GPG SEC:"
+    git config user.signingkey
+    echo ""
+fi
