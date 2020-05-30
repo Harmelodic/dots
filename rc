@@ -8,10 +8,6 @@ elif [[ "$(uname)" =~ "Linux" ]]; then
     PS1="\[\033[01;32m\]\u@\h\[\033[01;37m\] \W\[\033[01;32m\] \$\[\033[00m\] "
 fi
 
-# nvm
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
 # Custom utility commands
 PATH="${DOTS}/utils:${PATH}"
 export PATH
@@ -34,6 +30,7 @@ alias la='ls -lah'
 git config --global core.excludesfile $DOTS/config-files/.gitignore
 git config --global core.editor vim
 git config --global core.ignorecase true
+git config --global gpg.program gpg
 if [[ "$(uname)" =~ "Darwin" ]]; then
     git config --global credential.helper osxkeychain # Permanent cache
 elif [[ "$(uname)" =~ "Linux" ]]; then
