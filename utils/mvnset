@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Open the Maven Settings file in VS Code
+
+code ~/.m2/settings.xml
