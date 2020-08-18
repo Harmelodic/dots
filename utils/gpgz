@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Helper function for git-related 
+
+
+if [[ $1 == "new" ]]; then
+    gpg --full-gen-key
+elif [[ $1 == *"@"* ]]; then
+    SEC_CODE=$(gpg --list-secret-keys --keyid-format LONG $1 | grep sec | awk '{print $2}' | cut -c9-)
+    echo "sec $SEC_CODE"
+    gpg --armor --export $SEC_CODE
+else
+    echo ""
+    echo "$ gitgpg new"
+    echo "to create a new gpg key"
+    echo ""
+    echo "or"
+    echo ""
+    echo "$ gitgpg <email>"
+    echo "to get the SEC GPG Key ID and the public key for the email entered"
+    echo ""
+fi
