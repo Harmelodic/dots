@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Completely rewrite the history of your branch - Uses git-filter-branch - USE WITH CAUTION
+
+if [ $1 ] && [ $2 ]; then
+    git filter-branch -f --env-filter "GIT_AUTHOR_NAME='$1'; GIT_AUTHOR_EMAIL='$2'; GIT_COMMITTER_NAME='$1'; GIT_COMMITTER_EMAIL='$2';" HEAD
+else
+    echo ""
+    echo "Usage:"
+    echo "$ grw Username email@domain.com"
+    echo ""
+fi
