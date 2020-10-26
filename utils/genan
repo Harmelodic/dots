@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Generate an alphanumeric (an) string (default 32 characters)
+
+LENGTH=32
+
+if [ $1 ]; then
+  LENGTH=$1
+fi
+
+LC_CTYPE=C tr -dc A-Za-z0-9 < /dev/urandom | head -c $LENGTH | xargs
