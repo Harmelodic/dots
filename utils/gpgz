@@ -11,12 +11,12 @@ elif [[ $1 == *"@"* ]]; then
     gpg --armor --export $SEC_CODE
 else
     echo ""
-    echo "$ gitgpg new"
+    echo "$ gpgz new"
     echo "to create a new gpg key"
     echo ""
     echo "or"
     echo ""
-    echo "$ gitgpg <email>"
+    echo "$ gpgz <email>"
     echo "to get the SEC GPG Key ID and the public key for the email entered"
     echo ""
 fi
