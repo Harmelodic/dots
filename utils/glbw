@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Deletes all local branches (except master). Stands for: Git Local Branch Wipe
+
+git branch | grep -v master | xargs git branch -D
