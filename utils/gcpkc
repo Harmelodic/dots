@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Connect to a cluster in Google Cloud (script stands for: Google Cloud Platform Kubernetes Connect)
+
+source $DOTS/vars
+
+PROJECT_ID=$1
+CLUSTER=${2:-$GCPKC_DEFAULT_CLUSTER}
+REGION=${3:-$GCPKC_DEFAULT_REGION}
+
+gcloud container clusters get-credentials $CLUSTER --region $REGION --project $PROJECT_ID
