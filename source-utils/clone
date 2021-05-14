@@ -5,6 +5,6 @@
 
 clone () {
     git clone $1
-    NEW_DIR=$(ll -t | head -2 | tail -1 | awk '{print $9}')
+    NEW_DIR=$(ll -t | head -2 | tail -1 | awk '{print $NF}')
     cd $NEW_DIR
 }
