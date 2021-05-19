@@ -22,7 +22,7 @@ elif [[ $1 == "list" || $1 == "ls" ]]; then
     echo ""
     echo "dots can do:"
     echo ""
-    ls -l $DOTS/source-utils | grep '^\S*x\S*' | xargs -I {} echo {} | awk '{print $9;}' | xargs -I {} echo "$ {}"
+    ls -1 $DOTS/source-utils | xargs -I {} echo "$ {}"
     ls -1 $DOTS/utils | xargs -I {} echo "$ {}"
     echo ""
     echo "To find out more about a commmand, run:"
