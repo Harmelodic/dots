@@ -26,6 +26,7 @@ set -o vi
 # Aliases
 alias ll='ls -lh'
 alias la='ls -lah'
+alias k='kubectl'
 
 # Git
 git config --global core.excludesfile $DOTS/config-files/.gitignore
