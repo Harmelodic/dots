@@ -2,13 +2,15 @@
 
 # Management tool for dots 
 
+name=$(basename $0)
+
 if [[ $1 == "upgrade" ]]; then
     echo "Upgrading... $(cd $DOTS && git pull -q)"
-    dots -v
+    $0 -v
 elif [[ $1 == "" || $1 == "help" || $1 == "-h" || $1 == "-help" || $1 == "--help" ]]; then
-    echo "Please provide a dots command."
+    echo "Please provide a $name command."
     echo ""
-    echo "$ dots <command>"
+    echo "$ $name <command>"
     echo ""
     echo "Where <command> is one of the following:"
     echo ""
@@ -20,27 +22,27 @@ elif [[ $1 == "version" || $1 == "-v" || $1 == "-version" || $1 == "--version" ]
     echo $(cd $DOTS && git rev-parse HEAD)
 elif [[ $1 == "list" || $1 == "ls" ]]; then
     echo ""
-    echo "dots can do:"
+    echo "$name can do:"
     echo ""
     ls -1 $DOTS/source-utils | xargs -I {} echo "$ {}"
     ls -1 $DOTS/utils | xargs -I {} echo "$ {}"
     echo ""
     echo "To find out more about a commmand, run:"
     echo ""
-    echo "$ dots info <command>"
+    echo "$ $name info <command>"
     echo ""
 elif [[ $1 == "info" ]]; then
     OUTPUT=""
     for file in $DOTS/source-utils/* ; do
         if [ -f "$file" ] ; then
-            if [[ $2 == "${file#"$HOME/dots/source-utils/"}" ]]; then
+            if [[ $2 == "${file#"$DOTS/source-utils/"}" ]]; then
                 OUTPUT=$(cat $file | head -3 | tail -1)
             fi
         fi
     done
     for file in $DOTS/utils/* ; do
         if [ -f "$file" ] ; then
-            if [[ $2 == "${file#"$HOME/dots/utils/"}" ]]; then
+            if [[ $2 == "${file#"$DOTS/utils/"}" ]]; then
                 OUTPUT=$(cat $file | head -3 | tail -1)
             fi
         fi
@@ -55,14 +57,14 @@ elif [[ $1 == "source" ]]; then
     OUTPUT=""
     for file in $DOTS/source-utils/* ; do
         if [ -f "$file" ] ; then
-            if [[ $2 == "${file#"$HOME/dots/source-utils/"}" ]]; then
+            if [[ $2 == "${file#"$DOTS/source-utils/"}" ]]; then
                 OUTPUT=$(cat $file)
             fi
         fi
     done
     for file in $DOTS/utils/* ; do
         if [ -f "$file" ] ; then
-            if [[ $2 == "${file#"$HOME/dots/utils/"}" ]]; then
+            if [[ $2 == "${file#"$DOTS/utils/"}" ]]; then
                 OUTPUT=$(cat $file)
             fi
         fi
@@ -74,5 +76,5 @@ elif [[ $1 == "source" ]]; then
         echo ""
     fi
 else
-    echo "Unrecognised dots command: $1";
+    echo "Unrecognised $name command: $1";
 fi
