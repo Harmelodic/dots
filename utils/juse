@@ -6,7 +6,7 @@ if [[ $1 == "" ]]; then
     java -version
 elif [[ "$(uname)" =~ "Darwin" ]]; then
     . ~/.sdkman/bin/sdkman-init.sh
-    IDENTIFIER=`sdk list java | grep installed | grep $1 | grep hs-adpt | awk '{print $NF}'`
+    IDENTIFIER=`sdk list java | grep 'installed\|local only' | grep $1 | grep hs-adpt | awk '{print $NF}'`
     sdk default java $IDENTIFIER
 else
     echo "Command not supported on non-macOS system"
