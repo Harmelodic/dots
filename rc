@@ -9,11 +9,11 @@ elif [[ "$(uname)" =~ "Linux" ]]; then
     PS1="\[\033[01;32m\]\u@\h\[\033[01;37m\] \W\[\033[01;32m\] \$\[\033[00m\] "
 fi
 
-# Custom utility commands
+# Custom commands
 PATH="${DOTS}/bin:${PATH}"
 export PATH
 
-# Custom source utility commands
+# Custom source'd commands
 for file in $DOTS/source-bin/* ; do
     if [ -f "$file" ] ; then
         source "$file"

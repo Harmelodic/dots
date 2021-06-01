@@ -1,6 +1,6 @@
 # dots
 
-Dot files for configuration and custom setup, as well as custom util functions and scripts, for a POSIX/UNIX machine (i.e. Linux, MacOS, etc.)
+Dot files for configuration and custom setup, as well as custom functions and scripts, for a POSIX/UNIX machine (i.e. Linux, MacOS, etc.)
 
 ## Setup
 
