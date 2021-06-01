@@ -24,8 +24,8 @@ elif [[ $1 == "list" || $1 == "ls" ]]; then
     echo ""
     echo "$name can do:"
     echo ""
-    ls -1 $DOTS/source-utils | xargs -I {} echo "$ {}"
-    ls -1 $DOTS/utils | xargs -I {} echo "$ {}"
+    ls -1 $DOTS/source-bin | xargs -I {} echo "$ {}"
+    ls -1 $DOTS/bin | xargs -I {} echo "$ {}"
     echo ""
     echo "To find out more about a commmand, run:"
     echo ""
@@ -33,16 +33,16 @@ elif [[ $1 == "list" || $1 == "ls" ]]; then
     echo ""
 elif [[ $1 == "info" ]]; then
     OUTPUT=""
-    for file in $DOTS/source-utils/* ; do
+    for file in $DOTS/source-bin/* ; do
         if [ -f "$file" ] ; then
-            if [[ $2 == "${file#"$DOTS/source-utils/"}" ]]; then
+            if [[ $2 == "${file#"$DOTS/source-bin/"}" ]]; then
                 OUTPUT=$(cat $file | head -3 | tail -1)
             fi
         fi
     done
-    for file in $DOTS/utils/* ; do
+    for file in $DOTS/bin/* ; do
         if [ -f "$file" ] ; then
-            if [[ $2 == "${file#"$DOTS/utils/"}" ]]; then
+            if [[ $2 == "${file#"$DOTS/bin/"}" ]]; then
                 OUTPUT=$(cat $file | head -3 | tail -1)
             fi
         fi
@@ -51,20 +51,19 @@ elif [[ $1 == "info" ]]; then
         echo "Unrecognised command: $2"
     else
         echo $OUTPUT
-        echo ""
     fi
 elif [[ $1 == "source" ]]; then
     OUTPUT=""
-    for file in $DOTS/source-utils/* ; do
+    for file in $DOTS/source-bin/* ; do
         if [ -f "$file" ] ; then
-            if [[ $2 == "${file#"$DOTS/source-utils/"}" ]]; then
+            if [[ $2 == "${file#"$DOTS/source-bin/"}" ]]; then
                 OUTPUT=$(cat $file)
             fi
         fi
     done
-    for file in $DOTS/utils/* ; do
+    for file in $DOTS/bin/* ; do
         if [ -f "$file" ] ; then
-            if [[ $2 == "${file#"$DOTS/utils/"}" ]]; then
+            if [[ $2 == "${file#"$DOTS/bin/"}" ]]; then
                 OUTPUT=$(cat $file)
             fi
         fi

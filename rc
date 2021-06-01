@@ -10,11 +10,11 @@ elif [[ "$(uname)" =~ "Linux" ]]; then
 fi
 
 # Custom utility commands
-PATH="${DOTS}/utils:${PATH}"
+PATH="${DOTS}/bin:${PATH}"
 export PATH
 
 # Custom source utility commands
-for file in $DOTS/source-utils/* ; do
+for file in $DOTS/source-bin/* ; do
     if [ -f "$file" ] ; then
         source "$file"
     fi

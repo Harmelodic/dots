@@ -43,12 +43,12 @@ Submit a PR!
 
 Look in the `rc` file in the project root. Everything gets `source`'d and built from there.
 
-## Why `source-utils` and `utils`? Why not a single folder?
+## Why `source-bin` and `bin`? Why not a single folder?
 
-In bash, if you want to cleanly change directories and manipulate the file system, I found it's easier if you create functions in a file and then directly `source` that file, hence `source-utils`.
+In bash, if you want to cleanly change directories and manipulate the file system, I found it's easier if you create functions in a file and then directly `source` that file, hence `source-bin`.
 
 You'll also see that they are structured differently.  
-Normal `utils` are just plain bash scripts, but `source-utils` look like:
+Normal `bin` are just plain bash scripts, but `source-bin` look like:
 
 ```bash
 cmd () {
@@ -56,4 +56,4 @@ cmd () {
 }
 ```
 
-As a side affect, everything in the `utils` directory can be identified using `which`, but everything in `source-utils` cannot.
+As a side affect, everything in the `bin` directory can be identified using `which`, but everything in `source-bin` cannot.
