@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Clone all repos from a Bitbucket server, by looping through every project and using `bbpc`.
+
+source $DOTS/vars
+
+domain=$1
+username=$2
+password=$3
+
+authString=`echo -n "$username:$password" | base64`
+
+if [ ! -z "$domain" ] && [ ! -z "$authString" ]; then
+    if [ "$4" == "ssh" ]; then
+        curl -s --header "Authorization: Basic $authString" "https://$domain/rest/api/1.0/projects?limit=1000" \
+            | jq ".values[].key" \
+            | xargs -I {} bbpc $domain {} $username $password ssh
+    else
+        curl -s --header "Authorization: Basic $authString" "https://$domain/rest/api/1.0/projects?limit=1000" \
+            | jq ".values[].key" \
+            | xargs -I {} bbpc $domain {} $username $password
+    fi
+else
+    echo "Please provide your domain, username and password for cloning:"
+    echo "$ bbpc bitbucket.example.com harmelodic password123 [ssh]"
+fi
