@@ -2,8 +2,6 @@
 
 # Clone all repos from a Bitbucket project.
 
-source $DOTS/vars
-
 domain=$1
 project=$2
 username=$3
