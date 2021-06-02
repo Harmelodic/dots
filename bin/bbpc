@@ -13,13 +13,13 @@ authString=`echo -n "$username:$password" | base64`
 
 if [ ! -z "$domain" ] && [ ! -z "$project" ] && [ ! -z "$username" ]; then
     if [ "$1" == "ssh" ]; then
-        curl -s --header "Authorization: Basic $authString" https://$domain/rest/api/1.0/projects/$project/repos?limit=1000 \
-            | jq ".values[].name" \
-            | xargs -I {} git clone ssh://git@$domain:7999/$project/{}.git
+        curl -s --header "Authorization: Basic $authString" "https://$domain/rest/api/1.0/projects/$project/repos?limit=1000" \
+            | jq ".values[].links.clone[] | select(.name == \"ssh\") | .href" \
+            | xargs -I {} git clone {}
     else
-        curl -s --header "Authorization: Basic $authString" https://$domain/rest/api/1.0/projects/$project/repos?limit=1000 \
-            | jq ".values[].name" \
-            | xargs -I {} git clone https://$username@$domain/scm/$project/{}.git
+        curl -s --header "Authorization: Basic $authString" "https://$domain/rest/api/1.0/projects/$project/repos?limit=1000" \
+            | jq ".values[].links.clone[] | select(.name == \"http\") | .href" \
+            | xargs -I {} git clone {}
     fi
 else
     echo "Please give a domain, project and username"
