@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Git Quick - Does a git checkout, git add, git commit and git push to origin on the new branch.
+
+branch=$1
+commitMessage=$2
+
+if [ ! -z $branch ] && [ ! -z $commitMessage ];
+then
+    git checkout -b $branch
+    git add .
+    git commit -m $commitMessage
+    git push --set-upstream origin $branch
+else
+    echo "Use gq in the following way:"
+    echo "$ gq branch-name \"Some commit message for your commit\""
+fi
