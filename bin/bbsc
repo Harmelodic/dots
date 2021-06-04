@@ -10,11 +10,15 @@ authString=`echo -n "$username:$password" | base64`
 
 if [ ! -z "$domain" ] && [ ! -z "$authString" ]; then
 
+
     curl -s --header "Authorization: Basic $authString" "https://$domain/rest/api/1.0/projects?limit=1000" \
-        | jq -r ".values[] | select(.key != \"AR\") | .key" > projectKeys
+        | jq -r ".values[].key" > projectKeys
     
     cat projectKeys \
         | xargs mkdir -p
+
+    currentDir=$(pwd)
+    trap "break" SIGINT SIGHUP SIGTERM
 
     while read line; do
         cd $line
@@ -22,7 +26,7 @@ if [ ! -z "$domain" ] && [ ! -z "$authString" ]; then
         cd ..
     done < projectKeys
 
-    rm projectKeys
+    rm $currentDir/projectKeys
 else
     echo "Please provide your domain, username and password for cloning:"
     echo "$ bbsc bitbucket.example.com harmelodic password123 [ssh]"
