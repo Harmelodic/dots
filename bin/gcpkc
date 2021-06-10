@@ -8,4 +8,13 @@ PROJECT_ID=$1
 CLUSTER=${2:-$GCPKC_DEFAULT_CLUSTER}
 REGION=${3:-$GCPKC_DEFAULT_REGION}
 
-gcloud container clusters get-credentials $CLUSTER --region $REGION --project $PROJECT_ID
+if [ ! -z "$PROJECT_ID" ] && [ ! -z "$CLUSTER" ] && [ ! -z "$REGION" ];
+then
+    gcloud container clusters get-credentials $CLUSTER --region $REGION --project $PROJECT_ID
+else
+    echo "Use the command in the following way:"
+    echo "$ gcpkc <project_id> <cluster_name> <region>"
+    echo ""
+    echo "or if you have GCPKC defaults setup, then use:"
+    echo "$ gcpkc <project_id>"
+fi
