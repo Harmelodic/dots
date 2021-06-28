@@ -24,7 +24,7 @@ done
 set -o vi
 
 # Aliases
-alias watch='watch ' # Gets watch to support aliases
+alias spy='watch ' # Gets watch to support aliases with spy
 alias ll='ls -lh'
 alias la='ls -lah'
 alias k='kubectl'
