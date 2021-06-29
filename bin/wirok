@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# What Is Running On Kubernetes
+
+kubectl get ns --no-headers \
+    | awk '{print $1}' \
+    | xargs -I % sh -c '{
+        echo "";
+        echo "namespace: %";
+        kubectl -n % get pods;
+    }'
