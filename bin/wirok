@@ -2,10 +2,12 @@
 
 # What Is Running On Kubernetes
 
+RESOURCE=${1:-"pods"}
+
 kubectl get ns --no-headers \
     | awk '{print $1}' \
-    | xargs -I % sh -c '{
-        echo "";
-        echo "namespace: %";
-        kubectl -n % get pods;
-    }'
+    | xargs -I % sh -c "{
+        echo '';
+        echo 'namespace: %';
+        kubectl -n % get $RESOURCE;
+    }"
