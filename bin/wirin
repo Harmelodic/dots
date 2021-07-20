@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# What Is Running In Namespace (Kubernetes)
+
+NAMESPACE=${1:-"default"}
+
+kubectl api-resources --namespaced --no-headers \
+    | awk '{print $1}' \
+    | xargs -I % sh -c "{
+        echo '';
+        echo 'resource: %';
+        kubectl -n $NAMESPACE get % --ignore-not-found;
+    }"
