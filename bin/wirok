@@ -9,5 +9,5 @@ kubectl get ns --no-headers \
     | xargs -I % sh -c "{
         echo '';
         echo 'namespace: %';
-        kubectl -n % get $RESOURCE;
+        kubectl -n % get $RESOURCE --ignore-not-found;
     }"
