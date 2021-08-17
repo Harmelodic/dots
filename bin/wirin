@@ -3,6 +3,7 @@
 # What Is Running In Namespace (Kubernetes)
 
 NAMESPACE=${1:-"default"}
+echo "Showing all resources in $NAMESPACE namespace"
 
 kubectl api-resources --namespaced --no-headers \
     | awk '{print $1}' \

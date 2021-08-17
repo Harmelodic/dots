@@ -3,6 +3,7 @@
 # What Is Running On Kubernetes
 
 RESOURCE=${1:-"pods"}
+echo "Showing all $RESOURCE in all namespaces"
 
 kubectl get ns --no-headers \
     | awk '{print $1}' \
