@@ -28,6 +28,7 @@ alias spy='watch ' # Gets watch to support aliases with spy
 alias ll='ls -lh'
 alias la='ls -lah'
 alias k='kubectl'
+alias cn='lima nerdctl'
 
 # Git
 git config --global core.excludesfile $DOTS/config-files/.gitignore
