@@ -14,8 +14,8 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
     brew list
 
     echo -e "\n--- BREW CASK FORMULAE ---"
-    brew cask upgrade
-    brew cask list
+    brew upgrade --cask
+    brew list --cask
 
     echo -e "\n--- GCLOUD ---"
     gcloud components update --quiet
