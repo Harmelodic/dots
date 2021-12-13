@@ -32,6 +32,7 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
 
     echo -e "\n--- SDKMAN ---"
     [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+    sdk update
     sdk selfupdate
     sdk version | xargs -I {} echo "{}"
 
