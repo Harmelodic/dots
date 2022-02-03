@@ -2,7 +2,7 @@
 
 echo "Installing dots..."
 
-git clone https://gitlab.com/Harmelodic/dots.git $HOME/dots -q
+git clone https://github.com/Harmelodic/dots.git $HOME/dots -q
 cp $HOME/dots/vars.example $HOME/dots/vars
 
 if [[ "$(uname)" =~ "Darwin" ]]; then

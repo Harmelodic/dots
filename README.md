@@ -7,7 +7,7 @@ Dot files for configuration and custom setup, as well as custom functions and sc
 Open a terminal and perform:
 
 ```bash
-curl -s "https://gitlab.com/Harmelodic/dots/raw/master/install" | bash
+curl -s "https://github.com/Harmelodic/dots/raw/master/install" | bash
 ```
 
 ## What now?
