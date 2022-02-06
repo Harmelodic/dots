@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# ghoc - GitHub Organisation Clone - Clone all repos from an Organisation, using SSH
+
+organisation=$1
+
+if [ ! -z "$organisation" ]; then
+	mkdir $organisation
+	cd $organisation
+	curl -s \
+		"https://api.github.com/orgs/$organisation/repos" \
+		| jq ".[].ssh_url" \
+		| xargs -I {} git clone {}
+else
+    echo "Please provide the organisation for cloning:"
+    echo "$ ghoc <organisation>"
+fi
