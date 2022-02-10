@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# "Git Update" do a git pull on all repos in a directory (will reset any branches and checkout master)
+
+target_directory=$1
+
+
+if [ -z "$target_directory" ]; then
+    echo "Please provide a target directory you want to run:"
+    echo "$ gup <directory>"
+    exit 1
+else
+	cd $target_directory
+
+    for directory in */ ; do
+        echo ""
+        echo "Updating $directory"
+
+        cd "$directory"
+
+        current_branch=$(git branch --show-current)
+
+        if [ "$current_branch" != "master" ]; then
+            git reset HEAD --hard
+            git checkout master
+        fi
+
+        git pull
+        cd ..
+    done
+
+fi
