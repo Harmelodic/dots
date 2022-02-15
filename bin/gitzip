@@ -2,6 +2,6 @@
 
 # Zips up all files in a directory at HEAD, ignoring those in .gitignore
 
-ARCHIVE=`basename "$PWD"`
+ARCHIVE=$(basename "$PWD")
 
-git archive -o $ARCHIVE.zip HEAD
+git archive -o "$ARCHIVE.zip" HEAD

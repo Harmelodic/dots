@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# ghuc - GitHub User Clone - Clone all repos from an User, using SSH
+
+source "$DOTS/vars"
+
+username=$1
+
+if [ -n "$username" ]; then
+  mkdir "$username"
+  cd "$username" || exit
+
+  curl \
+    -H "Accept: application/vnd.github.v3+json" \
+    "https://api.github.com/users/$username/repos" |
+    jq ".[].ssh_url" |
+    xargs -I {} git clone {}
+
+else
+  echo "Please provide the organisation for cloning:"
+  echo "$ ghuc <username>"
+fi
