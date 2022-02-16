@@ -4,7 +4,6 @@
 
 target_directory=$1
 
-
 if [ -z "$target_directory" ]; then
     echo "Please provide a target directory you want to run:"
     echo "$ gup <directory>"
@@ -12,7 +11,7 @@ if [ -z "$target_directory" ]; then
 else
 	cd $target_directory
 
-    for directory in */ ; do
+    for directory in $(ls -A1p | grep /) ; do
         echo ""
         echo "Updating $directory"
 
