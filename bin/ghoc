@@ -12,9 +12,10 @@ if [ -n "$organisation" ]; then
 
 	username=$(git config user.name)
 
+	# TODO: Implement pagination and rate limit handling
 	curl -s \
 		-u "$username:$GITHUB_PAT" \
-		"https://api.github.com/orgs/$organisation/repos" \
+		"https://api.github.com/orgs/$organisation/repos?per_page=100" \
 		| jq ".[].ssh_url" \
 		| xargs -I {} git clone {}
 else
