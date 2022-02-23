@@ -12,12 +12,39 @@ if [ -n "$organisation" ]; then
 
 	username=$(git config user.name)
 
-	# TODO: Implement pagination and rate limit handling
-	curl -s \
-		-u "$username:$GITHUB_PAT" \
-		"https://api.github.com/orgs/$organisation/repos?per_page=100" \
-		| jq ".[].ssh_url" \
-		| xargs -I {} git clone {}
+  echo "Getting number of repos..."
+  num_of_repos=$(
+    curl -s \
+        -u "$username:$GITHUB_PAT" \
+        "https://api.github.com/orgs/nordnet-private" |
+        jq ".owned_private_repos"
+  )
+  echo "Number of repos: $num_of_repos"
+
+  # shellcheck disable=SC2004
+  num_of_pages=$(( ($num_of_repos + 99) / 100 ))
+  echo "Meaning, number of pages (max 100 per page): $num_of_pages"
+
+  repos_file="repos_for_$organisation"
+  rm "$repos_file"
+  touch "$repos_file"
+
+  echo "Fetching repo SSH URLs..."
+  for i in $(seq 1 "$num_of_pages"); do
+      curl -s \
+          -u "$username:$GITHUB_PAT" \
+          "https://api.github.com/orgs/$organisation/repos?per_page=100&page=$i" \
+          | jq -r ".[].ssh_url" >> "$repos_file"
+      sleep 1
+  done
+
+  # shellcheck disable=SC2162
+  while read line; do
+    git clone "$line"
+    sleep 1
+  done < "$repos_file"
+
+  rm "$repos_file"
 else
     echo "Please provide the organisation for cloning:"
     echo "$ ghoc <organisation>"
