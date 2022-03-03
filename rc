@@ -13,9 +13,10 @@ fi
 PATH="${DOTS}/bin:${PATH}"
 export PATH
 
-# Custom source'd commands
-for file in $DOTS/source-bin/* ; do
+# Custom sourced commands
+for file in "$DOTS/source-bin/"* ; do
     if [ -f "$file" ] ; then
+        # shellcheck disable=SC1090
         source "$file"
     fi
 done
