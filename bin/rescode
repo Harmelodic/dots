@@ -4,7 +4,7 @@
 
 cd ~/.code && git pull
 
-cat ~/.code/extension.list | xargs -I {} code --install-extension {}
+xargs -I {} code --install-extension {} < ~/.code/extension.list
 
 if [[ "$(uname)" =~ "Darwin" ]]; then
     cp ~/.code/settings.json "$HOME/Library/Application Support/Code/User/settings.json" 

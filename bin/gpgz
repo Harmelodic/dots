@@ -6,9 +6,9 @@
 if [[ $1 == "new" ]]; then
     gpg --full-gen-key
 elif [[ $1 == *"@"* ]]; then
-    SEC_CODE=$(gpg --list-secret-keys --keyid-format LONG $1 | grep sec | awk '{print $2}' | cut -c9-)
+    SEC_CODE=$(gpg --list-secret-keys --keyid-format LONG "$1" | grep sec | awk '{print $2}' | cut -c9-)
     echo "sec $SEC_CODE"
-    gpg --armor --export $SEC_CODE
+    gpg --armor --export "$SEC_CODE"
 else
     echo ""
     echo "$ gpgz new"

@@ -12,6 +12,6 @@ else
     echo "Unsupported System";
 fi
 
-DATE=`date`
+DATE=$(date)
 
 cd ~/.code && git add . && git commit -m "Back up: $DATE" && git push

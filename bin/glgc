@@ -2,7 +2,7 @@
 
 # Clone all repos from a GitLab group. Syntax: glgc group[/subgroup]
 
-source $DOTS/vars
+source "$DOTS/vars"
 
 GROUP_NAME=${1//\//\%2F} # If subgroup is given, replace / with %2F.
 

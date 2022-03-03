@@ -2,18 +2,18 @@
 
 # Switches Git's user.name & user.email config (in a "profile-based" way, by using variables set in $DOTS/vars)
 
-source $DOTS/vars
+source "$DOTS/vars"
 
 # Switch to my personal account
 if [ "$1" = "me" ]
 then
-    git config --global user.name $GIT_SWITCH_ME_NAME
-    git config --global user.email $GIT_SWITCH_ME_EMAIL
+    git config --global user.name "$GIT_SWITCH_ME_NAME"
+    git config --global user.email "$GIT_SWITCH_ME_EMAIL"
     if [ "$GIT_SWITCH_ME_GPG_SEC" = "" ]
     then
         git config --global commit.gpgsign false
     else
-        git config --global user.signingkey $GIT_SWITCH_ME_GPG_SEC
+        git config --global user.signingkey "$GIT_SWITCH_ME_GPG_SEC"
         git config --global commit.gpgsign true
     fi
 fi
@@ -21,13 +21,13 @@ fi
 # Switch to my Work account
 if [ "$1" = "work" ]
 then
-    git config --global user.name $GIT_SWITCH_WORK_NAME
-    git config --global user.email $GIT_SWITCH_WORK_EMAIL
+    git config --global user.name "$GIT_SWITCH_WORK_NAME"
+    git config --global user.email "$GIT_SWITCH_WORK_EMAIL"
     if [ "$GIT_SWITCH_WORK_GPG_SEC" = "" ]
     then
         git config --global commit.gpgsign false
     else
-        git config --global user.signingkey $GIT_SWITCH_WORK_GPG_SEC
+        git config --global user.signingkey "$GIT_SWITCH_WORK_GPG_SEC"
         git config --global commit.gpgsign true
     fi
 fi

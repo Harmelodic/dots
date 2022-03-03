@@ -2,8 +2,8 @@
 
 # An alternative to rm -rf that acts more like a recycle bin (by putting files in Trash or /tmp/recycle-bin)
 if [[ "$(uname)" =~ "Darwin" ]]; then
-    mv $1 $HOME/.Trash/.
+    mv "$1" "$HOME/.Trash/."
 else
     mkdir -p /tmp/recycle-bin/
-    mv $1 /tmp/recycle-bin/
+    mv "$1" /tmp/recycle-bin/
 fi

@@ -4,7 +4,8 @@
 # Then jumps straight into the directory after cloning
 
 clone () {
-    git clone $1
+    git clone "$1"
+    # shellcheck disable=SC2012
     NEW_DIR=$(ls -at1 | head -1)
-    cd $NEW_DIR
+    cd "$NEW_DIR" || exit
 }

@@ -6,5 +6,5 @@ if [ -z "$1" ]; then
     git remote get-url origin
 else
     git remote remove origin
-    git remote add origin $1
+    git remote add origin "$1"
 fi

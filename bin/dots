@@ -2,10 +2,10 @@
 
 # Management tool for dots 
 
-name=$(basename $0)
+name=$(basename "$0")
 
 if [[ $1 == "upgrade" ]]; then
-    echo "Upgrading... $(cd $DOTS && git pull -q)"
+    echo "Upgrading... $(cd "$DOTS" && git pull -q)"
     $0 -v
 elif [[ $1 == "" || $1 == "help" || $1 == "-h" || $1 == "-help" || $1 == "--help" ]]; then
     echo "Please provide a $name command."
@@ -19,52 +19,56 @@ elif [[ $1 == "" || $1 == "help" || $1 == "-h" || $1 == "-help" || $1 == "--help
     echo "- upgrade"
     echo ""
 elif [[ $1 == "version" || $1 == "-v" || $1 == "-version" || $1 == "--version" ]]; then
-    echo $(cd $DOTS && git rev-parse HEAD)
+    cd "$DOTS" && git rev-parse HEAD
 elif [[ $1 == "list" || $1 == "ls" ]]; then
     echo ""
     echo "$name can do:"
     echo ""
-    ls -1 $DOTS/source-bin | xargs -I {} echo "$ {}"
-    ls -1 $DOTS/bin | xargs -I {} echo "$ {}"
+    # shellcheck disable=SC2011
+    ls -1 "$DOTS/source-bin" | xargs -I {} echo "$ {}"
+    # shellcheck disable=SC2011
+    ls -1 "$DOTS/bin" | xargs -I {} echo "$ {}"
     echo ""
-    echo "To find out more about a commmand, run:"
+    echo "To find out more about a command, run:"
     echo ""
     echo "$ $name info <command>"
     echo ""
 elif [[ $1 == "info" ]]; then
     OUTPUT=""
-    for file in $DOTS/source-bin/* ; do
+    for file in "$DOTS/source-bin/"* ; do
         if [ -f "$file" ] ; then
             if [[ $2 == "${file#"$DOTS/source-bin/"}" ]]; then
-                OUTPUT=$(cat $file | head -3 | tail -1)
+                # shellcheck disable=SC2002
+                OUTPUT=$(cat "$file" | head -3 | tail -1)
             fi
         fi
     done
-    for file in $DOTS/bin/* ; do
+    for file in "$DOTS/bin/"* ; do
         if [ -f "$file" ] ; then
             if [[ $2 == "${file#"$DOTS/bin/"}" ]]; then
-                OUTPUT=$(cat $file | head -3 | tail -1)
+                # shellcheck disable=SC2002
+                OUTPUT=$(cat "$file" | head -3 | tail -1)
             fi
         fi
     done
     if [[ $OUTPUT == "" ]]; then
         echo "Unrecognised command: $2"
     else
-        echo $OUTPUT
+        echo "$OUTPUT"
     fi
 elif [[ $1 == "source" ]]; then
     OUTPUT=""
-    for file in $DOTS/source-bin/* ; do
+    for file in "$DOTS/source-bin/"* ; do
         if [ -f "$file" ] ; then
             if [[ $2 == "${file#"$DOTS/source-bin/"}" ]]; then
-                OUTPUT=$(cat $file)
+                OUTPUT=$(cat "$file")
             fi
         fi
     done
-    for file in $DOTS/bin/* ; do
+    for file in "$DOTS/bin/"* ; do
         if [ -f "$file" ] ; then
             if [[ $2 == "${file#"$DOTS/bin/"}" ]]; then
-                OUTPUT=$(cat $file)
+                OUTPUT=$(cat "$file")
             fi
         fi
     done

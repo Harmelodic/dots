@@ -2,20 +2,20 @@
 
 # Extract any archive (almost)
 
-if [ -f $1 ]; then
+if [ -f "$1" ]; then
     case $1 in
-        *.tar.bz2) tar xvjf $1 $2 ;;
-        *.tar.gz) tar vxzf $1 $2 ;;
-        *.tar.xz) tar -xJf $1 $2 ;;
-        *.bz2) bunzip2 $1 $2 ;;
-        *.rar) unrar x $1 $2 ;;
-        *.gz) gunzip $1 $2 ;;
-        *.tar) tar xvf $1 $2 ;;
-        *.tbz2) tar xvjf $1 $2 ;;
-        *.tgz) tar vxjf $1 $2 ;;
-        *.zip) unzip $1 $2 ;;
-        *.Z) uncompress $1 $1 ;;
-        *.7z) 7z x $1 $2 ;;
+        *.tar.bz2) tar xvjf "$1" "$2" ;;
+        *.tar.gz) tar vxzf "$1" "$2" ;;
+        *.tar.xz) tar -xJf "$1" "$2" ;;
+        *.bz2) bunzip2 "$1" "$2" ;;
+        *.rar) unrar x "$1" "$2" ;;
+        *.gz) gunzip "$1" "$2" ;;
+        *.tar) tar xvf "$1" "$2" ;;
+        *.tbz2) tar xvjf "$1" "$2" ;;
+        *.tgz) tar vxjf "$1" "$2" ;;
+        *.zip) unzip "$1" "$2" ;;
+        *.Z) uncompress "$1" "$2" ;;
+        *.7z) 7z x "$1" "$2" ;;
         *) echo "'$1' can not be extracted using this function." ;;
     esac
 else

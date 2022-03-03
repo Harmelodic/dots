@@ -4,8 +4,8 @@
 
 LENGTH=32
 
-if [ $1 ]; then
+if [ "$1" ]; then
   LENGTH=$1
 fi
 
-LC_CTYPE=C tr -dc A-Za-z0-9_\!\@\#\$\%\^\&\*\(\)-+= < /dev/urandom | head -c $LENGTH | xargs
+LC_CTYPE=C tr -dc A-Za-z0-9_\!\@\#\$%^\&\*\(\)-+= < /dev/urandom | head -c "$LENGTH" | xargs

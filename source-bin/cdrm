@@ -6,5 +6,5 @@
 cdrm () {
     directory=$(pwd)
     cd ..
-    bin $directory
+    bin "$directory"
 }
