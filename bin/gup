@@ -9,13 +9,14 @@ if [ -z "$target_directory" ]; then
     echo "$ gup <directory>"
     exit 1
 else
-	cd $target_directory
+    cd "$target_directory" || exit 1
 
-    for directory in $(ls -A1p | grep /) ; do
+    for directory_with_slash in .[!.]*/ */; do
+        directory=$(echo "$directory_with_slash" | cut -d'/' -f 1)
         echo ""
         echo "Updating $directory"
 
-        cd "$directory"
+        cd "$directory" || exit 1
 
         current_branch=$(git branch --show-current)
 
@@ -27,5 +28,4 @@ else
         git pull
         cd ..
     done
-
 fi
