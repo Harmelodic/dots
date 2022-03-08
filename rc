@@ -38,6 +38,7 @@ git config --global core.editor vim
 git config --global core.ignorecase true
 git config --global gpg.program gpg
 git config --global pull.rebase false
+git config --global init.defaultBranch main
 
 GPG_TTY=$(tty)
 export GPG_TTY
