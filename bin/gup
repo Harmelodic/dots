@@ -11,7 +11,8 @@ if [ -z "$target_directory" ]; then
 else
     cd "$target_directory" || exit 1
 
-    for directory_with_slash in .[!.]*/ */; do
+    shopt -s dotglob
+    for directory_with_slash in */; do
         directory=$(echo "$directory_with_slash" | cut -d'/' -f 1)
         echo ""
         echo "Updating $directory"
@@ -28,4 +29,5 @@ else
         git pull
         cd ..
     done
+    shopt -u dotglob
 fi
