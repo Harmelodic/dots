@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Cordon off a Google Kubernetes Engine node pool
+
+node_pool=$1
+
+if [ -n "$node_pool" ]; then
+    echo "Cordoning node pool: $node_pool"
+
+    for node in $(kubectl get nodes -l "cloud.google.com/gke-nodepool=$node_pool" -o=name); do
+        kubectl cordon "$node";
+    done
+else
+    echo "Please provide the name of a node pool to cordon."
+    echo ""
+    echo "$ kordon my-node-pool"
+fi

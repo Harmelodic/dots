@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Drain a Google Kubernetes Engine node pool of pods
+
+node_pool=$1
+
+if [ -n "$node_pool" ]; then
+    echo "Drain node pool: $node_pool"
+
+    for node in $(kubectl get nodes -l "cloud.google.com/gke-nodepool=$node_pool" -o=name); do
+        kubectl drain \
+            --force \
+            --ignore-daemonsets \
+            --delete-emptydir-data \
+            --grace-period=100 \
+            "$node"
+    done
+else
+    echo "Please provide the name of a node pool to drain."
+    echo ""
+    echo "$ kdrain my-node-pool"
+fi
