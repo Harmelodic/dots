@@ -58,6 +58,7 @@ if [ -n "$organisation" ]; then
   echo "Cloning..."
   # shellcheck disable=SC2162
   while read line; do
+    echo ""
     git clone "$line"
     sleep 1
   done < "$repos_to_clone_file"
