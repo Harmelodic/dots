@@ -7,62 +7,62 @@ source "$DOTS/vars"
 organisation=$1
 
 if [ -n "$organisation" ]; then
-	mkdir "$organisation"
-	cd "$organisation" || exit
+    mkdir "$organisation"
+    cd "$organisation" || exit
 
-  echo "Getting number of repos..."
-  num_of_repos=$(
-    curl -s \
-        -u ":$GITHUB_PAT" \
-        "https://api.github.com/orgs/nordnet-private" |
-        jq ".owned_private_repos"
-  )
-  echo "Number of repos: $num_of_repos"
+    echo "Getting number of repos..."
+    num_of_repos=$(
+        curl -s \
+            -u ":$GITHUB_PAT" \
+            "https://api.github.com/orgs/nordnet-private" |
+            jq ".owned_private_repos"
+        )
+    echo "Number of repos: $num_of_repos"
 
-  # shellcheck disable=SC2004
-  num_of_pages=$(( ($num_of_repos + 99) / 100 ))
-  echo "Meaning, number of pages (max 100 per page): $num_of_pages"
+    # shellcheck disable=SC2004
+    num_of_pages=$(( ($num_of_repos + 99) / 100 ))
+    echo "Meaning, number of pages (max 100 per page): $num_of_pages"
 
-  repos_file="repos_for_$organisation"
-  rm "$repos_file"
-  touch "$repos_file"
+    repos_file="repos_for_$organisation"
+    rm "$repos_file"
+    touch "$repos_file"
 
-  echo "Fetching repo SSH URLs..."
-  for i in $(seq 1 "$num_of_pages"); do
-      curl -s \
-          -u ":$GITHUB_PAT" \
-          "https://api.github.com/orgs/$organisation/repos?per_page=100&page=$i" \
-          | jq -r ".[].ssh_url" >> "$repos_file"
-      sleep 1
-  done
+    echo "Fetching repo SSH URLs..."
+    for i in $(seq 1 "$num_of_pages"); do
+        curl -s \
+            -u ":$GITHUB_PAT" \
+            "https://api.github.com/orgs/$organisation/repos?per_page=100&page=$i" \
+            | jq -r ".[].ssh_url" >> "$repos_file"
+        sleep 1
+    done
 
-  repos_to_clone_file="repos_to_clone_for_$organisation"
-  rm "$repos_to_clone_file"
-  touch "$repos_to_clone_file"
+    repos_to_clone_file="repos_to_clone_for_$organisation"
+    rm "$repos_to_clone_file"
+    touch "$repos_to_clone_file"
 
-  echo "Trimming down repos to clone, by what currently exists"
-  # shellcheck disable=SC2162
-  while read line; do
-    repo_directory=$(echo "$line" | cut -d'/' -f 2 | cut -d'.' -f 1) # git@github.com:org_name/repo_name.git -> repo_name
+    echo "Trimming down repos to clone, by what currently exists"
+    # shellcheck disable=SC2162
+    while read line; do
+        repo_directory=$(echo "$line" | cut -d'/' -f 2 | cut -d'.' -f 1) # git@github.com:org_name/repo_name.git -> repo_name
 
-    if [ ! -d "$repo_directory" ]; then
-      echo "$line" >> "$repos_to_clone_file"
-    fi
-  done < "$repos_file"
-  rm "$repos_file"
+        if [ ! -d "$repo_directory" ]; then
+            echo "$line" >> "$repos_to_clone_file"
+        fi
+    done < "$repos_file"
+    rm "$repos_file"
 
-  num_repos_to_clone=$(wc "$repos_to_clone_file" | awk '{print $1}')
+    num_repos_to_clone=$(wc "$repos_to_clone_file" | awk '{print $1}')
 
-  echo "Repos to clone on this organisation clone: $num_repos_to_clone"
+    echo "Repos to clone on this organisation clone: $num_repos_to_clone"
 
-  echo "Cloning..."
-  # shellcheck disable=SC2162
-  while read line; do
-    echo ""
-    git clone "$line"
-    sleep 1
-  done < "$repos_to_clone_file"
-  rm "$repos_to_clone_file"
+    echo "Cloning..."
+    # shellcheck disable=SC2162
+    while read line; do
+        echo ""
+        git clone "$line"
+        sleep 1
+    done < "$repos_to_clone_file"
+    rm "$repos_to_clone_file"
 else
     echo "Please provide the organisation for cloning:"
     echo "$ ghoc <organisation>"
