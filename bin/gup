@@ -3,6 +3,7 @@
 # "Git Update" do a git pull on all repos in a directory (will reset any branches and checkout master)
 
 target_directory=$1
+sleep_time=${2:-"0"}
 
 if [ -z "$target_directory" ]; then
     echo "Please provide a target directory you want to run:"
@@ -17,7 +18,7 @@ else
         echo ""
         echo "Updating $directory"
 
-        cd "$directory" || exit 1
+        cd -- "$directory" || exit 1
 
         current_branch=$(git branch --show-current)
 
@@ -26,6 +27,7 @@ else
             git checkout master
         fi
 
+        sleep "$sleep_time"
         git pull
         cd ..
     done
