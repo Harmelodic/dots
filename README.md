@@ -7,7 +7,7 @@ Dot files for configuration and custom setup, as well as custom functions and sc
 Open a terminal and perform:
 
 ```bash
-curl -s "https://github.com/Harmelodic/dots/raw/master/install" | bash
+curl -s "https://github.com/Harmelodic/dots/raw/main/install" | bash
 ```
 
 ## What now?
@@ -57,3 +57,14 @@ cmd () {
 ```
 
 As a side affect, everything in the `bin` directory can be identified using `which`, but everything in `source-bin` cannot.
+
+## Updating from `master` to `main`
+
+Run the following:
+
+```sh
+git branch -m master main
+git fetch origin
+git branch -u origin/main main
+git remote set-head origin -a
+```
