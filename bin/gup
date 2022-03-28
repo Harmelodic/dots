@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# "Git Update" do a git pull on all repos in a directory (will reset any branches and checkout master)
+# "Git Update" do a git pull on all repos in a directory (will reset any branches and checkout main)
 
 target_directory=$1
 sleep_time=${2:-"0"}
@@ -22,11 +22,12 @@ else
 
         current_branch=$(git branch --show-current)
 
-        if [ "$current_branch" != "master" ]; then
+        if [ "$current_branch" != "main" ]; then
             git reset HEAD --hard
-            git checkout master
+            git checkout main
         fi
 
+        git reset HEAD --hard
         sleep "$sleep_time"
         git pull
         cd ..
