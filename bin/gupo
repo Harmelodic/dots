@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# "Git Update Old" do a git pull on all repos in a directory (will reset any branches and checkout master)
+
+target_directory=$1
+sleep_time=${2:-"0"}
+
+if [ -z "$target_directory" ]; then
+    echo "Please provide a target directory you want to run:"
+    echo "$ gup <directory>"
+    exit 1
+else
+    cd "$target_directory" || exit 1
+
+    shopt -s dotglob
+    for directory_with_slash in */; do
+        directory=$(echo "$directory_with_slash" | cut -d'/' -f 1)
+        echo ""
+        echo "Updating $directory"
+
+        cd -- "$directory" || exit 1
+
+        current_branch=$(git branch --show-current)
+
+        if [ "$current_branch" != "master" ]; then
+            git reset HEAD --hard
+            git checkout master
+        fi
+
+        git reset HEAD --hard
+        sleep "$sleep_time"
+        git pull
+        cd ..
+    done
+    shopt -u dotglob
+fi
