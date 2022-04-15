@@ -3,11 +3,12 @@
 # "Git Update" do a git pull on all repos in a directory (will reset any branches and checkout main)
 
 target_directory=$1
-sleep_time=${2:-"0"}
+pull=${2:-"true"}
+sleep_time_between_pulls=${3:-"0"}
 
 if [ -z "$target_directory" ]; then
     echo "Please provide a target directory you want to run:"
-    echo "$ gup <directory>"
+    echo "$ gup <directory> [pull_boolean] [sleep_time_between_pulls]"
     exit 1
 else
     cd "$target_directory" || exit 1
@@ -28,8 +29,11 @@ else
         fi
 
         git reset HEAD --hard
-        sleep "$sleep_time"
-        git pull
+        glbw
+        if [ "$pull" == "true" ]; then
+            sleep "$sleep_time_between_pulls"
+            git pull
+        fi
         cd ..
     done
     shopt -u dotglob
