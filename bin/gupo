@@ -29,10 +29,11 @@ else
         fi
 
         git reset HEAD --hard
-        glbw
+        glbw master
         if [ "$pull" == "true" ]; then
             sleep "$sleep_time_between_pulls"
             git pull
+            git reset origin/master --hard
         fi
         cd ..
     done

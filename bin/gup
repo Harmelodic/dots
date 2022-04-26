@@ -33,6 +33,7 @@ else
         if [ "$pull" == "true" ]; then
             sleep "$sleep_time_between_pulls"
             git pull
+            git reset origin/main --hard
         fi
         cd ..
     done
