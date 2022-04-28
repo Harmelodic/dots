@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# "For Each Directory" - for running scripts in subdirectory of your current location
+
+provided_script=$1
+
+if [ -z "$provided_script" ]; then
+    echo "Please provide a script to run in each directory, for example:"
+    echo "$ fed \"git status\""
+    exit 1
+else
+    shopt -s dotglob
+    for directory_with_slash in */; do
+        directory=$(echo "$directory_with_slash" | cut -d'/' -f 1)
+        echo ""
+        echo "Running in $directory"
+
+        cd -- "$directory" || exit 1
+
+        eval "$provided_script"
+
+        cd ..
+    done
+    shopt -u dotglob
+fi
