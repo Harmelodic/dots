@@ -2,7 +2,7 @@
 
 # "For Each Directory" - for running scripts in subdirectory of your current location
 
-provided_script=$1
+provided_script=$*
 
 if [ -z "$provided_script" ]; then
     echo "Please provide a script to run in each directory, for example:"
@@ -12,7 +12,7 @@ else
     shopt -s dotglob
     for directory_with_slash in */; do
         directory=$(echo "$directory_with_slash" | cut -d'/' -f 1)
-        echo ""
+        echo "====================================================="
         echo "Running in $directory"
 
         cd -- "$directory" || exit 1
