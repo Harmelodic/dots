@@ -6,7 +6,9 @@ provided_script=$*
 
 if [ -z "$provided_script" ]; then
     echo "Please provide a script to run in each directory, for example:"
-    echo "$ fed \"git status\""
+    echo "$ fed git status"
+    echo "or"
+    echo "$ fed \"git fetch && git pull\""
     exit 1
 else
     shopt -s dotglob
