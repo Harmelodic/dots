@@ -16,7 +16,7 @@ if [ -n "$organisation" ]; then
             -u ":$GITHUB_PAT" \
             "https://api.github.com/orgs/nordnet-private" |
             jq ".owned_private_repos"
-        )
+    )
     echo "Number of repos: $num_of_repos"
 
     # shellcheck disable=SC2004
