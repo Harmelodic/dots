@@ -7,7 +7,7 @@ source "$DOTS/vars"
 organisation=$1
 
 if [ -n "$organisation" ]; then
-    mkdir "$organisation"
+    mkdir -p "$organisation"
     cd "$organisation" || exit
 
     echo "Getting number of repos..."
@@ -24,8 +24,7 @@ if [ -n "$organisation" ]; then
     echo "Meaning, number of pages (max 100 per page): $num_of_pages"
 
     repos_file="repos_for_$organisation"
-    rm "$repos_file"
-    touch "$repos_file"
+    true > "$repos_file"
 
     echo "Fetching repo SSH URLs..."
     for i in $(seq 1 "$num_of_pages"); do
@@ -37,8 +36,7 @@ if [ -n "$organisation" ]; then
     done
 
     repos_to_clone_file="repos_to_clone_for_$organisation"
-    rm "$repos_to_clone_file"
-    touch "$repos_to_clone_file"
+    true > "$repos_to_clone_file"
 
     echo "Trimming down repos to clone, by what currently exists"
     # shellcheck disable=SC2162
