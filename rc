@@ -29,7 +29,7 @@ alias spy='watch ' # Gets watch to support aliases with spy
 alias ll='ls -lh'
 alias la='ls -lah'
 alias k='kubectl'
-alias kx='kubectx'
+alias kx='kubectl ctx'
 alias cn='lima nerdctl'
 
 # Git
@@ -39,6 +39,7 @@ git config --global core.ignorecase true
 git config --global gpg.program gpg
 git config --global pull.rebase false
 git config --global init.defaultBranch main
+git config --global push.autoSetupRemote true
 
 GPG_TTY=$(tty)
 export GPG_TTY
