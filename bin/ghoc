@@ -14,7 +14,7 @@ if [ -n "$organisation" ]; then
     num_of_repos=$(
         curl -s \
             -u ":$GITHUB_PAT" \
-            "https://api.github.com/orgs/nordnet-private" |
+            "https://api.github.com/orgs/$organisation" |
             jq ".owned_private_repos"
     )
     echo "Number of repos: $num_of_repos"
