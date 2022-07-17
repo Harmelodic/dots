@@ -11,12 +11,16 @@ if [ -n "$organisation" ]; then
     cd "$organisation" || exit
 
     echo "Getting number of repos..."
-    num_of_repos=$(
+    organisation_json=$(
         curl -s \
             -u ":$GITHUB_PAT" \
-            "https://api.github.com/orgs/$organisation" |
-            jq ".owned_private_repos"
+            "https://api.github.com/orgs/$organisation"
     )
+    num_of_public_repos=$(echo $organisation_json | jq ".public_repos")
+    num_of_private_repos=$(echo $organisation_json | jq ".total_private_repos")
+
+    num_of_repos=$(expr $num_of_public_repos + $num_of_private_repos)
+    
     echo "Number of repos: $num_of_repos"
 
     # shellcheck disable=SC2004
