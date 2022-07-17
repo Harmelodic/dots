@@ -41,7 +41,7 @@ if [ -n "$organisation" ]; then
     echo "Trimming down repos to clone, by what currently exists"
     # shellcheck disable=SC2162
     while read line; do
-        repo_directory=$(echo "$line" | cut -d'/' -f 2 | cut -d'.' -f 1) # git@github.com:org_name/repo_name.git -> repo_name
+        repo_directory=$(echo "$line" | cut -d'/' -f 2 | rev | cut -c5- | rev) # git@github.com:org_name/repo_name.git -> repo_name
 
         if [ ! -d "$repo_directory" ]; then
             echo "$line" >> "$repos_to_clone_file"
@@ -53,14 +53,16 @@ if [ -n "$organisation" ]; then
 
     echo "Repos to clone on this organisation clone: $num_repos_to_clone"
 
-    echo "Cloning..."
-    # shellcheck disable=SC2162
-    while read line; do
-        echo ""
-        git clone "$line"
-        sleep 1
-    done < "$repos_to_clone_file"
-    rm "$repos_to_clone_file"
+    if [ "$num_repos_to_clone" != "0" ]; then
+        echo "Cloning..."
+        # shellcheck disable=SC2162
+        while read line; do
+            echo ""
+            git clone "$line"
+            sleep 1
+        done < "$repos_to_clone_file"
+        rm "$repos_to_clone_file"
+    fi
 else
     echo "Please provide the organisation for cloning:"
     echo "$ ghoc <organisation>"
