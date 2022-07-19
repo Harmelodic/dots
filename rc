@@ -10,8 +10,7 @@ elif [[ "$(uname)" =~ "Linux" ]]; then
 fi
 
 # Custom commands
-PATH="${DOTS}/bin:${PATH}"
-export PATH
+export PATH="${DOTS}/bin:${PATH}"
 
 # Custom sourced commands
 for file in "$DOTS/source-bin/"* ; do
@@ -22,15 +21,12 @@ for file in "$DOTS/source-bin/"* ; do
 done
 
 # Make the command line have Vi functionality
-set -o vi
+# set -o vi
 
-# Aliases
+# General Aliases
 alias spy='watch ' # Gets watch to support aliases with spy
 alias ll='ls -lh'
 alias la='ls -lah'
-alias k='kubectl'
-alias kx='kubectl ctx'
-alias cn='lima nerdctl'
 
 # Git
 git config --global core.excludesfile $DOTS/config-files/.gitignore
@@ -40,12 +36,29 @@ git config --global gpg.program gpg
 git config --global pull.rebase false
 git config --global init.defaultBranch main
 git config --global push.autoSetupRemote true
-
-GPG_TTY=$(tty)
-export GPG_TTY
+export GPG_TTY=$(tty)
 
 if [[ "$(uname)" =~ "Darwin" ]]; then
     git config --global credential.helper osxkeychain # Permanent cache
 elif [[ "$(uname)" =~ "Linux" ]]; then
     git config --global credential.helper 'cache --timeout=86400' # 24 hour cache
 fi
+
+# Kubectl
+alias k='kubectl'
+export PATH="${HOME}/.krew/bin:${PATH}"
+alias kx='kubectl ctx'
+
+# Lima VM
+if [[ "$(uname)" =~ "Darwin" ]]; then
+    alias cn='lima nerdctl'
+fi
+
+# SDKMAN
+export SDKMAN_DIR="${HOME}/.sdkman"
+[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+
+# Google Cloud SDK
+export GOOGLE_CLOUD_SDK="${HOME}/google-cloud-sdk"
+if [ -f "$GOOGLE_CLOUD_SDK/path.zsh.inc" ]; then source "$GOOGLE_CLOUD_SDK/path.zsh.inc"; fi
+if [ -f "$GOOGLE_CLOUD_SDK/completion.zsh.inc" ]; then source "$GOOGLE_CLOUD_SDK/completion.zsh.inc"; fi
