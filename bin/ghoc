@@ -35,7 +35,7 @@ if [ -n "$organisation" ]; then
         curl -s \
             -u ":$GITHUB_PAT" \
             "https://api.github.com/orgs/$organisation/repos?per_page=100&page=$i" \
-            | jq -r ".[].ssh_url" >> "$repos_file"
+            | jq -r ".[] | select(.archived == false) | .ssh_url" >> "$repos_file"
         sleep 1
     done
 
