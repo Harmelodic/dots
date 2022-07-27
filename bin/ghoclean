@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# ghoc - GitHub Organisation Clean - Cleans out old / archived repos from your Organisation repo directory
+
+source "$DOTS/vars"
+
+organisation=$1
+
+if [ -n "$organisation" ]; then
+    cd "$organisation" || exit
+
+    echo "Getting number of repos..."
+    num_of_repos=$(
+        curl -s \
+            -u ":$GITHUB_PAT" \
+            "https://api.github.com/orgs/$organisation" |
+            jq ".owned_private_repos"
+    )
+    echo "Number of repos: $num_of_repos"
+
+    # shellcheck disable=SC2004
+    num_of_pages=$(( ($num_of_repos + 99) / 100 ))
+    echo "Meaning, number of pages (max 100 per page): $num_of_pages"
+
+    repos_file="repos_for_$organisation"
+    true > "$repos_file"
+
+    echo "Fetching existing, non-archived repo names from GitHub..."
+    for i in $(seq 1 "$num_of_pages"); do
+        curl -s \
+            -u ":$GITHUB_PAT" \
+            "https://api.github.com/orgs/$organisation/repos?per_page=100&page=$i" \
+            | jq -r ".[] | select(.archived == false) | .name" >> "$repos_file"
+        sleep 1
+    done
+
+	echo "Getting list of existing repos locally..."
+    current_repos_file="current_repos_for_$organisation"
+    true > "$current_repos_file"
+    ls -1p | grep "/" | sed 's/[/]//g' > "$current_repos_file"
+
+    sort "$repos_file" > "sorted-$repos_file"
+
+	echo "Cleaning local organisation repos that have been archived or removed in GitHub..."
+    diff "$current_repos_file" "sorted-$repos_file" | grep "<" | awk '{print $2}' | xargs -I {} rm -rf {}
+
+    rm "$current_repos_file"
+    rm "$repos_file"
+    rm "sorted-$repos_file"
+    echo "Done."
+else
+    echo "Please provide the organisation for cloning:"
+    echo "$ ghoc <organisation>"
+fi
