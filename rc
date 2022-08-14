@@ -48,6 +48,7 @@ fi
 alias k='kubectl'
 export PATH="${HOME}/.krew/bin:${PATH}"
 alias kx='kubectl ctx'
+alias portargo='kubectl -n argocd port-forward svc/argo-cd-argocd-server 8080:80'
 
 # Kubectl Krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
