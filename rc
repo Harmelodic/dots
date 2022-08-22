@@ -67,3 +67,8 @@ export SDKMAN_DIR="${HOME}/.sdkman"
 export GOOGLE_CLOUD_SDK="${HOME}/google-cloud-sdk"
 if [ -f "$GOOGLE_CLOUD_SDK/path.zsh.inc" ]; then source "$GOOGLE_CLOUD_SDK/path.zsh.inc"; fi
 if [ -f "$GOOGLE_CLOUD_SDK/completion.zsh.inc" ]; then source "$GOOGLE_CLOUD_SDK/completion.zsh.inc"; fi
+
+# Node Version Manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
