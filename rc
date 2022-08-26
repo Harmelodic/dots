@@ -49,10 +49,10 @@ alias k='kubectl'
 export PATH="${HOME}/.krew/bin:${PATH}"
 alias kx='kubectl ctx'
 alias portargo='kubectl -n argocd port-forward svc/argo-cd-argocd-server 9999:80'
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 # Kubectl Krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 # Lima VM
 if [[ "$(uname)" =~ "Darwin" ]]; then
