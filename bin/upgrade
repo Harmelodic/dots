@@ -25,6 +25,9 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
     pip install --upgrade pip
     pip --version
 
+    echo -e "\n--- PIP PACKAGES ---"
+    pip list | awk '{print $1}' | tail +3 | xargs pip install --upgrade
+
     echo -e "\n--- RUST ---"
     rustup update
     rustup -V

@@ -12,11 +12,14 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
     brew list
 
     echo -e "\n--- BREW CASK FORMULAE ---"
-    brew cask list
+    brew list --cask
 
     echo -e "\n--- PIP & PYTHON ---"
     pip --version
-    python --version
+    python --version || python3 --version
+
+    echo -e "\n--- PIP PACKAGES ---"
+    pip list
 
     echo -e "\n--- RUSTUP ---"
     rustup -V
