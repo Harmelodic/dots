@@ -72,3 +72,11 @@ if [ -f "$GOOGLE_CLOUD_SDK/completion.zsh.inc" ]; then source "$GOOGLE_CLOUD_SDK
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Android SDK & Platform Tools
+if [[ "$(uname)" =~ "Darwin" ]]; then
+    export ANDROID_HOME="$HOME/Library/Android/sdk"
+elif [[ "$(uname)" =~ "Linux" ]]; then
+    export ANDROID_HOME="$HOME/Android/Sdk"
+fi
+export PATH="$ANDROID_HOME/platform-tools:$PATH"
