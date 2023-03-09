@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Loops through all repositories in current directory and outputs the name of the repos, if it has (un)staged changes.
+
+number_of_repos=0
+for repo_with_slash in */; do
+    repo=$(echo "$repo_with_slash" | cut -d'/' -f 1)
+    cd "$repo" || exit 1
+
+    changes_detected=$(git status -s)
+
+    if [ "$changes_detected" != "" ]; then
+        basename $(pwd)
+        ((number_of_repos=number_of_repos+1))
+    fi
+    cd ..
+done
+echo "$number_of_repos repos have changes"
