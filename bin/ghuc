@@ -7,10 +7,10 @@ source "$DOTS/vars"
 username=$1
 
 if [ -n "$username" ]; then
-  mkdir "$username"
+  mkdir -p "$username"
   cd "$username" || exit
 
-  curl \
+  curl -s \
     -H "Accept: application/vnd.github.v3+json" \
     "https://api.github.com/users/$username/repos" |
     jq ".[].ssh_url" |
