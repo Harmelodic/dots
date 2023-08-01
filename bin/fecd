@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# "For Each Directory" - for running scripts in each subdirectory of your current location
+# "For Each Changed Directory" - for running scripts in each (git) changed subdirectory of your current location
 
 provided_script=$*
 
@@ -19,7 +19,12 @@ else
 
         cd -- "$directory" || exit 1
 
-        eval "$provided_script"
+        changes_detected=$(git status -s)
+        if [ "$changes_detected" != "" ]; then
+            eval "$provided_script"
+        else
+            echo "No changes detected."
+        fi
 
         cd ..
     done
