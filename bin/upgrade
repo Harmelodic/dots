@@ -16,32 +16,6 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
     echo -e "\n--- BREW CASK FORMULAE ---"
     brew upgrade --cask
     brew list --cask
-
-    echo -e "\n--- GCLOUD ---"
-    gcloud components update --quiet
-    gcloud version | head -1
-
-    echo -e "\n--- PIP ---"
-    pip install --upgrade pip
-    pip --version
-
-    echo -e "\n--- PIP PACKAGES ---"
-    pip list | awk '{print $1}' | tail +3 | xargs pip install --upgrade
-
-    echo -e "\n--- RUST ---"
-    rustup update
-    rustup -V
-    rustc -V
-
-    echo -e "\n--- SDKMAN ---"
-    [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-    sdk update
-    sdk selfupdate
-    sdk version | xargs -I {} echo "{}"
-
-    echo -e "\n--- SDKMAN CANDIDATES: ---"
-    sdk upgrade 
-    sdk current | xargs -I {} echo "{}"
 elif [[ "$(uname -a)" =~ "MANJARO" ]]; then
     # Manjaro specific upgrades
     echo -e "\n--- PACMAN PACKAGES: ---"
@@ -51,9 +25,35 @@ else
 fi
 
 # OS Agnostic
+echo -e "\n--- GCLOUD ---"
+gcloud components update --quiet
+gcloud version | head -1
+
 echo -e "\n--- NPM GLOBAL MODULES ---"
 npm up -g
 npm ls -g --depth=0
+
+echo -e "\n--- PIP ---"
+pip install --upgrade pip
+pip --version
+
+echo -e "\n--- PIP PACKAGES ---"
+pip list | awk '{print $1}' | tail +3 | xargs pip install --upgrade
+
+echo -e "\n--- RUST ---"
+rustup update
+rustup -V
+rustc -V
+
+echo -e "\n--- SDKMAN ---"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+sdk update
+sdk selfupdate
+sdk version | xargs -I {} echo "{}"
+
+echo -e "\n--- SDKMAN CANDIDATES: ---"
+sdk upgrade
+sdk current | xargs -I {} echo "{}"
 
 echo -e "\n--- DOTS ---"
 dots upgrade
