@@ -1,6 +1,6 @@
 # dots
 
-Dot files for configuration and custom setup, as well as custom functions and scripts, for a POSIX/UNIX machine (i.e. Linux, MacOS, etc.)
+Dot files for configuration and custom setup, as well as custom functions and scripts, for a POSIX/UNIX machine (i.e. Linux, macOS, etc.)
 
 ## Setup
 
@@ -56,7 +56,7 @@ cmd () {
 }
 ```
 
-As a side affect, everything in the `bin` directory can be identified using `which`, but everything in `source-bin` cannot.
+As a side effect, everything in the `bin` directory can be identified using `which`, but everything in `source-bin` cannot.
 
 ## Updating from `master` to `main`
 
