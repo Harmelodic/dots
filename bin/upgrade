@@ -8,7 +8,7 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
 
     type brew > /dev/null
     if [ $? -eq 0 ]; then
-        echo "-> Updating brew"
+        echo -e "\n-> Updating brew"
         brew update
         brew -v
         brew upgrade
@@ -28,14 +28,14 @@ echo "=> Upgrading OS-agnostic software..."
 
 type gcloud > /dev/null
 if [ $? -eq 0 ]; then
-    echo "-> Updating gcloud"
+    echo -e "\n-> Updating gcloud"
     gcloud components update --quiet
     gcloud version | head -1
 fi
 
 type npm > /dev/null
 if [ $? -eq 0 ]; then
-    echo "-> Updating npm"
+    echo -e "\n-> Updating npm"
     nvm use node
     npm up -g
     npm ls -g --depth=0
@@ -43,7 +43,7 @@ fi
 
 type "python3" > /dev/null
 if [ $? -eq 0 ]; then
-    echo "-> Updating Pip (Python 3)"
+    echo -e "\n-> Updating Pip (Python 3)"
     python3 -m pip install --upgrade pip
     python3 -m pip --version
     python3 -m pip list | awk '{print $1}' | tail +3 | xargs python3 -m pip install --upgrade
@@ -51,7 +51,7 @@ fi
 
 type rustup > /dev/null
 if [ $? -eq 0 ]; then
-    echo "-> Updating Rust"
+    echo -e "\n-> Updating Rust"
     rustup update
     rustup -V
     rustc -V
@@ -60,7 +60,7 @@ fi
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 type "sdk" > /dev/null
 if [ $? -eq 0 ]; then
-    echo "-> Updating SDKMAN"
+    echo -e "\n-> Updating SDKMAN"
     sdk update
     sdk selfupdate
     sdk version | xargs -I {} echo "{}"
@@ -68,5 +68,5 @@ if [ $? -eq 0 ]; then
     sdk current | xargs -I {} echo "{}"
 fi
 
-echo "-> Updating dots"
+echo -e "\n-> Updating dots"
 dots upgrade
