@@ -11,11 +11,7 @@ if [ -n "$organisation" ]; then
     cd "$organisation" || exit
 
     echo "Getting number of repos..."
-    organisation_json=$(
-        curl -s \
-            -u ":$GITHUB_PAT" \
-            "https://api.github.com/orgs/$organisation"
-    )
+    organisation_json=$(gh api "orgs/$organisation")
     num_of_public_repos=$(echo $organisation_json | jq ".public_repos")
     num_of_private_repos=$(echo $organisation_json | jq ".total_private_repos")
 
@@ -32,9 +28,7 @@ if [ -n "$organisation" ]; then
 
     echo "Fetching repo SSH URLs..."
     for i in $(seq 1 "$num_of_pages"); do
-        curl -s \
-            -u ":$GITHUB_PAT" \
-            "https://api.github.com/orgs/$organisation/repos?per_page=100&page=$i" \
+        gh api "orgs/$organisation/repos?per_page=100&page=$i" \
             | jq -r ".[] | select(.archived == false) | .ssh_url" >> "$repos_file"
         sleep 1
     done

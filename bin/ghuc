@@ -10,12 +10,8 @@ if [ -n "$username" ]; then
   mkdir -p "$username"
   cd "$username" || exit
 
-  curl -s \
-    -H "Accept: application/vnd.github.v3+json" \
-    "https://api.github.com/users/$username/repos" |
-    jq ".[].ssh_url" |
-    xargs -I {} git clone {}
-
+  gh repo list "$username" --no-archived --limit 100 --json sshUrl --jq '.[].sshUrl' \
+    | xargs -I {} git clone {}
 else
   echo "Please provide the organisation for cloning:"
   echo "$ ghuc <username>"
