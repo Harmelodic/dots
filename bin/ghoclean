@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ghoc - GitHub Organisation Clean - Cleans out old / archived repos from your Organisation repo directory
+# ghoclean - GitHub Organisation Clean - Cleans out old / archived repos from your Organisation repo directory
 
 source "$DOTS/vars"
 
@@ -43,5 +43,5 @@ if [ -n "$organisation" ]; then
     echo "Done."
 else
     echo "Please provide the organisation for cloning:"
-    echo "$ ghoc <organisation>"
+    echo "$ ghoclean <organisation>"
 fi
