@@ -77,6 +77,7 @@ elif [[ $shell_in_use =~ "bash" ]]; then
     if [ -f "$GOOGLE_CLOUD_SDK/path.bash.inc" ]; then source "$GOOGLE_CLOUD_SDK/path.bash.inc"; fi
     if [ -f "$GOOGLE_CLOUD_SDK/completion.bash.inc" ]; then source "$GOOGLE_CLOUD_SDK/completion.bash.inc"; fi
 fi
+alias gala='gcloud auth login --update-adc'
 
 # Node Version Manager
 export NVM_DIR="$HOME/.nvm"
