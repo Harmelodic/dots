@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Drain a node of pods
+
+node=$1
+
+if [ -n "$node" ]; then
+    kubectl drain \
+        --force \
+        --ignore-daemonsets \
+        --delete-emptydir-data \
+        --grace-period=100 \
+        "$node"
+else
+    echo "Please provide the name of a node pool to drain."
+    echo ""
+    echo "$ kdrainnode my-node"
+fi
