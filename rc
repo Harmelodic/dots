@@ -91,3 +91,6 @@ elif [[ "$(uname)" =~ "Linux" ]]; then
     export ANDROID_HOME="$HOME/Android/Sdk"
 fi
 export PATH="$ANDROID_HOME/platform-tools:$PATH"
+
+# Python / Pip
+export PIP_REQUIRE_VIRTUALENV=true
