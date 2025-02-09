@@ -7,7 +7,13 @@ code --list-extensions > ~/.code/extension.list
 if [[ "$(uname)" =~ "Darwin" ]]; then
     cp "$HOME/Library/Application Support/Code/User/settings.json" ~/.code/settings.json
 elif [[ "$(uname)" =~ "Linux" ]]; then
-    cp "$HOME/.config/Code - OSS/User/settings.json" ~/.code/settings.json
+    if [ -d "$HOME/.config/Code - OSS" ]; then
+        echo "Found Code OSS directory"
+        cp "$HOME/.config/Code - OSS/User/settings.json" ~/.code/settings.json
+    elif [ -d "$HOME/.config/Code" ]; then
+        echo "Found Code (non-OSS) directory"
+        cp "$HOME/.config/Code/User/settings.json" ~/.code/settings.json
+    fi
 else
     echo "Unsupported System";
 fi
