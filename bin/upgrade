@@ -6,6 +6,7 @@
 if [[ "$(uname)" =~ "Darwin" ]]; then
     echo "=> Upgrading macOS software..."
 
+    # macOS uses brew
     type brew > /dev/null
     if [ $? -eq 0 ]; then
         echo -e "\n-> Updating brew"
@@ -15,6 +16,15 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
         brew list
         brew upgrade --cask
         brew list --cask
+    fi
+
+    # On macOS, gcloud manages itself
+    # On Linux, gcloud is managed through a package manager
+    type gcloud > /dev/null
+    if [ $? -eq 0 ]; then
+        echo -e "\n-> Updating gcloud"
+        gcloud components update --quiet
+        gcloud version | head -1
     fi
 elif [[ "$(uname -a)" =~ "MANJARO" ]]; then
     echo "=> Upgrading Manjaro software..."
@@ -26,12 +36,6 @@ fi
 # OS-agnostic
 echo "=> Upgrading OS-agnostic software..."
 
-type gcloud > /dev/null
-if [ $? -eq 0 ]; then
-    echo -e "\n-> Updating gcloud"
-    gcloud components update --quiet
-    gcloud version | head -1
-fi
 
 type npm > /dev/null
 if [ $? -eq 0 ]; then
