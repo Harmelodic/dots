@@ -29,6 +29,11 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
 elif [[ "$(uname -a)" =~ "MANJARO" ]]; then
     echo "=> Upgrading Manjaro software..."
     sudo pacman -Syu
+elif [[ "$(uname -a)" =~ "Ubuntu" ]]; then
+    echo "=> Upgrading Ubuntu software..."
+    sudo apt update
+    sudo apt upgrade
+    snap refresh
 else
     echo -e "\nNo OS Specific updates to install for $(uname)"
 fi
