@@ -82,4 +82,4 @@ export PATH="$ANDROID_HOME/platform-tools:$PATH"
 export PIP_REQUIRE_VIRTUALENV=true
 
 # mise-en-place for installing languages and SDKs
-eval "$(/home/matt/.local/bin/mise activate bash)"
+eval "$($HOME/.local/bin/mise activate bash)"
