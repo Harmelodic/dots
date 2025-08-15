@@ -24,12 +24,8 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
     echo -e "\n--- RUSTUP ---"
     rustup -V
 
-    echo -e "\n--- SDKMAN ---"
-    [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-    sdk version | xargs -I {} echo "{}"
-
-    echo -e "\n--- SDKMAN CANDIDATES: ---"
-    sdk current | xargs -I {} echo "{}"
+    echo -e "\n--- MISE-EN-PLACE ---"
+    mise list
 elif [[ "$(uname -a)" =~ "MANJARO" ]]; then
     # Manjaro specific upgrades
     echo -e "\n--- PACMAN: ---"

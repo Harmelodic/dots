@@ -8,16 +8,14 @@ echo ""
 if [[ "$(uname)" =~ "Darwin" ]]; then
     # Mac specific config
     echo ""
-    echo "sdkman"
+    echo "mise"
     echo "------------------------------------"
-    [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-    sdk current | xargs -I {} echo "{}"
+    mise list
     echo ""
     echo ""
 else
     echo -e "\nNo OS Specific updates to install for $(uname)"
 fi
-
 
 echo ""
 echo "External IP"

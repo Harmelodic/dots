@@ -45,7 +45,6 @@ echo "=> Upgrading OS-agnostic software..."
 type npm > /dev/null
 if [ $? -eq 0 ]; then
     echo -e "\n-> Updating npm"
-    nvm use node
     npm up -g
     npm ls -g --depth=0
 fi
@@ -58,15 +57,12 @@ if [ $? -eq 0 ]; then
     rustc -V
 fi
 
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-type "sdk" > /dev/null
+type "mise" > /dev/null
 if [ $? -eq 0 ]; then
-    echo -e "\n-> Updating SDKMAN"
-    sdk update
-    sdk selfupdate
-    sdk version | xargs -I {} echo "{}"
-    sdk upgrade
-    sdk current | xargs -I {} echo "{}"
+    echo -e "\n-> Updating mise-en-place"
+    mise upgrade update
+    mise self-update
+    mise version
 fi
 
 echo -e "\n-> Updating dots"
