@@ -4,12 +4,12 @@
 
 # OS-specific
 if [[ "$(uname)" =~ "Darwin" ]]; then
-    echo "=> Upgrading macOS software..."
+    echo -e "\n=== MACOS ==="
 
     # macOS uses brew
-    type brew > /dev/null
+    type brew 1>/dev/null 2>/dev/null
     if [ $? -eq 0 ]; then
-        echo -e "\n-> Updating brew"
+        echo -e "\n--- BREW ---"
         brew update
         brew -v
         brew upgrade
@@ -20,50 +20,53 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
 
     # On macOS, gcloud manages itself
     # On Linux, gcloud is managed through a package manager
-    type gcloud > /dev/null
+    type gcloud 1>/dev/null 2>/dev/null
     if [ $? -eq 0 ]; then
-        echo -e "\n-> Updating gcloud"
+        echo -e "\n--- GCLOUD COMPONENTS ---"
         gcloud components update --quiet
         gcloud version | head -1
     fi
 elif [[ "$(uname -a)" =~ "MANJARO" ]]; then
-    echo "=> Upgrading Manjaro software..."
+    echo -e "\n=== MANJARO ==="
+    echo -e "\n--- PACMAN ---"
     sudo pacman -Syu
 elif [[ "$(uname -a)" =~ "Ubuntu" ]]; then
-    echo "=> Upgrading Ubuntu software..."
+    echo -e "\n=== UBUNTU ==="
+    echo -e "\n--- APT ---"
     sudo apt update
     sudo apt upgrade
+
+    echo -e "\n--- SNAP ---"
     snap refresh
 else
     echo -e "\nNo OS Specific updates to install for $(uname)"
 fi
 
 # OS-agnostic
-echo "=> Upgrading OS-agnostic software..."
+echo -e "\n=== OS-AGNOSTIC ==="
 
-
-type npm > /dev/null
+type npm 1>/dev/null 2>/dev/null
 if [ $? -eq 0 ]; then
-    echo -e "\n-> Updating npm"
+    echo -e "\n--- NPM ---"
     npm up -g
     npm ls -g --depth=0
 fi
 
-type rustup > /dev/null
+type rustup 1>/dev/null 2>/dev/null
 if [ $? -eq 0 ]; then
-    echo -e "\n-> Updating Rust"
+    echo -e "\n--- RUST ---"
     rustup update
     rustup -V
     rustc -V
 fi
 
-type "mise" > /dev/null
+type mise 1>/dev/null 2>/dev/null
 if [ $? -eq 0 ]; then
-    echo -e "\n-> Updating mise-en-place"
+    echo -e "\n--- MISE-EN-PLACE ---"
     mise upgrade update
     mise self-update
     mise version
 fi
 
-echo -e "\n-> Updating dots"
+echo -e "\n--- DOTS ---"
 dots upgrade
