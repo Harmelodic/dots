@@ -24,8 +24,8 @@ elif [[ "$(uname -a)" =~ "MANJARO" ]]; then
 elif [[ "$(uname -a)" =~ "Ubuntu" ]]; then
     echo -e "\n=== UBUNTU ==="
     echo -e "\n--- APT ---"
-    sudo apt --version
-    echo -e "apt has $(sudo apt list 2>/dev/null | wc -l) packages installed. Use 'sudo apt list' to view them."
+    apt --version
+    echo -e "apt has $(apt list 2>/dev/null | wc -l) packages installed. Use 'sudo apt list' to view them."
 
     echo -e "\n--- SNAP ---"
     snap --version
@@ -35,6 +35,12 @@ elif [[ "$(uname -a)" =~ "Ubuntu" ]]; then
         echo -e "\n--- FLATPAK ---"
         flatpak --version
         flatpak list
+    fi
+
+	type fwupdmgr 1>/dev/null 2>/dev/null
+	if [ $? -eq 0 ]; then
+        echo -e "\n--- FIRMWARE UPDATE MANAGER ---"
+        fwupdmgr --version
     fi
 else
     echo -e "\nNo OS Specific updates to install for $(uname)";

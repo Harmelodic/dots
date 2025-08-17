@@ -38,6 +38,12 @@ elif [[ "$(uname -a)" =~ "Ubuntu" ]]; then
 
     echo -e "\n--- SNAP ---"
     snap refresh
+
+	type fwupdmgr 1>/dev/null 2>/dev/null
+	if [ $? -eq 0 ]; then
+        echo -e "\n--- FIRMWARE UPDATE MANAGER ---"
+        fwupdmgr upgrade
+    fi
 else
     echo -e "\nNo OS Specific updates to install for $(uname)"
 fi
