@@ -1,7 +1,7 @@
 [tools]
 go = "latest"
 golangci-lint = "latest"
-java = "corretto-24"
+java = "temurin-24"
 maven = "latest"
 node = "latest"
 opentofu = "latest"
