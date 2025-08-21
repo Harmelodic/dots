@@ -1,4 +1,5 @@
 [tools]
+checkov = "latest"
 go = "latest"
 golangci-lint = "latest"
 java = "temurin-24"
