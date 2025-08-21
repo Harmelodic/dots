@@ -72,6 +72,7 @@ if [ $? -eq 0 ]; then
     mise upgrade update
     mise self-update
     mise version
+    mkdir -p "$HOME/.config/mise"
     cp "$HOME/dots/mise.config.toml" "$HOME/.config/mise/config.toml" # Overwrite and update default mise config
     mise install # Install any missing mise-configured tools
 fi
