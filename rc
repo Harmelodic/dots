@@ -35,6 +35,7 @@ alias la='ls -lah'
 # Git
 git config --global core.excludesfile $DOTS/config-files/.gitignore
 git config --global core.editor vim
+git config --global core.eol lf
 git config --global core.ignorecase true
 git config --global gpg.program gpg
 git config --global pull.rebase false
