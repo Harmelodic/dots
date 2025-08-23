@@ -1,12 +1,15 @@
 [tools]
 checkov = "latest"
+conftest = "latest"
 go = "latest"
 golangci-lint = "latest"
 java = "temurin-24"
 maven = "latest"
 node = "latest"
+opa = "latest"
 opentofu = "latest"
 python = "latest"
+regal = "latest"
 terraform = "latest"
 tflint = "latest"
 
