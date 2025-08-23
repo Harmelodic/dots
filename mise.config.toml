@@ -4,6 +4,7 @@ conftest = "latest"
 go = "latest"
 golangci-lint = "latest"
 java = "temurin-24"
+jq = "latest"
 maven = "latest"
 node = "latest"
 opa = "latest"
@@ -12,6 +13,7 @@ python = "latest"
 regal = "latest"
 terraform = "latest"
 tflint = "latest"
+yq = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["terraform", "node", "python", "java", "go", "opentofu"]
