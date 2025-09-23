@@ -83,3 +83,8 @@ export PIP_REQUIRE_VIRTUALENV=true
 
 # mise-en-place for installing languages and SDKs
 eval "$($HOME/.local/bin/mise activate bash)"
+
+# VisualVM Java JDK on MacOS
+if [[ "$(uname)" =~ "Darwin" ]]; then
+	alias visualvm="visualvm_jdkhome=$JAVA_HOME/Contents/Home /Applications/VisualVM.app/Contents/MacOS/visualvm"
+fi
