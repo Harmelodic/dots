@@ -31,6 +31,7 @@ done
 alias spy='watch ' # Gets watch to support aliases with spy
 alias ll='ls -lh'
 alias la='ls -lah'
+alias vi='vim'
 
 # Git
 git config --global core.excludesfile $DOTS/config-files/.gitignore
