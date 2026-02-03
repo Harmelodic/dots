@@ -2,7 +2,7 @@
 
 echo "Installing dots..."
 
-git clone https://github.com/Harmelodic/dots.git "$HOME/dots" -q
+git clone git@github.com:Harmelodic/dots.git "$HOME/dots" -q
 cp "$HOME/dots/vars.example" "$HOME/dots/vars"
 mkdir -p "$HOME/.config/mise"
 cp "$HOME/dots/mise.config.toml" "$HOME/.config/mise/config.toml"
