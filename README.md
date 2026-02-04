@@ -1,6 +1,7 @@
 # dots
 
-Dot files for configuration and custom setup, as well as custom functions and scripts, for a POSIX/UNIX machine (i.e. Linux, macOS, etc.)
+Dot files for configuration and custom setup, as well as custom functions and scripts, for a POSIX/UNIX machine (i.e.
+Linux, macOS, etc.)
 
 ## Setup
 
@@ -45,7 +46,8 @@ Look in the `rc` file in the project root. Everything gets `source`'d and built 
 
 ## Why `source-bin` and `bin`? Why not a single folder?
 
-In bash, if you want to cleanly change directories and manipulate the file system, I found it's easier if you create functions in a file and then directly `source` that file, hence `source-bin`.
+In bash, if you want to cleanly change directories and manipulate the file system, I found it's easier if you create
+functions in a file and then directly `source` that file, hence `source-bin`.
 
 You'll also see that they are structured differently.  
 Normal `bin` are just plain bash scripts, but `source-bin` look like:
@@ -56,7 +58,8 @@ cmd () {
 }
 ```
 
-As a side effect, everything in the `bin` directory can be identified using `which`, but everything in `source-bin` cannot.
+As a side effect, everything in the `bin` directory can be identified using `which`, but everything in `source-bin`
+cannot.
 
 ## Updating from `master` to `main`
 
