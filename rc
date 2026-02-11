@@ -9,6 +9,10 @@ shell_in_use=$(ps -o args= -p "$$")
 
 if [[ $shell_in_use =~ "zsh" ]]; then
     PS1="%1~ $ "
+	
+	# Enable Ctrl+arrow key bindings for word jumping
+	bindkey '^[[1;5C' forward-word     # Ctrl+right arrow
+	bindkey '^[[1;5D' backward-word    # Ctrl+left arrow
 elif [[ $shell_in_use =~ "bash" ]]; then
     PS1="\W $ "
 fi
