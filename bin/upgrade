@@ -29,7 +29,16 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
 elif [[ "$(uname -a)" =~ "MANJARO" ]]; then
     echo -e "\n=== MANJARO ==="
     echo -e "\n--- PACMAN ---"
-    sudo pacman -Syu
+    sudo pacman --sync --refresh --sysupgrade # Upgrade synchronized packages (long form of `pacman -Syu`)
+
+    packages_to_prune=$(sudo pacman --query --deps --unrequired --quiet)
+    sudo pacman --remove --recursive --nosave "$packages_to_prune" || echo "Nothing to prune"
+
+    # Could just do pamac upgrade, but I would rather use the native Arch Linux package manager than Manjaro's.
+    # Using pamac simply to ensure AUR packages are upgraded too.
+    echo -e "\n--- PAMAC ---"
+    pamac upgrade --aur # Upgrade including AUR packages
+    pamac remove --orphans # Prune orphaned packages
 elif [[ "$(uname -a)" =~ "Ubuntu" ]]; then
     echo -e "\n=== UBUNTU ==="
     echo -e "\n--- APT ---"
