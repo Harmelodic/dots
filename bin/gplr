@@ -3,4 +3,4 @@
 # Prunes all branches that have been merged into the master branch. Stands for: Git Prune Local Repo
 
 git remote prune origin
-git branch --merged | grep -vE "(^\*|master)" | xargs git branch -d
+git branch --merged | grep --invert-match --extended-regexp "(^\*|master|main)" | xargs git branch --delete
