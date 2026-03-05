@@ -26,7 +26,7 @@ I could probably script a lot of this but... eh, don't do it often enough.
 - Install [your GPG key](https://harmelodic.com/blog/moving-gpg-keys-to-a-new-machine/).
 - Install [VS Code](https://code.visualstudio.com/download)
 - Clone [.code](https://github.com/harmelodic/.code).
-- Run `bakcode`.
+- Run `rescode`.
 - Check everything ran OK by doing `code ~/dots`
 - You may need to open VS Code, open the Command Palette and run `Shell Command: Install 'code' command in Path`.
 - Whilst in `dots` in VS Code, configure your `vars`.
