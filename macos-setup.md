@@ -9,9 +9,11 @@ I could probably script a lot of this but... eh, don't do it often enough.
   - Configure DuckDuckGo as search engine.
   - Turn off saving passwords, payments and addresses.
   - Install Password Manager browser extension.
-  - Install [File icons for GitHub and GitLab browser extensions](https://chromewebstore.google.com/detail/file-icons-for-github-and/ficfmibkjjnpogdcfhfokmihanoldbfe).
+  - Install [File icons for GitHub and GitLab](https://chromewebstore.google.com/detail/file-icons-for-github-and/ficfmibkjjnpogdcfhfokmihanoldbfe).
   - Install [uBlock Origin Lite](https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh).
   - Install [Privacy Badger](https://chromewebstore.google.com/detail/privacy-badger/pkehgijcmpdhfbdbbnkijodmdjhbjlgp).
+  - Install [Unhook](https://chromewebstore.google.com/detail/unhook-remove-youtube-rec/khncfooichmfjbepaaaebmommgaepoid)
+  - Install [Hide Gemini and Google AI](https://chromewebstore.google.com/detail/hide-gemini-and-google-ai/ggneoaeoplbpehkojnifancipajnhcbp)
 - Assuming using [Firefox](https://www.firefox.com/) for personal stuff.
   - Configure DuckDuckGo as search engine.
   - Turn off saving passwords, payments and addresses.
