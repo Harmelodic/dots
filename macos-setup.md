@@ -40,6 +40,7 @@ I could probably script a lot of this but... eh, don't do it often enough.
 - Install the [JetBrains Toolbox App](https://www.jetbrains.com/toolbox-app)
 - Login to the appropriate JetBrains account.
 - Install IntelliJ, GoLand, and Android Studio via the JetBrains Toolbox App.
+- Install Docker / Podman Desktop / Rancher Desktop - as appropriate.
 - Configure "Productivity Suite" tools (Mail, Calendar, Chat/Slack, Zoom/Meet)
 - Turn off all the Generative AI shite and all the feature bloat stuff.
 - Clone some code and get to making stuff.
