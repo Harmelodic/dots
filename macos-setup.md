@@ -5,14 +5,14 @@ Instructions for setting up and configuring a macOS machine how I like it.
 I could probably script a lot of this but... eh, don't do it often enough.
 
 - Configure all the macOS settings as desired (Display, User settings, Fingerprint, Dock size, no Stage Manager, empty Desktop).
-- Assuming using Chromium / Chrome for the job.
+- Assuming using [Chromium](https://www.chromium.org/getting-involved/download-chromium/) / [Chrome](https://www.google.com/chrome/) for the job.
   - Configure DuckDuckGo as search engine.
   - Turn off saving passwords, payments and addresses.
   - Install Password Manager browser extension.
   - Install [File icons for GitHub and GitLab browser extensions](https://chromewebstore.google.com/detail/file-icons-for-github-and/ficfmibkjjnpogdcfhfokmihanoldbfe).
   - Install [uBlock Origin Lite](https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh).
   - Install [Privacy Badger](https://chromewebstore.google.com/detail/privacy-badger/pkehgijcmpdhfbdbbnkijodmdjhbjlgp).
-- Assuming using Firefox for personal stuff.
+- Assuming using [Firefox](https://www.firefox.com/) for personal stuff.
   - Configure DuckDuckGo as search engine.
   - Turn off saving passwords, payments and addresses.
   - Login into Mozilla / Firefox account and let all the extensions get installed and settings get synced.
