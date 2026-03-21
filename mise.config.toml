@@ -4,6 +4,7 @@ aws-cli = { version = "latest", symlink_bins = "true" }
 azure-cli = { version = "latest", uvx_args = "--prerelease=allow" }
 checkov = "latest"
 conftest = "latest"
+gcloud = "latest"
 go = "latest"
 golangci-lint = "latest"
 gradle = "latest"
