@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Restores mise config from dots into Home (~) config
+
+cp "$DOTS/mise.config.toml" ~/.config/mise/config.toml
