@@ -21,8 +21,10 @@ node = "latest"
 opa = "latest"
 opentofu = "latest"
 pipx = "latest"
+poetry = "latest"
 python = "latest"
 regal = "latest"
+ruff = "latest"
 skaffold = "latest"
 spectral = "latest"
 terraform = "latest"
@@ -34,3 +36,4 @@ yq = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["terraform", "node", "python", "java", "go", "opentofu"]
+experimental = true
