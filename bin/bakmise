@@ -2,7 +2,7 @@
 
 # Backs up mise config into dots
 
-cp ~/.config/mise/config.toml "$DOTS/mise.config.toml"
+cp ~/.config/mise/config.toml "$DOTS/config-files/mise.config.toml"
 
 DATE=$(date)
 

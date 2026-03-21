@@ -2,4 +2,4 @@
 
 # Restores mise config from dots into Home (~) config
 
-cp "$DOTS/mise.config.toml" ~/.config/mise/config.toml
+cp "$DOTS/config-files/mise.config.toml" ~/.config/mise/config.toml
