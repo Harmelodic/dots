@@ -78,6 +78,7 @@ if [ $? -eq 0 ]; then
     mkdir -p "$HOME/.config/mise"
     cp "$HOME/dots/config-files/mise.config.toml" "$HOME/.config/mise/config.toml" # Overwrite and update default mise config
     mise install # Install any missing mise-configured tools
+    mise upgrade # Upgrade any tools already installed
 fi
 
 echo -e "\n--- DOTS ---"
