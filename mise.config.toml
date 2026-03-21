@@ -1,5 +1,7 @@
 [tools]
 "aqua:txn2/kubefwd" = "latest"
+aws-cli = { version = "latest", symlink_bins = "true" }
+azure-cli = { version = "latest", uvx_args = "--prerelease=allow" }
 checkov = "latest"
 conftest = "latest"
 go = "latest"
