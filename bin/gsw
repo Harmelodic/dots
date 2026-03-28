@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Switches Git's user.name & user.email config (in a "profile-based" way, by using variables set in $DOTS/vars)
+# Switches Git's user.name & user.email config (in a "profile-based" way, by using variables set in $DOTS/config-files/vars)
 
-source "$DOTS/vars"
+source "$DOTS/config-files/vars"
 
 # Switch to my personal account
 if [ "$1" = "me" ]

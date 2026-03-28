@@ -3,7 +3,7 @@
 echo "Installing dots..."
 
 git clone git@github.com:Harmelodic/dots.git "$HOME/dots" -q
-cp "$HOME/dots/vars.example" "$HOME/dots/vars"
+cp "$HOME/dots/config-files/vars.example" "$HOME/dots/config-files/vars"
 mkdir -p "$HOME/.config/mise"
 cp "$HOME/dots/config-files/mise.config.toml" "$HOME/.config/mise/config.toml"
 
@@ -44,5 +44,5 @@ echo "Done. - Terminal refresh required";
 
 echo ""
 echo "Set up your personal dots-related vars by editing:"
-echo "$HOME/dots/vars"
+echo "$HOME/dots/config-files/vars"
 echo ""

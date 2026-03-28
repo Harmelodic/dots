@@ -2,7 +2,7 @@
 
 # ghuc - GitHub User Clone - Clone all repos from an User, using SSH
 
-source "$DOTS/vars"
+source "$DOTS/config-files/vars"
 
 username=$1
 

@@ -2,7 +2,7 @@
 
 # ghoclean - GitHub Organisation Clean - Cleans out old / archived repos from your Organisation repo directory
 
-source "$DOTS/vars"
+source "$DOTS/config-files/vars"
 
 organisation=$1
 

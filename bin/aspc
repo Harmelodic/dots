@@ -2,7 +2,7 @@
 
 # Clone all repos from a Stash project.
 
-source $DOTS/vars
+source $DOTS/config-files/vars
 
 read -p "Domain? (e.g. stash.example.com): " domain
 read -p "Project Code?: " project

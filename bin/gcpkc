@@ -2,7 +2,7 @@
 
 # Connect to a cluster in Google Cloud (script stands for: Google Cloud Platform Kubernetes Connect)
 
-source "$DOTS/vars"
+source "$DOTS/config-files/vars"
 
 PROJECT_ID=$1
 CLUSTER=${2:-$GCPKC_DEFAULT_CLUSTER}

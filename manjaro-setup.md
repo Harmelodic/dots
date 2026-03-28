@@ -58,7 +58,7 @@ trust
 save
 ```
 
-Then set `dots/vars` file variables:
+Then set `dots/config-files/vars` file variables:
 
 - `GIT_SWITCH_ME_NAME` to `Harmelodic`.
 - `GIT_SWITCH_ME_EMAIL` to your email.
@@ -113,7 +113,6 @@ Open OpenRGB, let it scan for devices and then configure colours as you want.
 ### Configure VS Code
 
 ```bash
-git clone git@github.com:Harmelodic/.code.git
 rescode
 ```
 
