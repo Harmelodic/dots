@@ -1,0 +1,17 @@
+arjun.swagger-viewer
+dbaeumer.vscode-eslint
+digitalbrainstem.javascript-ejs-support
+docker.docker
+formulahendry.vscode-mysql
+hashicorp.hcl
+hashicorp.terraform
+humao.rest-client
+ms-azuretools.vscode-containers
+ms-azuretools.vscode-docker
+redhat.vscode-commons
+redhat.vscode-xml
+redhat.vscode-yaml
+shd101wyy.markdown-preview-enhanced
+techer.open-in-browser
+vscjava.vscode-java-debug
+yzhang.markdown-all-in-one

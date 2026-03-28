@@ -2,17 +2,17 @@
 
 # Backs up VS Code settings and extensions
 
-code --list-extensions > ~/.code/extension.list
+code --list-extensions > "$DOTS/config-files/vscode.extensions.txt"
 
 if [[ "$(uname)" =~ "Darwin" ]]; then
-    cp "$HOME/Library/Application Support/Code/User/settings.json" ~/.code/settings.json
+    cp "$HOME/Library/Application Support/Code/User/settings.json" "$DOTS/config-files/vscode.settings.json"
 elif [[ "$(uname)" =~ "Linux" ]]; then
     if [ -d "$HOME/.config/Code - OSS" ]; then
         echo "Found Code OSS directory"
-        cp "$HOME/.config/Code - OSS/User/settings.json" ~/.code/settings.json
+        cp "$HOME/.config/Code - OSS/User/settings.json" "$DOTS/config-files/vscode.settings.json"
     elif [ -d "$HOME/.config/Code" ]; then
         echo "Found Code (non-OSS) directory"
-        cp "$HOME/.config/Code/User/settings.json" ~/.code/settings.json
+        cp "$HOME/.config/Code/User/settings.json" "$DOTS/config-files/vscode.settings.json"
     fi
 else
     echo "Unsupported System";
@@ -20,4 +20,4 @@ fi
 
 DATE=$(date)
 
-cd ~/.code && git add . && git commit -m "Back up: $DATE" && git push
+cd ~/dots && git add . && git commit -m "Back up VS Code config: $DATE" && git push

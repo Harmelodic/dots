@@ -2,19 +2,19 @@
 
 # Restores VS Code settings and extensions
 
-cd ~/.code && git pull
+cd "$DOTS" && git pull
 
-xargs -I {} code --install-extension {} < ~/.code/extension.list
+xargs -I {} code --install-extension {} < "$DOTS/config-files/vscode.extensions.txt"
 
 if [[ "$(uname)" =~ "Darwin" ]]; then
-    cp ~/.code/settings.json "$HOME/Library/Application Support/Code/User/settings.json" 
+    cp "$DOTS/config-files/vscode.settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
 elif [[ "$(uname)" =~ "Linux" ]]; then
     if [ -d "$HOME/.config/Code - OSS" ]; then
         echo "Found Code OSS directory"
-        cp ~/.code/settings.json "$HOME/.config/Code - OSS/User/settings.json"
+        cp "$DOTS/config-files/vscode.settings.json" "$HOME/.config/Code - OSS/User/settings.json"
     elif [ -d "$HOME/.config/Code" ]; then
         echo "Found Code (non-OSS) directory"
-        cp ~/.code/settings.json "$HOME/.config/Code/User/settings.json"
+        cp "$DOTS/config-files/vscode.settings.json" "$HOME/.config/Code/User/settings.json"
     fi
 else
     echo "Unsupported System";

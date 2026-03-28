@@ -1,0 +1,105 @@
+{
+    "extensions.ignoreRecommendations": true,
+    "workbench.startupEditor": "none",
+    "explorer.confirmDragAndDrop": false,
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "window.restoreWindows": "none",
+    "javascript.implicitProjectConfig.experimentalDecorators": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "gitlens.defaultDateStyle": "absolute",
+    "gitlens.currentLine.enabled": false,
+    "gitlens.codeLens.enabled": false,
+    "terraform.codelens.enabled": false,
+    "workbench.statusBar.feedback.visible": false,
+    "workbench.tips.enabled": false,
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.cursorWidth": 1,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "explorer.confirmDelete": false,
+    "workbench.statusBar.visible": false,
+    "terminal.external.osxExec": "iTerm.app",
+    "terminal.integrated.scrollback": 100000,
+    "explorer.compactFolders": false,
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "Debug Jest Unit Tests",
+                "type": "node",
+                "request": "launch",
+                "runtimeArgs": ["--inspect-brk", "${workspaceRoot}/node_modules/.bin/jest", "--runInBand", "--coverage", "false", "--config", "jest.unit.js"],
+                "console": "integratedTerminal",
+                "internalConsoleOptions": "neverOpen"
+            },
+            {
+                "name": "Debug Jest Integration Tests",
+                "type": "node",
+                "request": "launch",
+                "runtimeArgs": ["--inspect-brk", "${workspaceRoot}/node_modules/.bin/jest", "--runInBand", "--coverage", "false", "--config", "jest.integration.js"],
+                "console": "integratedTerminal",
+                "internalConsoleOptions": "neverOpen"
+            }
+        ]
+    },
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "eslint.format.enable": true,
+    "eslint.lintTask.enable": true,
+    "yaml.customTags": [
+        "!Equals sequence",
+        "!FindInMap sequence",
+        "!GetAtt",
+        "!GetAZs",
+        "!ImportValue",
+        "!Join sequence",
+        "!Ref",
+        "!Select sequence",
+        "!Split sequence",
+        "!Sub"
+    ],
+    "javascript.preferences.quoteStyle": "single",
+    "typescript.preferences.quoteStyle": "single",
+    "redhat.telemetry.enabled": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "terminal.integrated.shellIntegration.decorationsEnabled": "overviewRuler",
+    "window.zoomLevel": 1,
+    "workbench.editor.empty.hint": "hidden",
+    "window.commandCenter": false,
+    "workbench.layoutControl.enabled": false,
+    "workbench.activityBar.location": "hidden",
+    "editor.wordWrapColumn": 120,
+    "window.menuBarVisibility": "toggle",
+    "yaml.schemas": {
+        "https://squidfunk.github.io/mkdocs-material/schema.json": "mkdocs.yml"
+    },
+    "yaml.customTags": [ 
+        "!ENV scalar",
+        "!ENV sequence",
+        "!relative scalar",
+        "tag:yaml.org,2002:python/name:material.extensions.emoji.to_svg",
+        "tag:yaml.org,2002:python/name:material.extensions.emoji.twemoji",
+        "tag:yaml.org,2002:python/name:pymdownx.superfences.fence_code_format",
+        "tag:yaml.org,2002:python/object/apply:pymdownx.slugs.slugify mapping"
+    ],
+    "markdown.extension.list.indentationSize": "inherit",
+    "markdown.extension.tableFormatter.normalizeIndentation": true,
+    "editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"editor.indentSize": "tabSize",
+	"markdown.extension.tableFormatter.delimiterRowNoPadding": true,
+	"chat.commandCenter.enabled": false,
+	"opa.languageServers": [
+		"regal"
+	],
+	"workbench.editorAssociations": {
+		"*.svg": "default"
+	},
+	"chat.agent.enabled": false,
+	"workbench.secondarySideBar.defaultVisibility": "hidden",
+	"chat.disableAIFeatures": true
+}
