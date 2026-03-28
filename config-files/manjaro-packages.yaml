@@ -1,0 +1,91 @@
+# Lists of packages for installing / removing on a Manjaro Installation.
+# Sorted by: Install/Uninstall > Source [> Purpose Category] > Alphabetical.
+# Sorting by Purpose Category can be omitted if the list is short (< 15 items).
+install:
+  arch-core-or-extra:
+    # OS
+    - avahi # Network service discovery (e.g. printing)
+    - cups # Common Unix Printing System
+    - noto-fonts # Noto: Font
+    - noto-fonts-cjk # Noto: Chinese, Japanese, Korean
+    - noto-fonts-emoji # Noto: Emoji
+    - noto-fonts-extra # Noto: Arabic, Bengali, Canadian Aboriginal, Cham, etc.
+    - ntp # Network Time Protocol
+    - openrgb # RGB Control for RGB-controllable devices
+    # OS Configuration
+    - dconf-editor # GNOME settings raw editor
+    - fwupd # Firmware update daemon
+    - gnome-browser-connector # Integrate https://extensions.gnome.org with GNOME
+    - gnome-control-center # GNOME settings app (main)
+    - gnome-shell-extensions # GNOME extensions app & ecosystem
+    - gnome-tweaks # GNOME tweaks app
+    - keyd # Keyboard key remapping daemon
+    - pamac-cli # Manjaro Package Manager with AUR support - CLI
+    - pamac-gtk # Manjaro Package Manager with AUR support - App
+    # OS Tools & Information
+    - gnome-disk-utility # Disk management app
+    - gnome-logs # Logs viewer app
+    - gnome-power-manager # Power information & statistics app
+    - gnome-system-monitor # System monitor app
+    - gparted # Disk management app
+    - sysprof # Kernal-based performance profiler app
+    # The Basics
+    - calibre # eBook manager app
+    - evince # Document viewer app
+    - firefox # Web browser app
+    - file-roller # Archive utility app
+    - foliate # eBook Reader app
+    - gnome-calculator # Calculator app
+    - gnome-calendar # Calendar app
+    - gnome-clocks # Clocks app
+    - gnome-terminal # Terminal app
+    - gnome-text-editor # Text editor app
+    - loupe # Image viewer app
+    - nautilus # File explorer app
+    - snapshot # Take pictures & videos (e.g. with webcams) app
+    - thunderbird # Email client app
+    - vim # Terminal editor
+    - vlc # Audio & video player app
+    # Information
+    - gnome-maps # Maps app
+    - gnome-weather # Weather app
+    - dialect # Translation app
+    # Communication & Internet
+    - discord # Voice & text chat app / service
+    - signal-desktop # Secure messaging app
+    - transmission-gtk # BitTorrent client app
+    # Creative Tools
+    - audacity # Audio editor app
+    - gimp # Image editor app
+    - libreoffice-still # Office suite of apps
+    - obsidian # Notes app
+    # Developer Tools (all others developer tools are installed with `mise`)
+    - bind # DNS implementation & tools
+    - code # Visual Studio Code - simple project text editor app
+    - curl # HTTP client CLI
+    - docker # Container client CLI
+    - git # Version control CLI
+    - github-cli # GitHub CLI
+    - gnome-builder # IDE for writing GNOME-based software
+    # Gaming
+    - steam # Video game manager & launcher app / service
+  arch-user-repository:
+    - cnijfilter2 # Canon Inkjet Filter 2 driver
+    - google-cloud-cli-component-gke-gcloud-auth-plugin # GKE Auth Plugin for Kubectl (sadly, can't put this in `mise`)
+    - jetbrains-toolbox # Install & manage JetBrains IDEs
+    - spotify # Stream music
+    - wordbook # Offline dictionary
+    - workbench # Learn & prototype GNOME-based software
+    - zoom # One of many video conferencing apps/services.
+uninstall: # After installing a minimal version of Manjaro, here are some things I actively don't want.
+  arch-core-or-extra:
+    - decibels # Audio player app
+    - gnome-console # Terminal app
+    - gnome-music # Music player app
+    - gnome-tour # GNOME tour app
+    - gnome-user-docs # GNOME user documentation and help app
+    - malcontent # Parental Controls app
+    - manjaro-hello # Manjaro Hello app
+    - micro # Terminal text editor app
+    - showtime # Video player app
+    - xterm # Terminal app

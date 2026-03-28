@@ -1,0 +1,3 @@
+#!/bin/bash
+
+yq '.install.arch-core-or-extra.[]' < "$DOTS/config-files/manjaro-packages.yaml" | sudo pacman --sync --needed -

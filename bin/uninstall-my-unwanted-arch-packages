@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Output packages for removal
+# Filter by packages that are actually installed, outputting errors to /dev/null
+# Convert the subsequent exit code output to 0 using cat
+# Remove remaining listed packages
+yq '.uninstall.arch-core-or-extra.[]' < "$DOTS/config-files/manjaro-packages.yaml" |
+    sudo pacman --query --quiet - 2>/dev/null |
+    cat |
+    sudo pacman --remove --recursive - || echo -e "\nScript: Nothing to remove (empty stdin), or removal failed (see error above)".
