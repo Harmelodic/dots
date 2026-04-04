@@ -46,6 +46,7 @@ install:
     - thunderbird # Email client app
     - vim # Terminal editor
     - vlc # Audio & video player app
+    - vlc-plugins-all # VLC Plugins, so all the codecs work, etc.
     # Information
     - gnome-maps # Maps app
     - gnome-weather # Weather app
