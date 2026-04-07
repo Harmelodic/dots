@@ -97,7 +97,11 @@ export PIP_REQUIRE_VIRTUALENV=true
 
 # mise-en-place for installing languages and SDKs
 if test -f "$HOME/.local/bin/mise"; then
-	eval "$($HOME/.local/bin/mise activate bash)"
+	if [[ $shell_in_use =~ "zsh" ]]; then
+		eval "$($HOME/.local/bin/mise activate zsh)"
+	elif [[ $shell_in_use =~ "bash" ]]; then
+		eval "$($HOME/.local/bin/mise activate bash)"
+	fi
 fi
 
 # VisualVM Java JDK on MacOS
