@@ -2,8 +2,14 @@
 
 # Backs up mise config into dots
 
+commit_message=$1
+
+if [ -z "$commit_message" ]; then
+    echo "Please provide a commit message for the backup of the mise config:"
+    echo "$ bakmise \"Adding jq for CLI json querying\""
+    exit 1
+fi
+
 cp ~/.config/mise/config.toml "$DOTS/config-files/mise.config.toml"
 
-DATE=$(date)
-
-cd "$DOTS" && git add . && git commit -m "Back up mise config: $DATE" && git push
+cd "$DOTS" && git add . && git commit -m "$commit_message" && git push
