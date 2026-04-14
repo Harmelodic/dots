@@ -5,51 +5,40 @@
 source "$DOTS/config-files/vars"
 
 # Switch to my personal account
-if [ "$1" = "me" ]
-then
-    git config --global user.name "$GIT_SWITCH_ME_NAME"
-    git config --global user.email "$GIT_SWITCH_ME_EMAIL"
-    if [ "$GIT_SWITCH_ME_GPG_SEC" = "" ]
-    then
-        git config --global commit.gpgsign false
-    else
-        git config --global user.signingkey "$GIT_SWITCH_ME_GPG_SEC"
-        git config --global commit.gpgsign true
-    fi
+if [ "$1" = "me" ]; then
+	set -x
+	git config --global user.name "$GIT_SWITCH_ME_NAME"
+	git config --global user.email "$GIT_SWITCH_ME_EMAIL"
+	if [ "$GIT_SWITCH_ME_GPG_SEC" = "" ]; then
+		git config --global commit.gpgsign false
+	else
+		git config --global user.signingkey "$GIT_SWITCH_ME_GPG_SEC"
+		git config --global commit.gpgsign true
+	fi
+	set +x
 fi
 
 # Switch to my Work account
-if [ "$1" = "work" ]
-then
-    git config --global user.name "$GIT_SWITCH_WORK_NAME"
-    git config --global user.email "$GIT_SWITCH_WORK_EMAIL"
-    if [ "$GIT_SWITCH_WORK_GPG_SEC" = "" ]
-    then
-        git config --global commit.gpgsign false
-    else
-        git config --global user.signingkey "$GIT_SWITCH_WORK_GPG_SEC"
-        git config --global commit.gpgsign true
-    fi
+if [ "$1" = "work" ]; then
+	set -x
+	git config --global user.name "$GIT_SWITCH_WORK_NAME"
+	git config --global user.email "$GIT_SWITCH_WORK_EMAIL"
+	if [ "$GIT_SWITCH_WORK_GPG_SEC" = "" ]; then
+		git config --global commit.gpgsign false
+	else
+		git config --global user.signingkey "$GIT_SWITCH_WORK_GPG_SEC"
+		git config --global commit.gpgsign true
+	fi
+	set +x
 fi
 
 # Output current/new state of config
-echo ""
-
-echo "Username:"
-git config user.name
-
-echo ""
-
-echo "Email:"
-git config user.email
-
-echo ""
+echo "Now:"
+echo "- Username: $(git config user.name)"
+echo "- Email: $(git config user.email)"
 
 USING_GPG=$(git config commit.gpgsign)
 
-if [[ $USING_GPG = true ]]
-then
-    echo "GPG SEC:"
-    git config user.signingkey
-    echo ""
+if [[ $USING_GPG = true ]]; then
+	echo "- GPG SEC: $(git config user.signingkey)"
 fi
