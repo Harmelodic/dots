@@ -8,26 +8,27 @@ password=$3
 
 authString=$(echo -n "$username:$password" | base64)
 
-if [ -n "$domain" ] && [ -n "$authString" ]; then
-
-
-    curl -s --header "Authorization: Basic $authString" "https://$domain/rest/api/1.0/projects?limit=1000" \
-        | jq -r ".values[].key" > projectKeys
-    
-    xargs mkdir -p < projectKeys
-
-    currentDir=$(pwd)
-    trap "break" SIGINT SIGHUP SIGTERM
-
-    # shellcheck disable=SC2162
-    while read line; do
-        cd "$line" || exit
-        bbpc "$domain" "$line" "$username" "$password" "$4"
-        cd ..
-    done < projectKeys
-
-    rm "$currentDir/projectKeys"
-else
-    echo "Please provide your domain, username and password for cloning:"
-    echo "$ bbsc bitbucket.example.com harmelodic password123 [ssh]"
+if [ -z "$domain" ] && [ -z "$authString" ]; then
+	echo "Please provide your domain, username and password for cloning:"
+	echo "$ bbsc bitbucket.example.com harmelodic password123 [ssh]"
+	exit 1
 fi
+
+set -x
+
+curl -s --header "Authorization: Basic $authString" "https://$domain/rest/api/1.0/projects?limit=1000" |
+	jq -r ".values[].key" > projectKeys
+
+xargs mkdir -p < projectKeys
+
+currentDir=$(pwd)
+trap "break" SIGINT SIGHUP SIGTERM
+
+# shellcheck disable=SC2162
+while read line; do
+	cd "$line" || exit
+	bbpc "$domain" "$line" "$username" "$password" "$4"
+	cd ..
+done < projectKeys
+
+rm "$currentDir/projectKeys"

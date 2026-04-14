@@ -12,6 +12,7 @@ authString=$(echo -n "$username:$password" | base64)
 if [ -z "$domain" ] && [ -z "$project" ] && [ -z "$authString" ]; then
 	echo "Please provide your domain, project code, username and password for cloning:"
 	echo "$ bbpc bitbucket.example.com PROJ harmelodic password123 [http]"
+	exit 1
 fi
 
 set -x
