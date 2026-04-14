@@ -8,31 +8,31 @@ export LC_ALL=en_GB.UTF-8
 shell_in_use=$(ps -o args= -p "$$")
 
 if [[ $shell_in_use =~ "zsh" ]]; then
-    PS1="%1~ $ "
+	PS1="%1~ $ "
 
-    if [[ "$(uname)" =~ "Darwin" ]]; then
-        # Enable Option+arrow key bindings for word jumping
-        bindkey -e
-        bindkey '^[[1;3D' backward-word    # Option+left arrow
-        bindkey '^[[1;3C' forward-word     # Option+right arrow
-    elif [[ "$(uname)" =~ "Linux" ]]; then
-        # Enable Ctrl+arrow key bindings for word jumping
-        bindkey '^[[1;5D' backward-word    # Ctrl+left arrow
-        bindkey '^[[1;5C' forward-word     # Ctrl+right arrow
-    fi
+	if [[ "$(uname)" =~ "Darwin" ]]; then
+		# Enable Option+arrow key bindings for word jumping
+		bindkey -e
+		bindkey '^[[1;3D' backward-word # Option+left arrow
+		bindkey '^[[1;3C' forward-word  # Option+right arrow
+	elif [[ "$(uname)" =~ "Linux" ]]; then
+		# Enable Ctrl+arrow key bindings for word jumping
+		bindkey '^[[1;5D' backward-word # Ctrl+left arrow
+		bindkey '^[[1;5C' forward-word  # Ctrl+right arrow
+	fi
 elif [[ $shell_in_use =~ "bash" ]]; then
-    PS1="\W $ "
+	PS1="\W $ "
 fi
 
 # Custom commands
 export PATH="${DOTS}/bin:${PATH}"
 
 # Custom sourced commands
-for file in "$DOTS/source-bin/"* ; do
-    if [ -f "$file" ] ; then
-        # shellcheck disable=SC1090
-        source "$file"
-    fi
+for file in "$DOTS/source-bin/"*; do
+	if [ -f "$file" ]; then
+		# shellcheck disable=SC1090
+		source "$file"
+	fi
 done
 
 # Make the command line have Vi functionality
@@ -53,12 +53,13 @@ git config --global gpg.program gpg
 git config --global pull.rebase false
 git config --global init.defaultBranch main
 git config --global push.autoSetupRemote true
-export GPG_TTY=$(tty)
+GPG_TTY=$(tty)
+export GPG_TTY
 
 if [[ "$(uname)" =~ "Darwin" ]]; then
-    git config --global credential.helper osxkeychain # Permanent cache
+	git config --global credential.helper osxkeychain # Permanent cache
 elif [[ "$(uname)" =~ "Linux" ]]; then
-    git config --global credential.helper 'cache --timeout=86400' # 24 hour cache
+	git config --global credential.helper 'cache --timeout=86400' # 24 hour cache
 fi
 
 # Kubectl
@@ -76,19 +77,19 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 # Google Cloud SDK
 export GOOGLE_CLOUD_SDK="${HOME}/google-cloud-sdk"
 if [[ $shell_in_use =~ "zsh" ]]; then
-    if [ -f "$GOOGLE_CLOUD_SDK/path.zsh.inc" ]; then source "$GOOGLE_CLOUD_SDK/path.zsh.inc"; fi
-    if [ -f "$GOOGLE_CLOUD_SDK/completion.zsh.inc" ]; then source "$GOOGLE_CLOUD_SDK/completion.zsh.inc"; fi
+	if [ -f "$GOOGLE_CLOUD_SDK/path.zsh.inc" ]; then source "$GOOGLE_CLOUD_SDK/path.zsh.inc"; fi
+	if [ -f "$GOOGLE_CLOUD_SDK/completion.zsh.inc" ]; then source "$GOOGLE_CLOUD_SDK/completion.zsh.inc"; fi
 elif [[ $shell_in_use =~ "bash" ]]; then
-    if [ -f "$GOOGLE_CLOUD_SDK/path.bash.inc" ]; then source "$GOOGLE_CLOUD_SDK/path.bash.inc"; fi
-    if [ -f "$GOOGLE_CLOUD_SDK/completion.bash.inc" ]; then source "$GOOGLE_CLOUD_SDK/completion.bash.inc"; fi
+	if [ -f "$GOOGLE_CLOUD_SDK/path.bash.inc" ]; then source "$GOOGLE_CLOUD_SDK/path.bash.inc"; fi
+	if [ -f "$GOOGLE_CLOUD_SDK/completion.bash.inc" ]; then source "$GOOGLE_CLOUD_SDK/completion.bash.inc"; fi
 fi
 alias gala='gcloud auth login --update-adc'
 
 # Android SDK & Platform Tools
 if [[ "$(uname)" =~ "Darwin" ]]; then
-    export ANDROID_HOME="$HOME/Library/Android/sdk"
+	export ANDROID_HOME="$HOME/Library/Android/sdk"
 elif [[ "$(uname)" =~ "Linux" ]]; then
-    export ANDROID_HOME="$HOME/Android/Sdk"
+	export ANDROID_HOME="$HOME/Android/Sdk"
 fi
 export PATH="$ANDROID_HOME/platform-tools:$PATH"
 

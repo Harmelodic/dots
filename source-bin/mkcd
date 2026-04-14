@@ -2,13 +2,15 @@
 
 # Make a directory then immediately jump into it
 
-mkcd () {
-    if [ -z "$1" ]; then
-        echo "No argument given."
-    elif [ -d "$1" ]; then
-        echo "Directory already exists."
-    else
-        mkdir "$1"
-        cd "$1" || exit
-    fi
+mkcd() {
+	directory=$1
+
+	if [ -z "$directory" ]; then
+		echo "No argument given."
+	elif [ -d "$directory" ]; then
+		echo "Directory already exists."
+	else
+		mkdir "$directory"
+		cd "$directory" || exit
+	fi
 }
