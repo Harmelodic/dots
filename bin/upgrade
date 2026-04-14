@@ -6,10 +6,7 @@ set -x
 
 # OS-specific
 if [[ "$(uname)" =~ "Darwin" ]]; then
-
-	# macOS uses brew
-	type brew 1>/dev/null 2>/dev/null
-	if [ $? -eq 0 ]; then
+	if ! type brew 1>/dev/null 2>/dev/null; then
 		brew update
 		brew -v
 		brew upgrade
@@ -19,9 +16,8 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
 	fi
 
 	# On macOS, gcloud manages itself
-	# On Linux, gcloud is managed through a package manager
-	type gcloud 1>/dev/null 2>/dev/null
-	if [ $? -eq 0 ]; then
+	# On Linux, gcloud is managed through a package manager (native or mise).
+	if ! type gcloud 1>/dev/null 2>/dev/null; then
 		gcloud components update --quiet
 		gcloud version | head -1
 	fi
@@ -37,8 +33,7 @@ elif [[ "$(uname -a)" =~ "MANJARO" ]]; then
 	pamac remove --orphans
 
 	# Firmware Update Manager
-	type fwupdmgr 1>/dev/null 2>/dev/null
-	if [ $? -eq 0 ]; then
+	if ! type fwupdmgr 1>/dev/null 2>/dev/null; then
 		fwupdmgr upgrade
 	fi
 elif [[ "$(uname -a)" =~ "Ubuntu" ]]; then
@@ -49,8 +44,7 @@ elif [[ "$(uname -a)" =~ "Ubuntu" ]]; then
 	snap refresh
 
 	# Firmware Update Manager
-	type fwupdmgr 1>/dev/null 2>/dev/null
-	if [ $? -eq 0 ]; then
+	if ! type fwupdmgr 1>/dev/null 2>/dev/null; then
 		fwupdmgr upgrade
 	fi
 else
@@ -59,15 +53,13 @@ fi
 
 # OS-agnostic
 
-type rustup 1>/dev/null 2>/dev/null
-if [ $? -eq 0 ]; then
+if ! type rustup 1>/dev/null 2>/dev/null; then
 	rustup update
 	rustup -V
 	rustc -V
 fi
 
-type mise 1>/dev/null 2>/dev/null
-if [ $? -eq 0 ]; then
+if ! type mise 1>/dev/null 2>/dev/null; then
 	mise upgrade update
 	mise self-update
 	mise version
