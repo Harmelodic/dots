@@ -1,18 +1,19 @@
-
 #!/bin/bash
 
 # ghstatus - GitHub Status - Get Check Suite statuses of all repos for a user, on the main branch
 
 user=$1
 
-if [ -n "$user" ]; then
-    repos=$(gh api "/users/$user/repos" | jq -r '.[].name')
-    for repo in $repos; do
-        echo $repo
-        gh api "/repos/$user/$repo/commits/main/check-suites" | jq '.check_suites.[]' | jq '(.status) + ":" + (.app.slug) + ":" + (.conclusion)'
-        echo "==================="
-    done
-else
-    echo "Please provide the user:"
-    echo "$ ghstatus <user>"
+if [ -z "$user" ]; then
+	echo "Please provide the user:"
+	echo "$ ghstatus <user>"
+	exit 1
 fi
+
+repos=$(gh api "/users/$user/repos" | jq -r '.[].name')
+for repo in $repos; do
+	echo "===> $repo"
+	gh api "/repos/$user/$repo/commits/main/check-suites" |
+		jq '.check_suites.[]' |
+		jq '(.status) + ":" + (.app.slug) + ":" + (.conclusion)'
+done
