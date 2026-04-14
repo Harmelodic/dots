@@ -34,6 +34,7 @@ done
 echo "Getting list of existing repos locally..."
 current_repos_file="current_repos_for_$organisation"
 true > "$current_repos_file"
+# shellcheck disable=SC2010
 ls -1p | grep "/" | sed 's/[/]//g' > "$current_repos_file"
 
 sort "$repos_file" > "sorted-$repos_file"
