@@ -5,28 +5,27 @@
 provided_script=$*
 
 if [ -z "$provided_script" ]; then
-    echo "Please provide a script to run in each directory, for example:"
-    echo "$ fed git status"
-    echo "or"
-    echo "$ fed \"git fetch && git pull\""
-    exit 1
-else
-    shopt -s dotglob
-    for directory_with_slash in */; do
-        directory=$(echo "$directory_with_slash" | cut -d'/' -f 1)
-        echo "====================================================="
-        echo "Running in $directory"
-
-        cd -- "$directory" || exit 1
-
-        changes_detected=$(git status -s)
-        if [ "$changes_detected" != "" ]; then
-            eval "$provided_script"
-        else
-            echo "No changes detected."
-        fi
-
-        cd ..
-    done
-    shopt -u dotglob
+	echo "Please provide a script to run in each directory, for example:"
+	echo "$ fecd git status"
+	echo "or"
+	echo "$ fecd \"git fetch && git pull\""
+	exit 1
 fi
+
+shopt -s dotglob
+for directory_with_slash in */; do
+	directory=$(echo "$directory_with_slash" | cut -d'/' -f 1)
+	echo "===> Running in $directory"
+
+	cd -- "$directory" || exit 1
+
+	changes_detected=$(git status -s)
+	if [ "$changes_detected" != "" ]; then
+		eval "$provided_script"
+	else
+		echo "No changes detected."
+	fi
+
+	cd ..
+done
+shopt -u dotglob
