@@ -2,14 +2,14 @@
 
 # Runs the update/upgrade commands on package managers & tools, then outputs the current/new versions
 
+set -x
+
 # OS-specific
 if [[ "$(uname)" =~ "Darwin" ]]; then
-	echo -e "\n=== MACOS ==="
 
 	# macOS uses brew
 	type brew 1>/dev/null 2>/dev/null
 	if [ $? -eq 0 ]; then
-		echo -e "\n--- BREW ---"
 		brew update
 		brew -v
 		brew upgrade
@@ -22,13 +22,10 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
 	# On Linux, gcloud is managed through a package manager
 	type gcloud 1>/dev/null 2>/dev/null
 	if [ $? -eq 0 ]; then
-		echo -e "\n--- GCLOUD COMPONENTS ---"
 		gcloud components update --quiet
 		gcloud version | head -1
 	fi
 elif [[ "$(uname -a)" =~ "MANJARO" ]]; then
-	echo -e "\n=== MANJARO ==="
-	echo -e "\n--- PACMAN ---"
 	sudo pacman --sync --refresh --sysupgrade # Upgrade synchronized packages (long form of `pacman -Syu`)
 
 	packages_to_prune=$(sudo pacman --query --deps --unrequired --quiet)
@@ -36,23 +33,24 @@ elif [[ "$(uname -a)" =~ "MANJARO" ]]; then
 
 	# Could just do pamac upgrade, but I would rather use the native Arch Linux package manager than Manjaro's.
 	# Using pamac simply to ensure AUR packages are upgraded too.
-	echo -e "\n--- PAMAC ---"
-	pamac upgrade --aur    # Upgrade including AUR packages
-	pamac remove --orphans # Prune orphaned packages
+	pamac upgrade --aur
+	pamac remove --orphans
+
+	# Firmware Update Manager
+	type fwupdmgr 1>/dev/null 2>/dev/null
+	if [ $? -eq 0 ]; then
+		fwupdmgr upgrade
+	fi
 elif [[ "$(uname -a)" =~ "Ubuntu" ]]; then
-	echo -e "\n=== UBUNTU ==="
-	echo -e "\n--- APT ---"
 	sudo apt update
 	sudo apt upgrade
 	sudo apt autoremove
 
-	echo -e "\n--- SNAP ---"
-
 	snap refresh
 
+	# Firmware Update Manager
 	type fwupdmgr 1>/dev/null 2>/dev/null
 	if [ $? -eq 0 ]; then
-		echo -e "\n--- FIRMWARE UPDATE MANAGER ---"
 		fwupdmgr upgrade
 	fi
 else
@@ -60,11 +58,9 @@ else
 fi
 
 # OS-agnostic
-echo -e "\n=== OS-AGNOSTIC ==="
 
 type rustup 1>/dev/null 2>/dev/null
 if [ $? -eq 0 ]; then
-	echo -e "\n--- RUST ---"
 	rustup update
 	rustup -V
 	rustc -V
@@ -72,7 +68,6 @@ fi
 
 type mise 1>/dev/null 2>/dev/null
 if [ $? -eq 0 ]; then
-	echo -e "\n--- MISE-EN-PLACE ---"
 	mise upgrade update
 	mise self-update
 	mise version
@@ -82,5 +77,4 @@ if [ $? -eq 0 ]; then
 	mise upgrade                                                                   # Upgrade any tools already installed
 fi
 
-echo -e "\n--- DOTS ---"
 dots upgrade
