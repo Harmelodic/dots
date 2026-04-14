@@ -11,6 +11,7 @@ if [ -z "$user" ]; then
 fi
 
 repos=$(gh api "/users/$user/repos" | jq -r '.[].name')
+
 for repo in $repos; do
 	echo "===> $repo"
 	gh api "/repos/$user/$repo/commits/main/check-suites" |

@@ -6,11 +6,11 @@ set -x
 
 # OS Specific
 if [[ "$(uname)" =~ "Darwin" ]]; then
-	brew -v
+	brew --version
 	brew list
 	brew list --cask
 elif [[ "$(uname -a)" =~ "MANJARO" ]]; then
-	pacman -V
+	pacman --version
 
 	if ! type fwupdmgr 1> /dev/null 2> /dev/null; then
 		fwupdmgr --version
@@ -35,7 +35,7 @@ fi
 gcloud version | head -1
 
 if ! type rustc 1> /dev/null 2> /dev/null; then
-	rustc -V
+	rustc --version
 fi
 
 if ! type mise 1> /dev/null 2> /dev/null; then

@@ -4,11 +4,11 @@
 
 source "$DOTS/config-files/vars"
 
-PROJECT_ID=$1
-CLUSTER=${2:-$GCPKC_DEFAULT_CLUSTER}
-REGION=${3:-$GCPKC_DEFAULT_REGION}
+project_id=$1
+cluster=${2:-$GCPKC_DEFAULT_CLUSTER}
+region=${3:-$GCPKC_DEFAULT_REGION}
 
-if [ -z "$PROJECT_ID" ] && [ -z "$CLUSTER" ] && [ -z "$REGION" ]; then
+if [ -z "$project_id" ] && [ -z "$cluster" ] && [ -z "$region" ]; then
 	echo "Use the command in the following way:"
 	echo "$ gcpkc <project_id> <cluster_name> <region>"
 	echo ""
@@ -19,4 +19,4 @@ fi
 
 set -x
 
-gcloud container clusters get-credentials "$CLUSTER" --region "$REGION" --project "$PROJECT_ID"
+gcloud container clusters get-credentials "$cluster" --region "$region" --project "$project_id"

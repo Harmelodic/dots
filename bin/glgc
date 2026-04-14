@@ -4,8 +4,8 @@
 
 source "$DOTS/config-files/vars"
 
-GROUP_NAME=${1//\//\%2F} # If subgroup is given, replace / with %2F.
+groupName=${1//\//\%2F} # If subgroup is given, replace / with %2F.
 
-curl -s --header "Private-Token: $GLGC_TOKEN" "https://gitlab.com/api/v4/groups/$GROUP_NAME/projects" |
+curl -s --header "Private-Token: $GLGC_TOKEN" "https://gitlab.com/api/v4/groups/$groupName/projects" |
 	jq ".[].http_url_to_repo" |
 	xargs -I {} git clone {}

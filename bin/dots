@@ -34,12 +34,12 @@ elif [[ $1 == "list" || $1 == "ls" ]]; then
 	echo "$ $name info <command>"
 	echo ""
 elif [[ $1 == "info" ]]; then
-	OUTPUT=""
+	output=""
 	for file in "$DOTS/source-bin/"*; do
 		if [ -f "$file" ]; then
 			if [[ $2 == "${file#"$DOTS/source-bin/"}" ]]; then
 				# shellcheck disable=SC2002
-				OUTPUT=$(cat "$file" | head -3 | tail -1)
+				output=$(cat "$file" | head -3 | tail -1)
 			fi
 		fi
 	done
@@ -47,35 +47,35 @@ elif [[ $1 == "info" ]]; then
 		if [ -f "$file" ]; then
 			if [[ $2 == "${file#"$DOTS/bin/"}" ]]; then
 				# shellcheck disable=SC2002
-				OUTPUT=$(cat "$file" | head -3 | tail -1)
+				output=$(cat "$file" | head -3 | tail -1)
 			fi
 		fi
 	done
-	if [[ $OUTPUT == "" ]]; then
+	if [[ $output == "" ]]; then
 		echo "Unrecognised command: $2"
 	else
-		echo "$OUTPUT"
+		echo "$output"
 	fi
 elif [[ $1 == "source" ]]; then
-	OUTPUT=""
+	output=""
 	for file in "$DOTS/source-bin/"*; do
 		if [ -f "$file" ]; then
 			if [[ $2 == "${file#"$DOTS/source-bin/"}" ]]; then
-				OUTPUT=$(cat "$file")
+				output=$(cat "$file")
 			fi
 		fi
 	done
 	for file in "$DOTS/bin/"*; do
 		if [ -f "$file" ]; then
 			if [[ $2 == "${file#"$DOTS/bin/"}" ]]; then
-				OUTPUT=$(cat "$file")
+				output=$(cat "$file")
 			fi
 		fi
 	done
-	if [[ $OUTPUT == "" ]]; then
+	if [[ $output == "" ]]; then
 		echo "Unrecognised command: $2"
 	else
-		echo "$OUTPUT"
+		echo "$output"
 		echo ""
 	fi
 else
