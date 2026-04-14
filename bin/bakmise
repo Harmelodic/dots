@@ -5,10 +5,12 @@
 commit_message=$1
 
 if [ -z "$commit_message" ]; then
-    echo "Please provide a commit message for the backup of the mise config:"
-    echo "$ bakmise \"Adding jq for CLI json querying\""
-    exit 1
+	echo "Please provide a commit message for the backup of the mise config:"
+	echo "$ bakmise \"Adding jq for CLI json querying\""
+	exit 1
 fi
+
+set -x
 
 cp ~/.config/mise/config.toml "$DOTS/config-files/mise.config.toml"
 
