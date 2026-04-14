@@ -4,58 +4,59 @@
 
 # OS-specific
 if [[ "$(uname)" =~ "Darwin" ]]; then
-    echo -e "\n=== MACOS ==="
+	echo -e "\n=== MACOS ==="
 
-    # macOS uses brew
-    type brew 1>/dev/null 2>/dev/null
-    if [ $? -eq 0 ]; then
-        echo -e "\n--- BREW ---"
-        brew update
-        brew -v
-        brew upgrade
-        brew list
-        brew upgrade --cask
-        brew list --cask
-    fi
+	# macOS uses brew
+	type brew 1>/dev/null 2>/dev/null
+	if [ $? -eq 0 ]; then
+		echo -e "\n--- BREW ---"
+		brew update
+		brew -v
+		brew upgrade
+		brew list
+		brew upgrade --cask
+		brew list --cask
+	fi
 
-    # On macOS, gcloud manages itself
-    # On Linux, gcloud is managed through a package manager
-    type gcloud 1>/dev/null 2>/dev/null
-    if [ $? -eq 0 ]; then
-        echo -e "\n--- GCLOUD COMPONENTS ---"
-        gcloud components update --quiet
-        gcloud version | head -1
-    fi
+	# On macOS, gcloud manages itself
+	# On Linux, gcloud is managed through a package manager
+	type gcloud 1>/dev/null 2>/dev/null
+	if [ $? -eq 0 ]; then
+		echo -e "\n--- GCLOUD COMPONENTS ---"
+		gcloud components update --quiet
+		gcloud version | head -1
+	fi
 elif [[ "$(uname -a)" =~ "MANJARO" ]]; then
-    echo -e "\n=== MANJARO ==="
-    echo -e "\n--- PACMAN ---"
-    sudo pacman --sync --refresh --sysupgrade # Upgrade synchronized packages (long form of `pacman -Syu`)
+	echo -e "\n=== MANJARO ==="
+	echo -e "\n--- PACMAN ---"
+	sudo pacman --sync --refresh --sysupgrade # Upgrade synchronized packages (long form of `pacman -Syu`)
 
-    packages_to_prune=$(sudo pacman --query --deps --unrequired --quiet)
-    sudo pacman --remove --recursive --nosave "$packages_to_prune" || echo "Nothing to prune"
+	packages_to_prune=$(sudo pacman --query --deps --unrequired --quiet)
+	sudo pacman --remove --recursive --nosave "$packages_to_prune" || echo "Nothing to prune"
 
-    # Could just do pamac upgrade, but I would rather use the native Arch Linux package manager than Manjaro's.
-    # Using pamac simply to ensure AUR packages are upgraded too.
-    echo -e "\n--- PAMAC ---"
-    pamac upgrade --aur # Upgrade including AUR packages
-    pamac remove --orphans # Prune orphaned packages
+	# Could just do pamac upgrade, but I would rather use the native Arch Linux package manager than Manjaro's.
+	# Using pamac simply to ensure AUR packages are upgraded too.
+	echo -e "\n--- PAMAC ---"
+	pamac upgrade --aur    # Upgrade including AUR packages
+	pamac remove --orphans # Prune orphaned packages
 elif [[ "$(uname -a)" =~ "Ubuntu" ]]; then
-    echo -e "\n=== UBUNTU ==="
-    echo -e "\n--- APT ---"
-    sudo apt update
-    sudo apt upgrade
-    sudo apt autoremove
+	echo -e "\n=== UBUNTU ==="
+	echo -e "\n--- APT ---"
+	sudo apt update
+	sudo apt upgrade
+	sudo apt autoremove
 
-    echo -e "\n--- SNAP ---"
-    snap refresh
+	echo -e "\n--- SNAP ---"
+
+	snap refresh
 
 	type fwupdmgr 1>/dev/null 2>/dev/null
 	if [ $? -eq 0 ]; then
-        echo -e "\n--- FIRMWARE UPDATE MANAGER ---"
-        fwupdmgr upgrade
-    fi
+		echo -e "\n--- FIRMWARE UPDATE MANAGER ---"
+		fwupdmgr upgrade
+	fi
 else
-    echo -e "\nNo OS Specific updates to install for $(uname)"
+	echo -e "\nNo OS Specific updates to install for $(uname)"
 fi
 
 # OS-agnostic
@@ -63,22 +64,22 @@ echo -e "\n=== OS-AGNOSTIC ==="
 
 type rustup 1>/dev/null 2>/dev/null
 if [ $? -eq 0 ]; then
-    echo -e "\n--- RUST ---"
-    rustup update
-    rustup -V
-    rustc -V
+	echo -e "\n--- RUST ---"
+	rustup update
+	rustup -V
+	rustc -V
 fi
 
 type mise 1>/dev/null 2>/dev/null
 if [ $? -eq 0 ]; then
-    echo -e "\n--- MISE-EN-PLACE ---"
-    mise upgrade update
-    mise self-update
-    mise version
-    mkdir -p "$HOME/.config/mise"
-    cp "$HOME/dots/config-files/mise.config.toml" "$HOME/.config/mise/config.toml" # Overwrite and update default mise config
-    mise install # Install any missing mise-configured tools
-    mise upgrade # Upgrade any tools already installed
+	echo -e "\n--- MISE-EN-PLACE ---"
+	mise upgrade update
+	mise self-update
+	mise version
+	mkdir -p "$HOME/.config/mise"
+	cp "$HOME/dots/config-files/mise.config.toml" "$HOME/.config/mise/config.toml" # Overwrite and update default mise config
+	mise install                                                                   # Install any missing mise-configured tools
+	mise upgrade                                                                   # Upgrade any tools already installed
 fi
 
 echo -e "\n--- DOTS ---"
