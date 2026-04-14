@@ -1,22 +1,22 @@
 #!/bin/bash
 
-# Helper function for git-related 
+# gpgz = Portmanteau of gpg and easy - helper function for git-related bits of gpg
 
+if [ -z "$1" ]; then
+	echo "$ gpgz new"
+	echo "to create a new gpg key"
+	echo "or"
+	echo "$ gpgz <email>"
+	echo "to get the SEC GPG Key ID and the public key for the email entered"
+	exit 1
+fi
 
 if [[ $1 == "new" ]]; then
-    gpg --full-gen-key
+	set -x
+	gpg --full-gen-key
 elif [[ $1 == *"@"* ]]; then
-    SEC_CODE=$(gpg --list-secret-keys --keyid-format LONG "$1" | grep sec | awk '{print $2}' | cut -c9-)
-    echo "sec $SEC_CODE"
-    gpg --armor --export "$SEC_CODE"
-else
-    echo ""
-    echo "$ gpgz new"
-    echo "to create a new gpg key"
-    echo ""
-    echo "or"
-    echo ""
-    echo "$ gpgz <email>"
-    echo "to get the SEC GPG Key ID and the public key for the email entered"
-    echo ""
+	set -x
+	SEC_CODE=$(gpg --list-secret-keys --keyid-format LONG "$1" | grep sec | awk '{print $2}' | cut -c9-)
+	echo "sec $SEC_CODE"
+	gpg --armor --export "$SEC_CODE"
 fi
