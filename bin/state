@@ -2,68 +2,45 @@
 
 # Outputs the current/new versions & packages installed on current machine
 
+set -x
+
 # OS Specific
 if [[ "$(uname)" =~ "Darwin" ]]; then
-    echo -e "\n=== MACOS ==="
-
-    # Mac specific upgrades
-    echo -e "\n--- BREW ---"
-    brew -v
-
-    echo -e "\n--- BREW FORMULAE---"
-    brew list
-
-    echo -e "\n--- BREW CASK FORMULAE ---"
-    brew list --cask
+	brew -v
+	brew list
+	brew list --cask
 elif [[ "$(uname -a)" =~ "MANJARO" ]]; then
-    echo -e "\n=== MANJARO ==="
+	pacman -V
 
-    # Manjaro specific upgrades
-    echo -e "\n--- PACMAN: ---"
-    pacman -V
+	if ! type fwupdmgr 1> /dev/null 2> /dev/null; then
+		fwupdmgr --version
+	fi
 elif [[ "$(uname -a)" =~ "Ubuntu" ]]; then
-    echo -e "\n=== UBUNTU ==="
-    echo -e "\n--- APT ---"
-    apt --version
-    echo -e "apt has $(apt list 2>/dev/null | wc -l) packages installed. Use 'sudo apt list' to view them."
+	apt --version
+	apt list 2> /dev/null | wc -l
+	snap --version
 
-    echo -e "\n--- SNAP ---"
-    snap --version
+	if ! type flatpak 1> /dev/null 2> /dev/null; then
+		flatpak --version
+		flatpak list
+	fi
 
-    type flatpak 1>/dev/null 2>/dev/null
-    if [ $? -eq 0 ]; then
-        echo -e "\n--- FLATPAK ---"
-        flatpak --version
-        flatpak list
-    fi
-
-	type fwupdmgr 1>/dev/null 2>/dev/null
-	if [ $? -eq 0 ]; then
-        echo -e "\n--- FIRMWARE UPDATE MANAGER ---"
-        fwupdmgr --version
-    fi
+	if ! type fwupdmgr 1> /dev/null 2> /dev/null; then
+		fwupdmgr --version
+	fi
 else
-    echo -e "\nNo OS Specific updates to install for $(uname)";
+	echo -e "\nNo OS Specific updates to install for $(uname)"
 fi
 
-# OS Agnostic
-echo -e "\n=== OS-AGNOSTIC ==="
-
-echo -e "\n--- GCLOUD ---"
 gcloud version | head -1
 
-type rustc 1>/dev/null 2>/dev/null
-if [ $? -eq 0 ]; then
-    echo -e "\n--- RUST ---"
-    rustc -V
+if ! type rustc 1> /dev/null 2> /dev/null; then
+	rustc -V
 fi
 
-type mise 1>/dev/null 2>/dev/null
-if [ $? -eq 0 ]; then
-    echo -e "\n--- MISE-EN-PLACE ---"
-    mise version
-    mise list
+if ! type mise 1> /dev/null 2> /dev/null; then
+	mise version
+	mise list
 fi
 
-echo -e "\n--- DOTS ---"
 dots version
