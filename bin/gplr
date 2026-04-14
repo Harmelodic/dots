@@ -1,6 +1,9 @@
 #!/bin/bash
 
-# Prunes all branches that have been merged into the master branch. Stands for: Git Prune Local Repo
+# glpr = Git Prune Local Repo = Prunes all branches that have been merged into the master branch.
 
 git remote prune origin
-git branch --merged | grep --invert-match --extended-regexp "(^\*|master|main)" | xargs git branch --delete
+
+git branch --merged |
+	grep --invert-match --extended-regexp "(^\*|master|main)" |
+	xargs git branch --delete
