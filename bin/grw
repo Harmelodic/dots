@@ -2,7 +2,10 @@
 
 # Completely rewrite the history of your branch - Uses git-filter-branch - USE WITH CAUTION
 
-if [ -z "$1" ] && [ -z "$2" ]; then
+username=$1
+email=$2
+
+if [ -z "$username" ] && [ -z "$email" ]; then
 	echo "Usage:"
 	echo "$ grw Username email@domain.com"
 	exit 1
@@ -10,4 +13,4 @@ fi
 
 set -x
 
-git filter-branch -f --env-filter "GIT_AUTHOR_NAME='$1'; GIT_AUTHOR_EMAIL='$2'; GIT_COMMITTER_NAME='$1'; GIT_COMMITTER_EMAIL='$2';" HEAD
+git filter-branch -f --env-filter "GIT_AUTHOR_NAME='$username'; GIT_AUTHOR_EMAIL='$email'; GIT_COMMITTER_NAME='$username'; GIT_COMMITTER_EMAIL='$email';" HEAD
