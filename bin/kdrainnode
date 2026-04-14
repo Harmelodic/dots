@@ -4,15 +4,17 @@
 
 node=$1
 
-if [ -n "$node" ]; then
-    kubectl drain \
-        --force \
-        --ignore-daemonsets \
-        --delete-emptydir-data \
-        --grace-period=100 \
-        "$node"
-else
-    echo "Please provide the name of a node pool to drain."
-    echo ""
-    echo "$ kdrainnode my-node"
+if [ -z "$node" ]; then
+	echo "Please provide the name of a node pool to drain."
+	echo "$ kdrainnode my-node"
+	exit 1
 fi
+
+set -x
+
+kubectl drain \
+	--force \
+	--ignore-daemonsets \
+	--delete-emptydir-data \
+	--grace-period=100 \
+	"$node"
