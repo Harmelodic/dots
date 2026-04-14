@@ -64,9 +64,9 @@ if ! type mise 1> /dev/null 2> /dev/null; then
 	mise self-update
 	mise version
 	mkdir -p "$HOME/.config/mise"
-	cp "$HOME/dots/config-files/mise.config.toml" "$HOME/.config/mise/config.toml" # Overwrite and update default mise config
-	mise install                                                                   # Install any missing mise-configured tools
-	mise upgrade                                                                   # Upgrade any tools already installed
+	cp "$HOME/dots/config-files/mise.config.toml" "$HOME/.config/mise/config.toml"
+	mise install
+	mise upgrade
 fi
 
 dots upgrade
