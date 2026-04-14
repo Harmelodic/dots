@@ -2,13 +2,12 @@
 
 # What Is Running On Kubernetes
 
-RESOURCE=${1:-"pods"}
-echo "Showing all $RESOURCE in all namespaces"
+resource=${1:-"pods"}
 
-kubectl get ns --no-headers \
-    | awk '{print $1}' \
-    | xargs -I % sh -c "{
-        echo '';
-        echo 'namespace: %';
-        kubectl -n % get $RESOURCE --ignore-not-found;
-    }"
+kubectl get namespace --output custom-columns=NAME:.metadata.name --no-headers |
+	while read -r namespace; do
+		set -x
+		kubectl -n "$namespace" get "$resource" --ignore-not-found
+		{ set +x; } 2> /dev/null
+		echo ''
+	done
