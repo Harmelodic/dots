@@ -24,8 +24,7 @@ xargs mkdir -p < projectKeys
 currentDir=$(pwd)
 trap "break" SIGINT SIGHUP SIGTERM
 
-# shellcheck disable=SC2162
-while read line; do
+while read -r line; do
 	cd "$line" || exit
 	bbpc "$domain" "$line" "$username" "$password" "$4"
 	cd ..
