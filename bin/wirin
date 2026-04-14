@@ -2,13 +2,12 @@
 
 # What Is Running In Namespace (Kubernetes)
 
-NAMESPACE=${1:-"default"}
-echo "Showing all resources in $NAMESPACE namespace"
+namespace=${1:-"default"}
 
-kubectl api-resources --namespaced --no-headers \
-    | awk '{print $1}' \
-    | xargs -I % sh -c "{
-        echo '';
-        echo 'resource: %';
-        kubectl -n $NAMESPACE get % --ignore-not-found;
-    }"
+kubectl api-resources -o name |
+	while read -r resource; do
+		set -x
+		kubectl -n "$namespace" get "$resource" --ignore-not-found
+		{ set +x; } 2> /dev/null
+		echo ''
+	done
