@@ -4,14 +4,14 @@
 
 node_pool=$1
 
-if [ -n "$node_pool" ]; then
-    echo "Cordoning node pool: $node_pool"
-
-    for node in $(kubectl get nodes -l "cloud.google.com/gke-nodepool=$node_pool" -o=name); do
-        kubectl cordon "$node";
-    done
-else
-    echo "Please provide the name of a node pool to cordon."
-    echo ""
-    echo "$ kordon my-node-pool"
+if [ -z "$node_pool" ]; then
+	echo "Please provide the name of a node pool to cordon."
+	echo "$ kordon my-node-pool"
+	exit 1
 fi
+
+set -x
+
+for node in $(kubectl get nodes -l "cloud.google.com/gke-nodepool=$node_pool" -o=name); do
+	kubectl cordon "$node"
+done
