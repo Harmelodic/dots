@@ -4,4 +4,8 @@
 
 main_branch="${1:-main}"
 
-git branch | grep -v "$main_branch" | xargs git branch -D
+set -x
+
+git branch |
+	grep -v "$main_branch" |
+	xargs git branch -D
