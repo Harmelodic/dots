@@ -6,13 +6,16 @@ source "$DOTS/config-files/vars"
 
 username=$1
 
-if [ -n "$username" ]; then
-  mkdir -p "$username"
-  cd "$username" || exit
-
-  gh repo list "$username" --no-archived --limit 100 --json sshUrl --jq '.[].sshUrl' \
-    | xargs -I {} git clone {}
-else
-  echo "Please provide the organisation for cloning:"
-  echo "$ ghuc <username>"
+if [ -z "$username" ]; then
+	echo "Please provide the organisation for cloning:"
+	echo "$ ghuc <username>"
+	exit 1
 fi
+
+set -x
+
+mkdir -p "$username"
+cd "$username" || exit
+
+gh repo list "$username" --no-archived --limit 100 --json sshUrl --jq '.[].sshUrl' |
+	xargs -I {} git clone {}
