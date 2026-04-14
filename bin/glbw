@@ -7,5 +7,5 @@ main_branch="${1:-main}"
 set -x
 
 git branch |
-	grep -v "$main_branch" |
-	xargs git branch -D
+	grep --invert-match "$main_branch" |
+	xargs git branch --delete --force
