@@ -9,17 +9,19 @@ password=$4
 
 authString=$(echo -n "$username:$password" | base64)
 
-if [ -n "$domain" ] && [ -n "$project" ] && [ -n "$authString" ]; then
-    if [ "$5" == "ssh" ]; then
-        curl -s --header "Authorization: Basic $authString" "https://$domain/rest/api/1.0/projects/$project/repos?limit=1000" \
-            | jq ".values[].links.clone[] | select(.name == \"ssh\") | .href" \
-            | xargs -I {} git clone {}
-    else
-        curl -s --header "Authorization: Basic $authString" "https://$domain/rest/api/1.0/projects/$project/repos?limit=1000" \
-            | jq ".values[].links.clone[] | select(.name == \"http\") | .href" \
-            | xargs -I {} git clone {}
-    fi
+if [ -z "$domain" ] && [ -z "$project" ] && [ -z "$authString" ]; then
+	echo "Please provide your domain, project code, username and password for cloning:"
+	echo "$ bbpc bitbucket.example.com PROJ harmelodic password123 [http]"
+fi
+
+set -x
+
+if [ "$5" == "http" ]; then
+	curl -s --header "Authorization: Basic $authString" "https://$domain/rest/api/1.0/projects/$project/repos?limit=1000" |
+		jq ".values[].links.clone[] | select(.name == \"http\") | .href" |
+		xargs -I {} git clone {}
 else
-    echo "Please provide your domain, project code, username and password for cloning:"
-    echo "$ bbpc bitbucket.example.com PROJ harmelodic password123 [ssh]"
+	curl -s --header "Authorization: Basic $authString" "https://$domain/rest/api/1.0/projects/$project/repos?limit=1000" |
+		jq ".values[].links.clone[] | select(.name == \"ssh\") | .href" |
+		xargs -I {} git clone {}
 fi
