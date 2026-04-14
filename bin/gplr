@@ -2,6 +2,8 @@
 
 # glpr = Git Prune Local Repo = Prunes all branches that have been merged into the master branch.
 
+set -x
+
 git remote prune origin
 
 git branch --merged |
