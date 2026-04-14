@@ -2,20 +2,20 @@
 
 # Backs up VS Code settings and extensions
 
+set -x
+
 code --list-extensions > "$DOTS/config-files/vscode.extensions.txt"
 
 if [[ "$(uname)" =~ "Darwin" ]]; then
-    cp "$HOME/Library/Application Support/Code/User/settings.json" "$DOTS/config-files/vscode.settings.json"
+	cp "$HOME/Library/Application Support/Code/User/settings.json" "$DOTS/config-files/vscode.settings.json"
 elif [[ "$(uname)" =~ "Linux" ]]; then
-    if [ -d "$HOME/.config/Code - OSS" ]; then
-        echo "Found Code OSS directory"
-        cp "$HOME/.config/Code - OSS/User/settings.json" "$DOTS/config-files/vscode.settings.json"
-    elif [ -d "$HOME/.config/Code" ]; then
-        echo "Found Code (non-OSS) directory"
-        cp "$HOME/.config/Code/User/settings.json" "$DOTS/config-files/vscode.settings.json"
-    fi
+	if [ -d "$HOME/.config/Code - OSS" ]; then
+		cp "$HOME/.config/Code - OSS/User/settings.json" "$DOTS/config-files/vscode.settings.json"
+	elif [ -d "$HOME/.config/Code" ]; then
+		cp "$HOME/.config/Code/User/settings.json" "$DOTS/config-files/vscode.settings.json"
+	fi
 else
-    echo "Unsupported System";
+	echo "Unsupported System"
 fi
 
 DATE=$(date)
