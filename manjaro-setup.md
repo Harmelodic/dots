@@ -79,6 +79,12 @@ sudo usermod --append --groups docker $USER # Add self to `docker` group.
 
 Log out and then log back in to get group membership re-evaluated.
 
+### Install Krew plugins
+
+```bash
+krew install ctx
+```
+
 ### Configure Printing & Service Discovery
 
 CUPS is the (Common UNIX) Printing System. It uses Avahi to discover printers, so that also needs enabling.

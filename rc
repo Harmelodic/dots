@@ -64,9 +64,8 @@ fi
 
 # Kubectl
 alias k='kubectl'
-alias kx='kubectl config get-contexts -o name'
-alias kxc='kubectl config current-context'
-alias kxs='kubectl config use-context' # Expecting an input
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+alias kx='kubectl ctx'
 alias portargo='kubectl -n argocd port-forward svc/argo-cd-argocd-server 9999:80'
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 

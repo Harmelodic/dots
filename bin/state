@@ -12,7 +12,7 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
 elif [[ "$(uname -a)" =~ "MANJARO" ]]; then
 	pacman --version
 
-	if ! type fwupdmgr 1> /dev/null 2> /dev/null; then
+	if type fwupdmgr 1> /dev/null 2> /dev/null; then
 		fwupdmgr --version
 	fi
 elif [[ "$(uname -a)" =~ "Ubuntu" ]]; then
@@ -20,12 +20,12 @@ elif [[ "$(uname -a)" =~ "Ubuntu" ]]; then
 	apt list 2> /dev/null | wc -l
 	snap --version
 
-	if ! type flatpak 1> /dev/null 2> /dev/null; then
+	if type flatpak 1> /dev/null 2> /dev/null; then
 		flatpak --version
 		flatpak list
 	fi
 
-	if ! type fwupdmgr 1> /dev/null 2> /dev/null; then
+	if type fwupdmgr 1> /dev/null 2> /dev/null; then
 		fwupdmgr --version
 	fi
 else
@@ -34,13 +34,17 @@ fi
 
 gcloud version | head -1
 
-if ! type rustc 1> /dev/null 2> /dev/null; then
+if type rustc 1> /dev/null 2> /dev/null; then
 	rustc --version
 fi
 
-if ! type mise 1> /dev/null 2> /dev/null; then
+if type mise 1> /dev/null 2> /dev/null; then
 	mise version
 	mise list
+fi
+
+if type krew 1> /dev/null 2> /dev/null; then
+	krew list
 fi
 
 dots version

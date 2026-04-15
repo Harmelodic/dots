@@ -12,11 +12,16 @@ I could probably script a lot of this but... eh, don't do it often enough.
 	- Configure DuckDuckGo as search engine.
 	- Turn off saving passwords, payments and addresses.
 	- Install browser extension for Password Manager.
-    - Install browser extension: [File icons for GitHub and GitLab](https://chromewebstore.google.com/detail/file-icons-for-github-and/ficfmibkjjnpogdcfhfokmihanoldbfe).
-    - Install browser extension: [uBlock Origin Lite](https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh).
-    - Install browser extension: [Privacy Badger](https://chromewebstore.google.com/detail/privacy-badger/pkehgijcmpdhfbdbbnkijodmdjhbjlgp).
-    - Install browser extension: [Unhook](https://chromewebstore.google.com/detail/unhook-remove-youtube-rec/khncfooichmfjbepaaaebmommgaepoid)
-    - Install browser extension: [Hide Gemini and Google AI](https://chromewebstore.google.com/detail/hide-gemini-and-google-ai/ggneoaeoplbpehkojnifancipajnhcbp)
+	- Install browser
+	  extension: [File icons for GitHub and GitLab](https://chromewebstore.google.com/detail/file-icons-for-github-and/ficfmibkjjnpogdcfhfokmihanoldbfe).
+	- Install browser
+	  extension: [uBlock Origin Lite](https://chromewebstore.google.com/detail/ublock-origin-lite/ddkjiahejlhfcafbddmgiahcphecmpfh).
+	- Install browser
+	  extension: [Privacy Badger](https://chromewebstore.google.com/detail/privacy-badger/pkehgijcmpdhfbdbbnkijodmdjhbjlgp).
+	- Install browser
+	  extension: [Unhook](https://chromewebstore.google.com/detail/unhook-remove-youtube-rec/khncfooichmfjbepaaaebmommgaepoid)
+	- Install browser
+	  extension: [Hide Gemini and Google AI](https://chromewebstore.google.com/detail/hide-gemini-and-google-ai/ggneoaeoplbpehkojnifancipajnhcbp)
 - Assuming using [Firefox](https://www.firefox.com/) for personal stuff.
 	- Configure DuckDuckGo as search engine.
 	- Turn off saving passwords, payments and addresses.
@@ -34,7 +39,8 @@ I could probably script a lot of this but... eh, don't do it often enough.
 - Install [mise-en-place](https://mise.jdx.dev/installing-mise.html) (mise).
 - Run `mise install`.
 - Install [your GPG key](https://harmelodic.com/blog/moving-gpg-keys-to-a-new-machine/).
-- Install [VS Code](https://code.visualstudio.com/download)
+- Install [VS Code](https://code.visualstudio.com/download).
+- Install the krew plugin `ctx`.
 - Run `rescode`.
 - Check everything ran OK by doing `code ~/dots`
 - You may need to open VS Code, open the Command Palette and run `Shell Command: Install 'code' command in Path`.
@@ -47,6 +53,6 @@ I could probably script a lot of this but... eh, don't do it often enough.
 - Turn off all the Generative AI shite and all the feature bloat stuff.
 - If using GitLab:
 	- Install `glab` via Homebrew: `brew install glab`.
-    - Run `glab auth login` and login via the Web and clone with SSH.
-    - Run `glab ssh-key add <SSH_KEY>.pub --title=my-macos-machine` to add the SSH key.
+	- Run `glab auth login` and login via the Web and clone with SSH.
+	- Run `glab ssh-key add <SSH_KEY>.pub --title=my-macos-machine` to add the SSH key.
 - Clone some code and get to making stuff.
