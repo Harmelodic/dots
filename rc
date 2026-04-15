@@ -64,15 +64,11 @@ fi
 
 # Kubectl
 alias k='kubectl'
-export PATH="${HOME}/.krew/bin:${PATH}"
 alias kx='kubectl config get-contexts -o name'
 alias kxc='kubectl config current-context'
 alias kxs='kubectl config use-context' # Expecting an input
 alias portargo='kubectl -n argocd port-forward svc/argo-cd-argocd-server 9999:80'
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
-
-# Kubectl Krew
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # Google Cloud SDK
 export GOOGLE_CLOUD_SDK="${HOME}/google-cloud-sdk"
@@ -99,13 +95,13 @@ export PIP_REQUIRE_VIRTUALENV=true
 # mise-en-place for installing languages and SDKs
 if test -f "$HOME/.local/bin/mise"; then
 	if [[ $shell_in_use =~ "zsh" ]]; then
-		eval "$($HOME/.local/bin/mise activate zsh)"
+		eval "$("$HOME"/.local/bin/mise activate zsh)"
 	elif [[ $shell_in_use =~ "bash" ]]; then
-		eval "$($HOME/.local/bin/mise activate bash)"
+		eval "$("$HOME"/.local/bin/mise activate bash)"
 	fi
 fi
 
 # VisualVM Java JDK on MacOS
 if [[ "$(uname)" =~ "Darwin" ]]; then
-	alias visualvm="visualvm_jdkhome=$JAVA_HOME/Contents/Home /Applications/VisualVM.app/Contents/MacOS/visualvm"
+	alias visualvm='visualvm_jdkhome=$JAVA_HOME/Contents/Home /Applications/VisualVM.app/Contents/MacOS/visualvm'
 fi
