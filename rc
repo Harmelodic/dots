@@ -70,7 +70,7 @@ alias portargo='kubectl -n argocd port-forward svc/argo-cd-argocd-server 9999:80
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 # Google Cloud SDK
-export GOOGLE_CLOUD_SDK="${HOME}/google-cloud-sdk"
+export GOOGLE_CLOUD_SDK=$(mise where gcloud)
 if [[ $shell_in_use =~ "zsh" ]]; then
 	if [ -f "$GOOGLE_CLOUD_SDK/path.zsh.inc" ]; then source "$GOOGLE_CLOUD_SDK/path.zsh.inc"; fi
 	if [ -f "$GOOGLE_CLOUD_SDK/completion.zsh.inc" ]; then source "$GOOGLE_CLOUD_SDK/completion.zsh.inc"; fi

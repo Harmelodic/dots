@@ -6,9 +6,11 @@ set -x
 
 # OS Specific
 if [[ "$(uname)" =~ "Darwin" ]]; then
-	brew --version
-	brew list
-	brew list --cask
+	if type brew 1> /dev/null 2> /dev/null; then
+		brew --version
+		brew list
+		brew list --cask
+	fi
 elif [[ "$(uname -a)" =~ "MANJARO" ]]; then
 	pacman --version
 
@@ -31,8 +33,6 @@ elif [[ "$(uname -a)" =~ "Ubuntu" ]]; then
 else
 	echo -e "\nNo OS Specific updates to install for $(uname)"
 fi
-
-gcloud version | head -1
 
 if type rustc 1> /dev/null 2> /dev/null; then
 	rustc --version

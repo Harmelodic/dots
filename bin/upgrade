@@ -14,13 +14,6 @@ if [[ "$(uname)" =~ "Darwin" ]]; then
 		brew upgrade --cask
 		brew list --cask
 	fi
-
-	# On macOS, gcloud manages itself
-	# On Linux, gcloud is managed through a package manager (native or mise).
-	if type gcloud 1> /dev/null 2> /dev/null; then
-		gcloud components update --quiet
-		gcloud version | head -1
-	fi
 elif [[ "$(uname -a)" =~ "MANJARO" ]]; then
 	sudo pacman --sync --refresh --sysupgrade # Upgrade synchronized packages (long form of `pacman -Syu`)
 
@@ -58,7 +51,6 @@ if type rustup 1> /dev/null 2> /dev/null; then
 	rustup -V
 	rustc -V
 fi
-
 
 if type mise 1> /dev/null 2> /dev/null; then
 	mise upgrade update
