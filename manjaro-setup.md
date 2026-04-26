@@ -2,6 +2,8 @@
 
 Instructions for setting up and configuring a Manjaro machine how I like it.
 
+Start by going to [manjaro.org](https://manjaro.org), and installing the _minimal_ version of Manjaro with GNOME.
+
 ## Installation instructions
 
 - In order to run this code we need `yq` and this config.
