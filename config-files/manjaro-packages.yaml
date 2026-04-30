@@ -29,6 +29,9 @@ install:
     - gnome-system-monitor # System monitor app
     - gparted # Disk management app
     - sysprof # Kernal-based performance profiler app
+    - wine # Compatibility layer for running Windows programs
+    - wine-gecko # Wine's replacement for Microsoft Internet Explorer
+    - wine-mono # Wine's replacement for the .NET Framework
     # The Basics
     - calibre # eBook manager app
     - evince # Document viewer app
