@@ -15,10 +15,11 @@ fi
 shopt -s dotglob
 for directory_with_slash in */; do
 	directory=$(echo "$directory_with_slash" | cut -d'/' -f 1)
-	echo "===> Running in $directory"
 
 	cd -- "$directory" || exit 1
 
+	echo "===> Running in $directory"
+	
 	changes_detected=$(git status -s)
 	if [ "$changes_detected" != "" ]; then
 		eval "$provided_script"
