@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# "For Each Directory In Directory" - for running scripts in each subdirectory in each subdirectory of your current location
+# Example, in this directory structure, the command would only be run in innerOne, innerTwo and innerThree:
+# - one
+# --- innerOne
+# --- innerTwo
+# - two
+# --- innerThree
+# - three
+
+# TODO: Consider a more configurable fedid, that allows for selecting depth, rather than only supporting a depth of 2.
+
+provided_script=$*
+
+if [ -z "$provided_script" ]; then
+	echo "Please provide a script to run in each directory, for example:"
+	echo "$ fedid git status"
+	echo "or"
+	echo "$ fedid \"git fetch && git pull\""
+	exit 1
+fi
+
+shopt -s dotglob
+for outer_directory_with_slash in */; do
+	outer_directory=$(echo "$outer_directory_with_slash" | cut -d'/' -f 1)
+
+	cd -- "$outer_directory" || exit 1
+
+	for inner_directory_with_slash in */; do
+		inner_directory=$(echo "$inner_directory_with_slash" | cut -d'/' -f 1)
+
+		cd -- "$inner_directory" || exit 1
+
+		echo "===> Running in $outer_directory/$inner_directory"
+
+		eval "$provided_script"
+		
+		cd ..
+	done
+
+	cd ..
+done
+shopt -u dotglob
