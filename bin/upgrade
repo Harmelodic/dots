@@ -59,7 +59,7 @@ if type mise 1> /dev/null 2> /dev/null; then
 	mkdir -p "$HOME/.config/mise"
 	cp "$HOME/dots/config-files/mise.config.toml" "$HOME/.config/mise/config.toml"
 	mise install
-	mise upgrade
+	mise upgrade --dry-run
 fi
 
 if type krew 1> /dev/null 2> /dev/null; then
