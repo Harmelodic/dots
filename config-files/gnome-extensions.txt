@@ -6,3 +6,4 @@ dash-to-dock@micxgx.gmail.com
 pamac-updates@manjaro.org
 appindicatorsupport@rgcjonas.gmail.com
 windowIsReady_Remover@nunofarruca@gmail.com
+nightthemeswitcher@romainvigier.fr

@@ -176,6 +176,14 @@ Installing via an Arch Linux seemed to be a little broken, but installing manual
 Install the GNOME extensions listed in `config-files/gnome-extensions.txt` by searching for them
 at [GNOME Extensions](https://extensions.gnome.org).
 
+Those extensions retrieved by running:
+
+```bash
+gnome-extensions list
+```
+
+Install the ones in the file by searching for them in [extensions.gnome.org](https://extensions.gnome.org).
+
 ### Configure GNOME Extensions
 
 - Configure GNOME extensions:
