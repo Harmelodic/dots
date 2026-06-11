@@ -7,3 +7,4 @@ pamac-updates@manjaro.org
 appindicatorsupport@rgcjonas.gmail.com
 windowIsReady_Remover@nunofarruca@gmail.com
 nightthemeswitcher@romainvigier.fr
+appgrid-size@luyao
