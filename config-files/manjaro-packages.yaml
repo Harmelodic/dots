@@ -79,7 +79,6 @@ install:
     - jetbrains-toolbox # Install & manage JetBrains IDEs
     - spotify # Stream music
     - wordbook # Offline dictionary
-    - workbench # Learn & prototype GNOME-based software
     - zoom # One of many video conferencing apps/services.
 uninstall: # After installing a minimal version of Manjaro, here are some things I actively don't want.
   arch-core-or-extra:
