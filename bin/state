@@ -17,6 +17,11 @@ elif [[ "$(uname -a)" =~ "MANJARO" ]]; then
 	if type fwupdmgr 1> /dev/null 2> /dev/null; then
 		fwupdmgr --version
 	fi
+
+	sudo dmidecode -s bios-vendor
+	sudo dmidecode -s bios-version
+	sudo dmidecode -s bios-release-date
+	sudo dmidecode -s bios-revision
 elif [[ "$(uname -a)" =~ "Ubuntu" ]]; then
 	apt --version
 	apt list 2> /dev/null | wc -l
@@ -30,6 +35,11 @@ elif [[ "$(uname -a)" =~ "Ubuntu" ]]; then
 	if type fwupdmgr 1> /dev/null 2> /dev/null; then
 		fwupdmgr --version
 	fi
+
+	sudo dmidecode -s bios-vendor
+	sudo dmidecode -s bios-version
+	sudo dmidecode -s bios-release-date
+	sudo dmidecode -s bios-revision
 else
 	echo -e "\nNo OS Specific updates to install for $(uname)"
 fi

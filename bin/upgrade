@@ -27,6 +27,9 @@ elif [[ "$(uname -a)" =~ "MANJARO" ]]; then
 
 	# Firmware Update Manager
 	if type fwupdmgr 1> /dev/null 2> /dev/null; then
+		fwupdmgr refresh --force
+		fwupdmgr get-updates
+		fwupdmgr update
 		fwupdmgr upgrade
 	fi
 elif [[ "$(uname -a)" =~ "Ubuntu" ]]; then
@@ -38,6 +41,9 @@ elif [[ "$(uname -a)" =~ "Ubuntu" ]]; then
 
 	# Firmware Update Manager
 	if type fwupdmgr 1> /dev/null 2> /dev/null; then
+		fwupdmgr refresh --force
+		fwupdmgr get-updates
+		fwupdmgr update
 		fwupdmgr upgrade
 	fi
 else
