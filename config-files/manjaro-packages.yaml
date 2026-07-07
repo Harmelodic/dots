@@ -11,7 +11,6 @@ install:
     - noto-fonts-emoji # Noto: Emoji
     - noto-fonts-extra # Noto: Arabic, Bengali, Canadian Aboriginal, Cham, etc.
     - ntp # Network Time Protocol
-    - openrgb # RGB Control for RGB-controllable devices
     # OS Configuration
     - dconf-editor # GNOME settings raw editor
     - fwupd # Firmware update daemon
