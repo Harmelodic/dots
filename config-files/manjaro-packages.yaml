@@ -33,7 +33,6 @@ install:
     - wine-mono # Wine's replacement for the .NET Framework
     # The Basics
     - calibre # eBook manager app
-    - evince # Document viewer app
     - firefox # Web browser app
     - file-roller # Archive utility app
     - foliate # eBook Reader app
@@ -44,6 +43,7 @@ install:
     - gnome-text-editor # Text editor app
     - loupe # Image viewer app
     - nautilus # File explorer app
+    - papers # Document viewer app
     - snapshot # Take pictures & videos (e.g. with webcams) app
     - thunderbird # Email client app
     - vim # Terminal editor
