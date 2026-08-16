@@ -65,7 +65,14 @@ if type mise 1> /dev/null 2> /dev/null; then
 	mkdir -p "$HOME/.config/mise"
 	cp "$HOME/dots/config-files/mise.config.toml" "$HOME/.config/mise/config.toml"
 	mise install
-	mise upgrade --dry-run # Can be a lot of updates and take a long time, so be more selective about mise upgrades.
+
+	# Don't upgrade mise packages. Why?:
+	# - There is often updates available that bring little value.
+	# - Many things ship often and so the size of the upgrade can be large.
+	# - Large updates + Little value = Usually not worth the time spent upgrading, if doing regularly.
+	# - Therefore, more irregular / deliberate upgrades is preferable.
+	# Instead of upgrading, highlight outdated packages, allowing for user-choice for when to upgrade what:
+	mise outdated
 fi
 
 if type krew 1> /dev/null 2> /dev/null; then
