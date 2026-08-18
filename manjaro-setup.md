@@ -206,6 +206,56 @@ Zoom does the dark pattern of hiding the AI settings in "advanced settings" only
 - Go to the "AI Companion" tab
 - Turn everything `OFF`.
 
+## Using hibernate on a laptop when closing the lid.
+
+Manjaro is built ArchLinux, and 
+[as ArchLinux documents](https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate), there 
+are a few methods to "suspend" a laptop - when closing the lid:
+
+- Suspend to RAM (aka suspend)
+- Suspend to disk (aka hibernate)
+
+When closing the lid of your laptop, Manjaro just uses suspend. For better battery savings after closing
+the lid, you can change to hibernate.
+
+In order to hibernate, you need Swap space bigger than RAM available. Manjaro documents how much space you need
+for hibernate [here](https://wiki.manjaro.org/index.php?title=Swap). For example, for a laptop with 32GB of RAM,
+you should have 38GB of swap space.
+
+Since Linux 2.6, you can use a swapfile rather than a swap partition (I recommend! It's easier and safe to
+manage than messing with partitions). If using `btrfs` (probably) this only possible since Linux 5.0.
+
+```bash
+# Create a formatted swapfile that btrfs is happy with
+sudo btrfs filesystem mkswapfile /swapfile --size 38g
+# Make it only readable & writable by root
+sudo chmod 600 /swapfile
+# Enable the swapfile
+sudo swapon /swapfile
+# Enable the swapfile at boot
+sudo bash -c "echo /swapfile none swap defaults 0 0 >> /etc/fstab"
+# Check its setup and swap is seen by `free`
+free -h
+```
+
+To hibernate instantly on lid close, edit `/etc/systemd/logind.conf`
+
+```conf
+HandleLidSwitch=hibernate
+```
+
+To hibernate after a while, edit `/etc/systemd/logind.conf`:
+
+```conf
+HandleLidSwitch=suspend-then-hibernate
+```
+
+Then also change `/etc/systemd/sleep.conf`:
+
+```conf
+HibernateDelaySec=10min
+```
+
 ## Useful links
 
 - [ArchLinux](https://archlinux.org)
