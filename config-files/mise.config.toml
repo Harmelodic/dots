@@ -1,7 +1,7 @@
 [tools]
 "aqua:txn2/kubefwd" = "latest"
 aws-cli = { version = "latest", symlink_bins = "true" }
-azure-cli = { version = "latest", uvx_args = "--prerelease=allow" }
+azure = "latest"
 checkov = "latest"
 conftest = "latest"
 flux2 = "latest"
@@ -36,6 +36,7 @@ terraform = "latest"
 terragrunt = "latest"
 tflint = "latest"
 usage = "latest"
+uv = "latest"
 yamllint = "latest"
 yarn = "latest"
 yq = "latest"
